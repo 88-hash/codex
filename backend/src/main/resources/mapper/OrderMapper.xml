@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leyi.mapper.OrderMapper">
+    
+    <select id="findByUserId" resultType="com.leyi.entity.Order">
+        SELECT * FROM `order` WHERE user_id = #{userId}
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        ORDER BY created_at DESC
+    </select>
+    
+    <select id="findList" resultType="com.leyi.entity.Order">
+        SELECT * FROM `order` WHERE 1=1
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (order_no LIKE CONCAT('%', #{keyword}, '%') 
+                 OR user_phone LIKE CONCAT('%', #{keyword}, '%')
+                 OR verify_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY created_at DESC
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+    
+    <select id="countList" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM `order` WHERE 1=1
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (order_no LIKE CONCAT('%', #{keyword}, '%') 
+                 OR user_phone LIKE CONCAT('%', #{keyword}, '%')
+                 OR verify_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+    </select>
+</mapper>
+
+
+

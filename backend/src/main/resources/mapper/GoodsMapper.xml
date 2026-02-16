@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leyi.mapper.GoodsMapper">
+    
+    <select id="findList" resultType="com.leyi.entity.Goods">
+        SELECT g.*, c.name as category_name 
+        FROM goods g 
+        LEFT JOIN category c ON g.category_id = c.id
+        WHERE g.is_deleted = 0
+        <if test="categoryId != null">
+            AND g.category_id = #{categoryId}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (g.name LIKE CONCAT('%', #{keyword}, '%') OR g.bar_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="isOnSale != null">
+            AND g.is_on_sale = #{isOnSale}
+        </if>
+        ORDER BY g.created_at DESC
+        <if test="offset != null and limit != null">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+    
+    <select id="countList" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM goods g WHERE g.is_deleted = 0
+        <if test="categoryId != null">
+            AND g.category_id = #{categoryId}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (g.name LIKE CONCAT('%', #{keyword}, '%') OR g.bar_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="isOnSale != null">
+            AND g.is_on_sale = #{isOnSale}
+        </if>
+    </select>
+    
+    <update id="update">
+        UPDATE goods SET
+            category_id = #{categoryId},
+            name = #{name},
+            price = #{price},
+            stock = #{stock},
+            safety_stock = #{safetyStock},
+            bar_code = #{barCode},
+            image_url = #{imageUrl},
+            description = #{description},
+            promotion_tag = #{promotionTag},
+            is_on_sale = #{isOnSale},
+            expire_date = #{expireDate},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+</mapper>
+
+
+

@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/leyi_snack?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.leyi.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT配置
+jwt:
+  secret: LeyiSnackShop2024SecretKeyForJWTTokenGenerationMustBeLongEnough
+  expiration: 604800000  # 7天(毫秒)
+  header: Authorization
+  prefix: Bearer 
+
+# 文件上传配置
+upload:
+  path: C:/Users/lmc/Desktop/乐逸/uploads
+  max-size: 10485760
+
+
+
+
+
+
+

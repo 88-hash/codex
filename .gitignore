@@ -1,0 +1,54 @@
+# ====== must ignore (你截图里最关键) ======
+.tools/
+.m2/
+**/.tools/
+**/.m2/
+
+# ====== Java / Maven ======
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Maven wrapper（如果你用的是官方 maven wrapper，只保留脚本，不要把maven本体塞仓库）
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+.mvn/timing.properties
+
+# ====== IDE / Editor ======
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# ====== OS ======
+.DS_Store
+Thumbs.db
+
+# ====== Env / secrets ======
+.env
+*.local
+# --- frontend deps (爆量来源) ---
+frontend-admin/node_modules/
+frontend-customer/node_modules/
+
+# --- frontend build output ---
+frontend-admin/dist/
+frontend-customer/dist/
+
+# --- backend build output ---
+backend/target/
+
+# --- Trae generated ---
+.trae/
+
+# --- logs ---
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
