@@ -52,3 +52,4 @@ backend/target/
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+.runtime-chrome-profile/
