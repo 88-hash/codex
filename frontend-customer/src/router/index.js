@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+﻿import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
@@ -29,6 +29,12 @@ const routes = [
         name: 'Mine',
         component: () => import('@/views/mine/Index.vue'),
         meta: { title: '个人中心', requireAuth: true }
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import('@/views/profile/Index.vue'),
+        meta: { title: '个人资料', requireAuth: true }
       },
       {
         path: 'goods/:id',
@@ -95,7 +101,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title ? `${to.meta.title} - 乐逸零食店` : '乐逸零食店'
-  
+
   const token = localStorage.getItem('token')
   if (to.meta.requireAuth && !token) {
     next({ name: 'Login', query: { redirect: to.fullPath } })

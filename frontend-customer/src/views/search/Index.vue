@@ -20,7 +20,7 @@
           @click="goDetail(goods.id)"
         >
           <div class="goods-image">
-            <img :src="goods.imageUrl || '/placeholder.png'" :alt="goods.name">
+            <img :src="getImageUrl(goods.imageUrl)" :alt="goods.name" @error="handleImageError">
             <span v-if="goods.promotionTag" class="promo-tag">{{ goods.promotionTag }}</span>
           </div>
           <div class="goods-info">
@@ -61,6 +61,7 @@ import { ElMessage } from 'element-plus'
 import { getGoodsList } from '@/api/goods'
 import { useCartStore } from '@/stores/cart'
 import { useUserStore } from '@/stores/user'
+import { getImageUrl, handleImageError } from '@/utils/image'
 
 const route = useRoute()
 const router = useRouter()

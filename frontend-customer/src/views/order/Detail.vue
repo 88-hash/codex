@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="order-detail-page" v-if="order">
     <div class="page-container">
       <el-breadcrumb separator="/" class="breadcrumb">
@@ -60,7 +60,7 @@
                 <el-table-column label="商品" min-width="250">
                   <template #default="{ row }">
                     <div class="goods-cell">
-                      <img :src="row.goodsImage || '/placeholder.png'" :alt="row.goodsName">
+                      <img :src="getImageUrl(row.goodsImage)" :alt="row.goodsName" @error="handleImageError">
                       <span>{{ row.goodsName }}</span>
                     </div>
                   </template>
@@ -138,6 +138,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import dayjs from 'dayjs'
 import { getOrderDetail, cancelOrder } from '@/api/order'
+import { getImageUrl, handleImageError } from '@/utils/image'
 
 const route = useRoute()
 const router = useRouter()
@@ -181,79 +182,96 @@ const handleCancel = async () => {
 .status-card {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 32px;
-  margin-bottom: 24px;
-  color: white;
-  
+  gap: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
+  color: var(--text);
+  border: 1px solid var(--border);
+
   &.pending {
-    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    background: #eff6ff;
+    border-color: #bfdbfe;
   }
-  
+
   &.completed {
-    background: linear-gradient(135deg, #34a853 0%, #1e7e34 100%);
+    background: #ecfdf5;
+    border-color: #bbf7d0;
   }
-  
+
   &.cancelled {
-    background: linear-gradient(135deg, #9aa0a6 0%, #5f6368 100%);
+    background: #f3f4f6;
+    border-color: #e5e7eb;
   }
-  
+
+  .status-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.75);
+  }
+
   .status-info {
     flex: 1;
-    
+
     h2 {
       font-size: 24px;
-      margin-bottom: 4px;
+      line-height: 32px;
+      margin-bottom: 2px;
+      color: var(--text);
     }
-    
+
     p {
-      opacity: 0.9;
+      color: var(--text-secondary);
       margin: 0;
     }
   }
-  
+
   .status-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
-  
+
   .verify-code-mini {
     text-align: center;
-    
+
     .label {
       display: block;
       font-size: 12px;
-      opacity: 0.8;
+      color: var(--muted);
       margin-bottom: 4px;
     }
-    
+
     .code {
       font-size: 28px;
       font-weight: 700;
       letter-spacing: 4px;
+      color: var(--text);
     }
   }
 }
 
 .detail-layout {
   display: flex;
-  gap: 24px;
+  gap: 20px;
 }
 
 .detail-main {
   flex: 1;
-  
+
   .card {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 }
 
 .detail-sidebar {
   width: 320px;
-  
+
   .card {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 }
 
@@ -261,26 +279,26 @@ const handleCancel = async () => {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid #f0f0f0;
-  
+  border-bottom: 1px solid var(--border);
+
   &:last-child {
     border-bottom: none;
   }
-  
+
   .label {
-    color: #5f6368;
+    color: var(--muted);
   }
-  
+
   &.total {
-    padding-top: 16px;
+    padding-top: 14px;
     margin-top: 8px;
-    border-top: 1px solid #e8eaed;
+    border-top: 1px solid var(--border);
     border-bottom: none;
-    
+
     .total-price {
-      color: #ea4335;
+      color: var(--primary);
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 }
@@ -289,24 +307,25 @@ const handleCancel = async () => {
   display: flex;
   align-items: center;
   gap: 12px;
-  
+
   img {
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border-radius: 4px;
-    background: #f5f5f5;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-soft);
   }
 }
 
 .subtotal {
-  color: #ea4335;
+  color: var(--primary);
   font-weight: 600;
 }
 
 .commented {
-  color: #34a853;
-  font-size: 13px;
+  color: var(--success);
+  font-size: 12px;
 }
 
 .action-card {
@@ -315,3 +334,4 @@ const handleCancel = async () => {
   }
 }
 </style>
+
