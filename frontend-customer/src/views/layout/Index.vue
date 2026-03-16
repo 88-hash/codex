@@ -1,80 +1,81 @@
 ﻿<template>
-  <div class="layout">
-    <header class="top-header">
-      <div class="header-bg-pattern" aria-hidden="true"></div>
+  <div class="layout-shell">
+    <header class="site-header">
+      <div class="header-top">
+        <div class="desktop-container top-inner">
+          <div class="top-copy">门店现货自提，随买随取</div>
+        </div>
+      </div>
 
-      <div class="header-container">
-        <div class="header-top">
-          <div class="welcome">
-            <span class="welcome-chip">今日热卖</span>
-            <span class="welcome-text">欢迎来到乐逸零食店，快乐补给站</span>
+      <div class="header-main desktop-container">
+        <div class="brand-block" @click="router.push('/home')">
+          <div class="brand-icon">
+            <el-icon><Shop /></el-icon>
+          </div>
+          <div class="brand-copy">
+            <span class="brand-title">LeYi零食店</span>
+            <span class="brand-sub">LeYi Snack Boutique</span>
           </div>
         </div>
 
-        <div class="header-main">
-          <div class="header-main-left">
-            <div class="logo" @click="router.push('/home')">
-              <el-icon><Shop /></el-icon>
-              <div class="brand-text">
-                <span class="brand-name">乐逸零食店</span>
-                <span class="brand-sub">Snack Joy Daily</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="header-main-center">
-            <div class="search-box">
-              <el-input
-                v-model="keyword"
-                placeholder="搜索你想吃的零食"
-                size="large"
-                @keyup.enter="handleSearch"
-              />
-              <el-button type="primary" size="large" class="search-btn" @click="handleSearch">
-                搜索
-              </el-button>
-            </div>
-          </div>
-
-          <div class="header-main-right">
-            <div class="user-actions">
-              <el-dropdown
-                trigger="click"
-                placement="bottom-end"
-                popper-class="user-dropdown-menu"
-                @command="handleUserMenuCommand"
-              >
-                <button class="user-trigger" type="button">
-                  <el-avatar :size="34" :src="displayAvatar" class="user-avatar">
-                    {{ displayInitial }}
-                  </el-avatar>
-                  <span class="user-name">{{ displayName }}</span>
-                  <el-icon class="user-arrow"><ArrowDown /></el-icon>
-                </button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item command="profile">个人资料</el-dropdown-item>
-                    <el-dropdown-item command="orders">我的订单</el-dropdown-item>
-                    <el-dropdown-item command="comments">我的评价</el-dropdown-item>
-                    <el-dropdown-item command="frequent">常买商品</el-dropdown-item>
-                    <el-dropdown-item v-if="userStore.isLoggedIn()" command="logout" divided>退出登录</el-dropdown-item>
-                    <el-dropdown-item v-else command="login" divided>登录 / 注册</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </div>
-
-            <div class="cart-btn" @click="router.push('/cart')">
-              <el-icon :size="24"><ShoppingCart /></el-icon>
-              <span>购物车</span>
-              <span v-if="cartStore.totalCount > 0" class="cart-count">{{ cartStore.totalCount }}</span>
-            </div>
-          </div>
+        <div class="search-box">
+          <el-input
+            v-model="keyword"
+            placeholder="搜索零食、品牌或口味"
+            size="large"
+            @keyup.enter="handleSearch"
+          />
+          <el-button type="primary" size="large" @click="handleSearch">搜索</el-button>
         </div>
 
-        <nav class="header-nav">
+        <div class="header-actions">
+          <el-dropdown
+            trigger="click"
+            placement="bottom-end"
+            popper-class="user-dropdown-menu"
+            @command="handleUserMenuCommand"
+          >
+            <button class="user-trigger" type="button">
+              <el-avatar :size="34" :src="displayAvatar" class="user-avatar">
+                {{ displayInitial }}
+              </el-avatar>
+              <span class="user-name">{{ displayName }}</span>
+              <el-icon><ArrowDown /></el-icon>
+            </button>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="profile">个人资料</el-dropdown-item>
+                <el-dropdown-item command="orders">我的订单</el-dropdown-item>
+                <el-dropdown-item command="comments">我的评价</el-dropdown-item>
+                <el-dropdown-item command="frequent">常买清单</el-dropdown-item>
+                <el-dropdown-item v-if="userStore.isLoggedIn()" command="logout" divided>退出登录</el-dropdown-item>
+                <el-dropdown-item v-else command="login" divided>登录 / 注册</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+
+          <button class="cart-btn" type="button" @click="router.push('/cart')">
+            <el-icon><ShoppingCart /></el-icon>
+            <span>购物车</span>
+            <span v-if="cartStore.totalCount > 0" class="cart-count">{{ cartStore.totalCount }}</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <div class="desktop-container nav-inner">
           <span
-            v-for="cat in categories"
+            class="nav-item"
+            :class="{ active: route.path === '/home' }"
+            @click="router.push('/home')"
+          >首页</span>
+          <span
+            class="nav-item"
+            :class="{ active: route.path === '/category' && !activeCategory }"
+            @click="router.push('/category')"
+          >全部分类</span>
+          <span
+            v-for="cat in categories.slice(0, 8)"
             :key="cat.id"
             class="nav-item"
             :class="{ active: activeCategory === cat.id }"
@@ -82,50 +83,49 @@
           >
             {{ cat.name }}
           </span>
-          <span class="nav-extra">今日上新</span>
-        </nav>
-      </div>
+          <span class="nav-highlight">每周上新</span>
+        </div>
+      </nav>
     </header>
 
-    <main>
+    <main class="site-main">
       <router-view />
     </main>
 
-    <footer class="page-footer">
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h4>乐逸零食店</h4>
-            <p>美味零食，快乐生活</p>
-            <p>线下自提，新鲜保障</p>
-          </div>
-          <div class="footer-section">
-            <h4>购物指南</h4>
-            <a href="#">购物流程</a>
-            <a href="#">支付方式</a>
-            <a href="#">取货说明</a>
-          </div>
-          <div class="footer-section">
-            <h4>服务保障</h4>
-            <a href="#">售后服务</a>
-            <a href="#">退换政策</a>
-            <a href="#">品质保证</a>
-          </div>
-          <div class="footer-section">
-            <h4>联系我们</h4>
-            <p>地址：XX市XX区XX路XX号</p>
-            <p>电话：400-888-8888</p>
-          </div>
+    <footer class="site-footer">
+      <div class="desktop-container footer-inner">
+        <div class="footer-col">
+          <h4>LeYi零食店</h4>
+          <p>甄选品质零食，打造更高级的日常味觉体验。</p>
+          <p>门店自提 + 在线下单，订单状态与核销流程可追踪。</p>
         </div>
-        <div class="footer-bottom">© 2024 乐逸零食店 版权所有</div>
+        <div class="footer-col">
+          <h4>购物服务</h4>
+          <p>下单流程</p>
+          <p>支付与发票</p>
+          <p>到店核销说明</p>
+        </div>
+        <div class="footer-col">
+          <h4>会员权益</h4>
+          <p>积分规则</p>
+          <p>成长等级</p>
+          <p>企业采购</p>
+        </div>
+        <div class="footer-col">
+          <h4>联系我们</h4>
+          <p>地址：XX市XX区XX路XX号</p>
+          <p>客服：400-888-8888</p>
+          <p>服务时间：09:00 - 22:00</p>
+        </div>
       </div>
+      <div class="footer-copy">© 2026 LeYi零食店 · All Rights Reserved.</div>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { ElMessageBox } from 'element-plus'
 import { useCartStore } from '@/stores/cart'
 import { useUserStore } from '@/stores/user'
@@ -140,20 +140,30 @@ const userStore = useUserStore()
 const keyword = ref('')
 const categories = ref([])
 const activeCategory = ref(null)
-const fallbackUserName = '用户4567'
 
 const displayName = computed(() => {
-  if (!userStore.isLoggedIn()) return fallbackUserName
-  return userStore.userInfo.name || userStore.userInfo.phone || fallbackUserName
+  if (!userStore.isLoggedIn()) return '游客'
+  return userStore.userInfo.name || userStore.userInfo.phone || 'LeYi会员'
 })
+
 const displayAvatar = computed(() => {
   const savedAvatar = userStore.userInfo.avatarUrl || userStore.userInfo.avatar || ''
   return savedAvatar || DEFAULT_PRESET_AVATAR
 })
+
 const displayInitial = computed(() => {
   const text = `${displayName.value || ''}`.trim()
-  return text ? text.slice(0, 1).toUpperCase() : 'U'
+  return text ? text.slice(0, 1).toUpperCase() : 'L'
 })
+
+watch(
+  () => route.query.id,
+  (id) => {
+    const parsed = Number(id)
+    activeCategory.value = Number.isNaN(parsed) ? null : parsed
+  },
+  { immediate: true }
+)
 
 onMounted(async () => {
   if (userStore.isLoggedIn()) {
@@ -163,17 +173,15 @@ onMounted(async () => {
   try {
     const res = await getCategoryList()
     categories.value = res.data || []
-    const queryId = Number(route.query.id)
-    activeCategory.value = Number.isNaN(queryId) ? null : queryId
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 })
 
 const handleSearch = () => {
-  if (keyword.value.trim()) {
-    router.push({ path: '/search', query: { keyword: keyword.value } })
-  }
+  const value = keyword.value.trim()
+  if (!value) return
+  router.push({ path: '/search', query: { keyword: value } })
 }
 
 const goCategory = (id) => {
@@ -216,13 +224,226 @@ const handleUserMenuCommand = async (command) => {
 </script>
 
 <style lang="scss" scoped>
-.layout {
+.layout-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
 
-  main {
-    flex: 1;
-  }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(248, 248, 246, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(24, 24, 24, 0.08);
+}
+
+.header-top {
+  border-bottom: 1px solid rgba(24, 24, 24, 0.08);
+  background: linear-gradient(90deg, #1f1f1f 0%, #3b3320 100%);
+}
+
+.top-inner {
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.76rem;
+}
+
+.header-main {
+  height: 5.4rem;
+  display: grid;
+  grid-template-columns: 17rem minmax(24rem, 1fr) auto;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.7rem;
+  background: var(--color-primary);
+  color: #1d1a0e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xs);
+  font-size: 1.2rem;
+}
+
+.brand-copy {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.brand-sub {
+  margin-top: 0.16rem;
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  letter-spacing: 0.05em;
+}
+
+.search-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.user-trigger {
+  height: 2.5rem;
+  padding: 0.2rem 0.75rem 0.2rem 0.25rem;
+  border: 1px solid rgba(24, 24, 24, 0.15);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.user-avatar {
+  border: 1px solid rgba(24, 24, 24, 0.18);
+}
+
+.user-name {
+  max-width: 6.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.cart-btn {
+  height: 2.5rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(24, 24, 24, 0.15);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cart-count {
+  min-width: 1.2rem;
+  height: 1.2rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.header-nav {
+  border-top: 1px solid rgba(24, 24, 24, 0.08);
+  border-bottom: 1px solid rgba(24, 24, 24, 0.08);
+}
+
+.nav-inner {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  overflow-x: auto;
+}
+
+.nav-item {
+  height: 2rem;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(24, 24, 24, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3d3d3d;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-item.active {
+  background: rgba(238, 205, 43, 0.25);
+  border-color: rgba(238, 205, 43, 0.7);
+  color: #27220f;
+}
+
+.nav-highlight {
+  margin-left: 0.25rem;
+  padding: 0 0.7rem;
+  height: 1.85rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.site-main {
+  flex: 1;
+}
+
+.site-footer {
+  margin-top: 2.4rem;
+  border-top: 1px solid rgba(24, 24, 24, 0.1);
+  background: #fbfbf8;
+}
+
+.footer-inner {
+  padding-block: 2.5rem 1.8rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 1.5rem;
+}
+
+.footer-col h4 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.footer-col p {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.footer-copy {
+  border-top: 1px solid rgba(24, 24, 24, 0.08);
+  text-align: center;
+  padding: 0.95rem 0;
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }
 </style>

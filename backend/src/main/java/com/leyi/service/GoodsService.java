@@ -1,8 +1,10 @@
 package com.leyi.service;
 
 import com.leyi.common.PageResult;
+import com.leyi.entity.Category;
 import com.leyi.entity.Goods;
 import com.leyi.entity.GoodsImage;
+import com.leyi.mapper.CategoryMapper;
 import com.leyi.mapper.GoodsImageMapper;
 import com.leyi.mapper.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,24 @@ public class GoodsService {
     @Autowired
     private GoodsImageMapper goodsImageMapper;
 
-    public PageResult<Goods> getList(Long categoryId, String keyword, Integer isOnSale, Integer pageNum, Integer pageSize) {
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    public PageResult<Goods> getList(Long categoryId, String keyword, Integer isOnSale, Boolean includeChildren, Integer pageNum, Integer pageSize) {
         int offset = (pageNum - 1) * pageSize;
-        List<Goods> list = goodsMapper.findList(categoryId, keyword, isOnSale, offset, pageSize);
-        Long total = goodsMapper.countList(categoryId, keyword, isOnSale);
+        List<Long> categoryIds = null;
+
+        if (Boolean.TRUE.equals(includeChildren) && categoryId != null) {
+            List<Category> children = categoryMapper.findByParentId(categoryId);
+            if (!children.isEmpty()) {
+                categoryIds = children.stream()
+                        .map(Category::getId)
+                        .toList();
+            }
+        }
+
+        List<Goods> list = goodsMapper.findList(categoryId, categoryIds, keyword, isOnSale, offset, pageSize);
+        Long total = goodsMapper.countList(categoryId, categoryIds, keyword, isOnSale);
         return PageResult.of(list, total, pageNum, pageSize);
     }
 

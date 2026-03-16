@@ -1,52 +1,43 @@
 ﻿<template>
   <div class="cart-page">
     <div class="page-container">
-      <el-breadcrumb separator="/" class="breadcrumb">
+      <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>购物车</el-breadcrumb-item>
       </el-breadcrumb>
 
-      <div class="cart-layout" v-if="cartStore.cartList.length > 0">
-        <div class="cart-main">
-          <div class="list-header card">
-            <div class="card-header">
-              <el-checkbox
-                :model-value="isAllChecked"
-                @change="handleCheckAll"
-              >全选</el-checkbox>
-              <span class="header-text">商品信息</span>
-              <span class="header-text">单价</span>
-              <span class="header-text">数量</span>
-              <span class="header-text">小计</span>
-              <span class="header-text">操作</span>
-            </div>
-          </div>
+      <div v-if="cartStore.cartList.length > 0" class="cart-shell">
+        <section class="cart-list leyi-panel-strong">
+          <header class="list-toolbar">
+            <el-checkbox :model-value="isAllChecked" @change="handleCheckAll">全选</el-checkbox>
+            <p>{{ cartStore.cartList.length }} 件商品</p>
+          </header>
 
-          <div class="cart-list">
-            <div
+          <div class="cart-items">
+            <article
               v-for="item in cartStore.cartList"
               :key="item.id"
-              class="cart-item card"
+              class="cart-item"
               :class="{ invalid: !item.goodsIsOnSale }"
             >
-              <el-checkbox
-                :model-value="item.isChecked === 1"
-                :disabled="!item.goodsIsOnSale"
-                @change="(val) => handleCheck(item.id, val)"
-              />
+              <div class="item-check">
+                <el-checkbox
+                  :model-value="item.isChecked === 1"
+                  :disabled="!item.goodsIsOnSale"
+                  @change="(val) => handleCheck(item.id, val)"
+                />
+              </div>
 
-              <div class="item-info" @click="goDetail(item.goodsId)">
-                <img :src="getImageUrl(item.goodsImage)" :alt="item.goodsName" @error="handleImageError">
-                <div class="info-text">
+              <div class="item-product" @click="goDetail(item.goodsId)">
+                <img :src="getImageUrl(item.goodsImage)" :alt="item.goodsName" @error="handleImageError" />
+                <div class="item-copy">
                   <h4>{{ item.goodsName }}</h4>
-                  <p class="meta-text">库存 {{ item.goodsStock }} 件</p>
+                  <p>库存 {{ item.goodsStock }} 件</p>
                   <span v-if="!item.goodsIsOnSale" class="invalid-tag">商品已下架</span>
                 </div>
               </div>
 
-              <div class="item-price">
-                <span class="price">{{ item.goodsPrice?.toFixed(2) }}</span>
-              </div>
+              <div class="item-price">¥{{ item.goodsPrice?.toFixed(2) }}</div>
 
               <div class="item-quantity">
                 <el-input-number
@@ -60,48 +51,47 @@
                 <span v-else>{{ item.quantity }}</span>
               </div>
 
-              <div class="item-subtotal">
-                <span class="price">{{ (item.goodsPrice * item.quantity).toFixed(2) }}</span>
-              </div>
+              <div class="item-subtotal">¥{{ (item.goodsPrice * item.quantity).toFixed(2) }}</div>
 
               <div class="item-action">
-                <el-button class="delete-btn" type="danger" plain @click="handleDelete(item.id)">删除</el-button>
+                <el-button text @click="handleDelete(item.id)">删除</el-button>
               </div>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
-        <div class="cart-summary card">
-          <div class="card-header">结算信息</div>
-          <div class="card-body">
-            <div class="summary-row">
-              <span>已选商品</span>
-              <span>{{ cartStore.checkedItems.length }} 件</span>
-            </div>
-            <div class="summary-row">
-              <span>商品金额</span>
-              <span>￥{{ cartStore.checkedTotal.toFixed(2) }}</span>
-            </div>
-            <div class="summary-row total">
-              <span>应付金额</span>
-              <span class="price">{{ cartStore.checkedTotal.toFixed(2) }}</span>
-            </div>
-            <el-button
-              type="primary"
-              size="large"
-              class="checkout-btn"
-              :disabled="cartStore.checkedItems.length === 0"
-              @click="goCheckout"
-            >
-              去结算 ({{ cartStore.checkedItems.length }})
-            </el-button>
+        <aside class="cart-summary leyi-panel-strong">
+          <h3>订单概览</h3>
+          <div class="summary-row">
+            <span>已选商品</span>
+            <strong>{{ cartStore.checkedItems.length }} 件</strong>
           </div>
-        </div>
+          <div class="summary-row">
+            <span>商品金额</span>
+            <strong>¥{{ cartStore.checkedTotal.toFixed(2) }}</strong>
+          </div>
+
+          <div class="summary-total">
+            <span>应付金额</span>
+            <strong>¥{{ cartStore.checkedTotal.toFixed(2) }}</strong>
+          </div>
+
+          <el-button
+            type="primary"
+            class="checkout-btn"
+            :disabled="cartStore.checkedItems.length === 0"
+            @click="goCheckout"
+          >
+            去结算
+          </el-button>
+
+          <button type="button" class="continue-btn" @click="router.push('/category')">继续购物</button>
+        </aside>
       </div>
 
-      <div v-else class="empty-cart card">
-        <el-empty description="购物车还是空空的，去挑点快乐零食吧">
-          <el-button type="primary" @click="router.push('/home')">去逛逛</el-button>
+      <div v-else class="empty-panel leyi-panel-strong">
+        <el-empty description="购物车还是空的，去挑点好吃的吧">
+          <el-button type="primary" @click="router.push('/home')">去首页逛逛</el-button>
         </el-empty>
       </div>
     </div>
@@ -123,8 +113,8 @@ onMounted(() => {
 })
 
 const isAllChecked = computed(() => {
-  const validItems = cartStore.cartList.filter(item => item.goodsIsOnSale)
-  return validItems.length > 0 && validItems.every(item => item.isChecked === 1)
+  const validItems = cartStore.cartList.filter((item) => item.goodsIsOnSale)
+  return validItems.length > 0 && validItems.every((item) => item.isChecked === 1)
 })
 
 const handleCheck = (id, val) => {
@@ -151,273 +141,184 @@ const goCheckout = () => router.push('/checkout')
 </script>
 
 <style lang="scss" scoped>
-.cart-page {
-  background: var(--bg);
-}
-
-.cart-layout {
+.cart-shell {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(320px, 3fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: var(--space-6);
   align-items: flex-start;
 }
 
-.cart-main {
+.cart-list {
+  padding: var(--space-6);
+}
+
+.list-toolbar {
+  height: 2.9rem;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-lg);
+  background: #fbfbf8;
+  border: 1px solid rgba(24, 24, 24, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-toolbar p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--color-muted);
+}
+
+.cart-items {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) 7.5rem 9rem 7.5rem 4rem;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(24, 24, 24, 0.1);
+  background: #fff;
+}
+
+.cart-item.invalid {
+  background: #f4f4f4;
+}
+
+.item-product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+  cursor: pointer;
+}
+
+.item-product img {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.item-copy {
   min-width: 0;
 }
 
-.list-header {
-  margin-bottom: 16px;
-
-  .card-header {
-    display: grid;
-    grid-template-columns: 50px 1fr 120px 150px 120px 100px;
-    align-items: center;
-    padding: 14px 20px;
-    background: #fff4b4;
-    border-bottom: 2px solid #000;
-    gap: 12px;
-
-    .header-text {
-      text-align: center;
-      color: #000;
-      font-size: 13px;
-      font-weight: 800;
-    }
-  }
-
-  :deep(.el-checkbox__inner) {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #000;
-    border-radius: 6px;
-  }
-
-  :deep(.el-checkbox__label) {
-    color: #000;
-    font-weight: 800;
-  }
+.item-copy h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  font-weight: 700;
 }
 
-.cart-list {
+.item-copy p {
+  margin: 0.4rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.invalid-tag {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  height: 1.35rem;
+  align-items: center;
+  padding: 0 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 107, 142, 0.18);
+  color: #a42348;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.item-price,
+.item-subtotal {
+  font-size: 0.96rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.item-quantity {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+}
 
-  :deep(.el-checkbox__inner) {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #000;
-    border-radius: 6px;
-  }
+.item-quantity :deep(.el-input-number) {
+  width: 7.5rem;
+}
 
-  .cart-item {
-    display: grid;
-    grid-template-columns: 50px 1fr 120px 150px 120px 100px;
-    align-items: center;
-    padding: 16px 18px;
-    gap: 12px;
-    border: 2px solid #000;
-    border-radius: 24px;
-    box-shadow: 6px 6px 0 #000;
-    background: #fffef7;
+.item-action {
+  text-align: right;
+}
 
-    &.invalid {
-      background: #f6f6f6;
-
-      .item-info img {
-        opacity: 0.5;
-      }
-
-      .delete-btn {
-        opacity: 0.6;
-      }
-    }
-  }
-
-  .item-info {
-    display: flex;
-    gap: 14px;
-    cursor: pointer;
-    min-width: 0;
-
-    img {
-      width: 92px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      border-radius: 16px;
-      border: 2px solid #000;
-      background: #fff;
-      box-shadow: 3px 3px 0 #000;
-      flex-shrink: 0;
-    }
-
-    .info-text {
-      min-width: 0;
-
-      h4 {
-        font-size: 15px;
-        line-height: 1.45;
-        font-weight: 800;
-        margin-bottom: 6px;
-        color: #000;
-      }
-
-      .meta-text {
-        margin-bottom: 6px;
-        color: #333;
-        font-size: 12px;
-      }
-
-      .invalid-tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 2px 10px;
-        border: 2px solid #000;
-        border-radius: 999px;
-        background: #ff69b4;
-        color: #000;
-        font-size: 12px;
-        font-weight: 800;
-      }
-    }
-  }
-
-  .item-price,
-  .item-subtotal {
-    text-align: center;
-
-    .price {
-      color: #000;
-      font-weight: 900;
-      font-size: 20px;
-
-      &::before {
-        content: '￥';
-        font-size: 12px;
-        margin-right: 2px;
-      }
-    }
-  }
-
-  .item-quantity {
-    display: flex;
-    justify-content: center;
-
-    :deep(.el-input-number) {
-      width: 130px;
-    }
-
-    :deep(.el-input-number__decrease),
-    :deep(.el-input-number__increase) {
-      border: 2px solid #000;
-      background: #fff;
-      color: #000;
-      font-weight: 900;
-    }
-
-    :deep(.el-input-number .el-input__wrapper) {
-      box-shadow: 3px 3px 0 #000;
-    }
-  }
-
-  .item-action {
-    text-align: center;
-
-    .delete-btn {
-      min-height: 34px;
-      padding: 0 14px;
-      border: 2px solid #000;
-      border-radius: 999px;
-      background: #00bfff;
-      color: #000;
-      font-weight: 800;
-      box-shadow: 3px 3px 0 #000;
-    }
-  }
+.item-action .el-button {
+  color: #d84a63;
 }
 
 .cart-summary {
   position: sticky;
-  top: 132px;
-  border: 2px solid #000;
-  border-radius: 28px;
-  box-shadow: 6px 6px 0 #000;
-  background: #fff;
-
-  .card-header {
-    background: #ff69b4;
-    color: #000;
-    border-bottom: 2px solid #000;
-    font-weight: 900;
-  }
-
-  .summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 2px solid #000;
-    color: #000;
-    font-weight: 700;
-
-    &.total {
-      border-bottom: none;
-      padding-top: 16px;
-      font-size: 15px;
-      font-weight: 800;
-
-      .price {
-        color: #000;
-        font-size: 30px;
-        font-weight: 900;
-
-        &::before {
-          content: '￥';
-          font-size: 14px;
-          margin-right: 3px;
-        }
-      }
-    }
-  }
-
-  .checkout-btn {
-    width: 100%;
-    margin-top: 20px;
-    min-height: 46px;
-    border: 2px solid #000;
-    border-radius: 999px;
-    background: #ffd700;
-    color: #000;
-    font-size: 16px;
-    font-weight: 900;
-    box-shadow: 4px 4px 0 #000;
-    transition: transform 0.15s ease;
-
-    &:hover {
-      transform: translate(-2px, -2px);
-    }
-  }
+  top: 8.7rem;
+  padding: var(--space-6);
 }
 
-.empty-cart {
-  padding: 72px 20px;
-  border: 2px solid #000;
-  border-radius: 28px;
-  box-shadow: 6px 6px 0 #000;
-  background: #fffef7;
+.cart-summary h3 {
+  margin: 0 0 var(--space-5);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
 
-  :deep(.el-empty__description p) {
-    color: #000;
-    font-weight: 800;
-  }
+.summary-row {
+  height: 2.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
 
-  :deep(.el-empty__image svg) {
-    border: 2px solid #000;
-    border-radius: 20px;
-    box-shadow: 4px 4px 0 #000;
-    background: #fff4b4;
-  }
+.summary-row strong {
+  color: var(--color-text);
+}
+
+.summary-total {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(24, 24, 24, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.summary-total strong {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: var(--space-5);
+  height: 2.8rem;
+}
+
+.continue-btn {
+  margin-top: var(--space-3);
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid rgba(24, 24, 24, 0.12);
+  background: #fff;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.empty-panel {
+  padding: var(--space-16);
 }
 </style>

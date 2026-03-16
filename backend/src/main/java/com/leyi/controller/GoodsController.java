@@ -27,9 +27,10 @@ public class GoodsController {
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) Integer isOnSale,
+            @RequestParam(defaultValue = "false") Boolean includeChildren,
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize) {
-        PageResult<Goods> result = goodsService.getList(categoryId, keyword, isOnSale, pageNum, pageSize);
+        PageResult<Goods> result = goodsService.getList(categoryId, keyword, isOnSale, includeChildren, pageNum, pageSize);
         return Result.success(result);
     }
 

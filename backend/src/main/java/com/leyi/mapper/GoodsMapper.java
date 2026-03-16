@@ -8,12 +8,14 @@ import java.util.List;
 public interface GoodsMapper {
     
     List<Goods> findList(@Param("categoryId") Long categoryId, 
+                         @Param("categoryIds") List<Long> categoryIds,
                          @Param("keyword") String keyword,
                          @Param("isOnSale") Integer isOnSale,
                          @Param("offset") Integer offset,
                          @Param("limit") Integer limit);
     
     Long countList(@Param("categoryId") Long categoryId,
+                   @Param("categoryIds") List<Long> categoryIds,
                    @Param("keyword") String keyword,
                    @Param("isOnSale") Integer isOnSale);
     

@@ -6,7 +6,7 @@
           <div class="logo-circle">
             <el-icon :size="50"><Shop /></el-icon>
           </div>
-          <h1>乐逸零食店</h1>
+          <h1>LeYi零食店</h1>
           <p>快乐滋味 · 触手可及</p>
         </div>
         <div class="features">

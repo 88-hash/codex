@@ -39,7 +39,7 @@
             <div class="card-body">
               <div class="info-row">
                 <span class="label">取货地址</span>
-                <span>乐逸零食店 - XX市XX区XX路XX号</span>
+                <span>LeYi零食店 - XX市XX区XX路XX号</span>
               </div>
               <div class="info-row">
                 <span class="label">联系电话</span>

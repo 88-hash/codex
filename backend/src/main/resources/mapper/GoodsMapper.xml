@@ -7,9 +7,17 @@
         FROM goods g 
         LEFT JOIN category c ON g.category_id = c.id
         WHERE g.is_deleted = 0
-        <if test="categoryId != null">
-            AND g.category_id = #{categoryId}
-        </if>
+        <choose>
+            <when test="categoryIds != null and categoryIds.size() > 0">
+                AND g.category_id IN
+                <foreach collection="categoryIds" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </when>
+            <when test="categoryId != null">
+                AND g.category_id = #{categoryId}
+            </when>
+        </choose>
         <if test="keyword != null and keyword != ''">
             AND (g.name LIKE CONCAT('%', #{keyword}, '%') OR g.bar_code LIKE CONCAT('%', #{keyword}, '%'))
         </if>
@@ -24,9 +32,17 @@
     
     <select id="countList" resultType="java.lang.Long">
         SELECT COUNT(*) FROM goods g WHERE g.is_deleted = 0
-        <if test="categoryId != null">
-            AND g.category_id = #{categoryId}
-        </if>
+        <choose>
+            <when test="categoryIds != null and categoryIds.size() > 0">
+                AND g.category_id IN
+                <foreach collection="categoryIds" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </when>
+            <when test="categoryId != null">
+                AND g.category_id = #{categoryId}
+            </when>
+        </choose>
         <if test="keyword != null and keyword != ''">
             AND (g.name LIKE CONCAT('%', #{keyword}, '%') OR g.bar_code LIKE CONCAT('%', #{keyword}, '%'))
         </if>

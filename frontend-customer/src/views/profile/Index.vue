@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="profile-page">
     <div class="page-container">
       <el-breadcrumb separator="/" class="breadcrumb">
@@ -6,97 +6,102 @@
         <el-breadcrumb-item>个人资料</el-breadcrumb-item>
       </el-breadcrumb>
 
-      <div class="profile-layout">
-        <section class="profile-main">
-          <div class="profile-card account-card">
-            <div class="card-header sticker-header">
-              <span>个人资料</span>
-              <span class="head-tag">可编辑</span>
-            </div>
-            <div class="card-body account-body">
-              <div class="avatar-panel">
-                <el-avatar :size="104" :src="avatarPreview" class="profile-avatar">{{ displayInitial }}</el-avatar>
-                <input ref="fileInputRef" type="file" accept="image/*" class="hidden-input" @change="handleAvatarChange">
-                <div class="avatar-actions">
-                  <el-button class="btn-white" @click="selectAvatar">上传自定义头像</el-button>
-                  <el-button class="btn-white" @click="clearAvatar">恢复默认头像</el-button>
-                </div>
-                <div class="preset-section">
-                  <p class="preset-title">系统预设头像</p>
-                  <div class="preset-grid">
-                    <button
-                      v-for="item in presetAvatars"
-                      :key="item.id"
-                      type="button"
-                      class="preset-item"
-                      :class="{ active: selectedPreset === item.url }"
-                      @click="selectPreset(item.url)"
-                    >
-                      <img :src="item.url" :alt="item.name">
-                    </button>
-                  </div>
-                </div>
+      <section class="profile-shell">
+        <div class="profile-main leyi-panel">
+          <header class="main-head">
+            <h2>个人资料</h2>
+            <span>支持头像、昵称与个人说明更新</span>
+          </header>
+
+          <div class="main-content">
+            <aside class="avatar-area">
+              <el-avatar :size="116" :src="avatarPreview" class="profile-avatar">{{ displayInitial }}</el-avatar>
+              <input ref="fileInputRef" type="file" accept="image/*" class="hidden-input" @change="handleAvatarChange">
+
+              <div class="avatar-actions">
+                <el-button @click="selectAvatar">上传头像</el-button>
+                <el-button @click="resetAvatar">恢复默认</el-button>
               </div>
 
-              <div class="form-panel">
-                <div class="form-row">
-                  <label>用户名</label>
-                  <el-input v-model="profileForm.name" maxlength="20" placeholder="请输入用户名" />
+              <div class="preset-box">
+                <p>预设头像</p>
+                <div class="preset-grid">
+                  <button
+                    v-for="item in presetAvatars"
+                    :key="item.id"
+                    type="button"
+                    class="preset-item"
+                    :class="{ active: selectedPreset === item.url }"
+                    @click="selectPreset(item.url)"
+                  >
+                    <img :src="item.url" :alt="item.name">
+                  </button>
                 </div>
-                <div class="form-row">
-                  <label>手机号</label>
-                  <el-input :model-value="profileForm.phone" disabled />
-                </div>
-                <div class="form-row">
-                  <label>账号说明</label>
-                  <div class="info-chip">头像与用户名当前保存为本地资料，可后续切换为后端接口</div>
-                </div>
-                <el-button class="save-btn" type="primary" @click="saveProfile">保存资料</el-button>
               </div>
-            </div>
-          </div>
+            </aside>
 
-          <div class="profile-card frequent-card">
-            <div class="card-header sticker-header">
-              <span>常买商品</span>
-              <span class="head-tag">{{ frequentHint }}</span>
-            </div>
-            <div class="card-body">
-              <div v-if="favoriteGoods.length > 0" class="frequent-grid">
-                <div v-for="item in favoriteGoods" :key="item.key" class="frequent-item" @click="goGoods(item)">
-                  <div class="img-wrap">
-                    <img :src="getImageUrl(item.imageUrl)" :alt="item.name" @error="handleImageError">
-                  </div>
-                  <h4>{{ item.name }}</h4>
-                  <p>购买频次 {{ item.count }} 次</p>
-                  <span class="price">￥{{ Number(item.price || 0).toFixed(2) }}</span>
-                </div>
+            <div class="form-area">
+              <div class="form-line">
+                <label>用户名</label>
+                <el-input v-model="profileForm.name" maxlength="20" placeholder="请输入用户名" />
               </div>
-              <el-empty v-else description="暂无常买商品" />
+
+              <div class="form-line">
+                <label>手机号</label>
+                <el-input :model-value="profileForm.phone" disabled />
+              </div>
+
+              <div class="form-line">
+                <label>账号说明</label>
+                <el-input
+                  v-model="profileForm.signature"
+                  type="textarea"
+                  :rows="3"
+                  maxlength="80"
+                  show-word-limit
+                  placeholder="例如：今天也要认真吃零食"
+                />
+              </div>
+
+              <div class="hint-box">
+                当前资料会优先保存到本地，并尝试同步到后端用户接口。
+              </div>
+
+              <el-button type="primary" class="save-btn" @click="saveProfile">保存资料</el-button>
             </div>
           </div>
-        </section>
+        </div>
 
         <aside class="profile-side">
-          <div class="profile-card side-card">
-            <div class="card-header sticker-header">快捷入口</div>
-            <div class="card-body side-links">
-              <el-button class="quick-btn" @click="router.push('/orders')">我的订单</el-button>
-              <el-button class="quick-btn" @click="router.push('/comments')">我的评价</el-button>
-              <el-button class="quick-btn" @click="router.push('/cart')">购物车</el-button>
+          <div class="side-card leyi-panel">
+            <h3>快捷入口</h3>
+            <div class="quick-links">
+              <button type="button" @click="router.push('/orders')">我的订单</button>
+              <button type="button" @click="router.push('/comments')">我的评价</button>
+              <button type="button" @click="router.push('/cart')">购物车</button>
+              <button type="button" @click="router.push({ path: '/search', query: { keyword: '常买' } })">常买清单</button>
             </div>
           </div>
 
-          <div class="profile-card side-card">
-            <div class="card-header sticker-header">账号信息</div>
-            <div class="card-body info-list">
-              <div class="info-row"><span>用户ID</span><strong>{{ userStore.userInfo.id || '--' }}</strong></div>
-              <div class="info-row"><span>登录状态</span><strong>{{ userStore.isLoggedIn() ? '已登录' : '未登录' }}</strong></div>
-              <div class="info-row"><span>常买商品数</span><strong>{{ favoriteGoods.length }}</strong></div>
+          <div class="side-card leyi-panel">
+            <h3>常买预览</h3>
+            <p class="source-line">{{ frequentHint }}</p>
+
+            <div v-if="favoriteGoods.length > 0" class="frequent-list">
+              <article v-for="item in favoriteGoods.slice(0, 4)" :key="item.key" class="frequent-item" @click="goFrequent(item)">
+                <img :src="getImageUrl(item.imageUrl)" :alt="item.name" @error="handleImageError">
+                <div>
+                  <strong>{{ item.name }}</strong>
+                  <span>回购 {{ item.count }} 次</span>
+                </div>
+                <em>￥{{ Number(item.price || 0).toFixed(2) }}</em>
+              </article>
             </div>
+
+            <el-empty v-else description="暂无常买数据" />
           </div>
         </aside>
-      </div>
+      </section>
     </div>
   </div>
 </template>
@@ -118,34 +123,25 @@ const cartStore = useCartStore()
 const fileInputRef = ref(null)
 const profileForm = ref({
   name: '',
-  phone: ''
+  phone: '',
+  signature: ''
 })
 const avatarPreview = ref('')
 const selectedPreset = ref('')
-const favoriteGoods = ref([])
-const frequentHint = ref('数据来源：正在加载')
 const presetAvatars = PRESET_AVATARS
 
-const mockFrequentGoods = [
-  { key: 'm1', name: '脆香薯片', imageUrl: '/placeholder.png', price: 9.9, count: 3 },
-  { key: 'm2', name: '巧克力威化', imageUrl: '/placeholder.png', price: 12.5, count: 2 },
-  { key: 'm3', name: '蜜桃气泡水', imageUrl: '/placeholder.png', price: 6.8, count: 4 },
-  { key: 'm4', name: '海盐夹心饼干', imageUrl: '/placeholder.png', price: 13.9, count: 2 }
-]
+const favoriteGoods = ref([])
+const frequentHint = ref('数据来源：订单明细聚合')
 
 const displayInitial = computed(() => {
-  const text = `${profileForm.value.name || userStore.userInfo.phone || 'U'}`.trim()
-  return text ? text.slice(0, 1).toUpperCase() : 'U'
+  const text = `${profileForm.value.name || userStore.userInfo.phone || 'L'}`.trim()
+  return text ? text.slice(0, 1).toUpperCase() : 'L'
 })
 
-onMounted(async () => {
-  initProfile()
-  await loadFrequentGoods()
-})
-
-const initProfile = () => {
-  profileForm.value.name = userStore.userInfo.name || userStore.userInfo.phone || '用户4567'
+const hydrateProfile = () => {
+  profileForm.value.name = userStore.userInfo.name || userStore.userInfo.phone || 'LeYi会员'
   profileForm.value.phone = userStore.userInfo.phone || '--'
+  profileForm.value.signature = userStore.userInfo.signature || ''
   avatarPreview.value = userStore.userInfo.avatarUrl || userStore.userInfo.avatar || DEFAULT_PRESET_AVATAR
   selectedPreset.value = PRESET_AVATARS.find((item) => item.url === avatarPreview.value)?.url || ''
 }
@@ -172,22 +168,38 @@ const selectPreset = (url) => {
   avatarPreview.value = url
 }
 
-const clearAvatar = () => {
+const resetAvatar = () => {
   avatarPreview.value = DEFAULT_PRESET_AVATAR
   selectedPreset.value = DEFAULT_PRESET_AVATAR
 }
 
-const saveProfile = () => {
-  const finalAvatar = avatarPreview.value || DEFAULT_PRESET_AVATAR
+const persistLocalUser = (payload) => {
   const updated = {
     ...userStore.userInfo,
-    name: profileForm.value.name || '用户4567',
-    avatarUrl: finalAvatar,
-    avatar: finalAvatar
+    ...payload,
+    avatarUrl: payload.avatarUrl,
+    avatar: payload.avatarUrl
   }
   userStore.userInfo = updated
   localStorage.setItem('userInfo', JSON.stringify(updated))
-  ElMessage.success('个人资料已保存')
+}
+
+const saveProfile = async () => {
+  const payload = {
+    name: profileForm.value.name || 'LeYi会员',
+    signature: profileForm.value.signature || '',
+    avatarUrl: avatarPreview.value || DEFAULT_PRESET_AVATAR
+  }
+
+  try {
+    await userStore.updateUserInfo(payload)
+    persistLocalUser(payload)
+    ElMessage.success('个人资料已保存')
+  } catch (error) {
+    console.warn('sync profile failed, fallback to local', error)
+    persistLocalUser(payload)
+    ElMessage.warning('后端暂未同步，已保存到本地资料')
+  }
 }
 
 const buildFromOrders = (orders) => {
@@ -196,46 +208,52 @@ const buildFromOrders = (orders) => {
     ;(order.items || []).forEach((item) => {
       const key = item.goodsId || item.goodsName
       if (!key) return
+
       if (!map.has(key)) {
         map.set(key, {
           key,
           goodsId: item.goodsId,
-          name: item.goodsName,
-          imageUrl: item.goodsImage,
-          price: item.price,
-          count: 0
+          name: item.goodsName || '未命名商品',
+          imageUrl: item.goodsImage || item.imageUrl,
+          price: Number(item.price || 0),
+          count: 0,
+          lastBuyAt: order.createdAt || order.createTime || ''
         })
       }
-      map.get(key).count += Number(item.quantity || 1)
+
+      const target = map.get(key)
+      target.count += Number(item.quantity || 1)
     })
   })
-  return [...map.values()].sort((a, b) => b.count - a.count).slice(0, 8)
+  return [...map.values()].sort((a, b) => Number(b.count || 0) - Number(a.count || 0))
 }
 
 const buildFromCart = (cartItems) => {
   return (cartItems || [])
     .map((item) => ({
-      key: item.goodsId || item.id,
+      key: item.goodsId || item.id || item.goodsName,
       goodsId: item.goodsId,
-      name: item.goodsName,
-      imageUrl: item.goodsImage,
-      price: item.goodsPrice,
+      name: item.goodsName || '未命名商品',
+      imageUrl: item.goodsImage || item.imageUrl,
+      price: Number(item.goodsPrice || item.price || 0),
       count: Number(item.quantity || 1)
     }))
-    .slice(0, 8)
+    .filter((item) => item.key)
 }
 
 const loadFrequentGoods = async () => {
+  favoriteGoods.value = []
+
   try {
     const orderRes = await getOrderList('')
     const fromOrders = buildFromOrders(orderRes.data || [])
     if (fromOrders.length > 0) {
       favoriteGoods.value = fromOrders
-      frequentHint.value = '数据来源：订单记录自动推导'
+      frequentHint.value = '数据来源：订单明细聚合'
       return
     }
-  } catch (e) {
-    console.warn('order source unavailable', e)
+  } catch (error) {
+    console.warn('profile frequent from orders failed', error)
   }
 
   try {
@@ -243,103 +261,75 @@ const loadFrequentGoods = async () => {
     const fromCart = buildFromCart(cartStore.cartList)
     if (fromCart.length > 0) {
       favoriteGoods.value = fromCart
-      frequentHint.value = '数据来源：购物车记录推导'
+      frequentHint.value = '数据来源：购物车聚合'
       return
     }
-  } catch (e) {
-    console.warn('cart source unavailable', e)
+  } catch (error) {
+    console.warn('profile frequent from cart failed', error)
   }
 
-  favoriteGoods.value = mockFrequentGoods
-  frequentHint.value = '演示数据（后续可替换为推荐接口）'
+  frequentHint.value = '暂无可用数据'
 }
 
-const goGoods = (item) => {
+const goFrequent = (item) => {
   if (item.goodsId) {
     router.push(`/goods/${item.goodsId}`)
     return
   }
-  router.push('/category')
+  router.push({ path: '/search', query: { keyword: item.name } })
 }
+
+onMounted(async () => {
+  hydrateProfile()
+  await loadFrequentGoods()
+})
 </script>
 
 <style lang="scss" scoped>
-.profile-layout {
+.profile-shell {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-6);
   align-items: flex-start;
 }
 
 .profile-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 0;
+  padding: var(--space-6);
 }
 
-.profile-side {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.profile-card {
-  border: 2px solid #000;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  background: #fffef7;
-  overflow: hidden;
-}
-
-.sticker-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
-  border-bottom: 2px solid #000;
-  background: #ffd700;
-  font-size: 20px;
-  font-weight: 900;
-  color: #000;
-}
-
-.head-tag {
-  font-size: 12px;
+.main-head h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 1.55vw, 1.75rem);
   font-weight: 800;
-  border: 2px solid #000;
-  border-radius: 999px;
-  box-shadow: 2px 2px 0 #000;
-  background: #fff;
-  padding: 2px 10px;
 }
 
-.account-body {
+.main-head span {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+}
+
+.main-content {
+  margin-top: var(--space-6);
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 18px;
-  padding: 18px 20px;
+  grid-template-columns: 15.5rem minmax(0, 1fr);
+  gap: var(--space-5);
 }
 
-.avatar-panel {
-  border: 2px solid #000;
-  border-radius: 20px;
-  box-shadow: 4px 4px 0 #000;
-  background: #fff;
-  padding: 14px;
+.avatar-area {
+  border: 1px solid rgba(24, 24, 24, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-4);
+  background: #fdfdf9;
 }
 
 .profile-avatar {
-  border: 2px solid #000;
-  box-shadow: 3px 3px 0 #000;
-  background: #00bfff;
-  color: #000;
-  font-weight: 900;
+  border: 1px solid rgba(24, 24, 24, 0.16);
 }
 
 .hidden-input {
@@ -347,197 +337,184 @@ const goGoods = (item) => {
 }
 
 .avatar-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   width: 100%;
+  display: grid;
+  gap: 0.5rem;
 }
 
-.preset-section {
-  width: 100%;
-  border: 2px solid #000;
-  border-radius: 16px;
-  box-shadow: 2px 2px 0 #000;
-  background: #fffef7;
-  padding: 10px;
+.avatar-actions :deep(.el-button) {
+  margin: 0;
 }
 
-.preset-title {
-  font-size: 12px;
-  font-weight: 800;
-  color: #222;
-  margin-bottom: 8px;
+.preset-box {
+  width: 100%;
+  border: 1px solid rgba(24, 24, 24, 0.1);
+  border-radius: var(--radius-md);
+  padding: 0.65rem;
+  background: #fff;
+}
+
+.preset-box p {
+  margin: 0 0 0.55rem;
+  font-size: 0.74rem;
+  color: var(--color-muted);
+  font-weight: 700;
 }
 
 .preset-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  gap: 0.45rem;
 }
 
 .preset-item {
-  border: 2px solid #000;
-  border-radius: 12px;
-  box-shadow: 2px 2px 0 #000;
+  border: 1px solid rgba(24, 24, 24, 0.14);
+  border-radius: var(--radius-sm);
   background: #fff;
-  padding: 4px;
+  padding: 0.2rem;
   cursor: pointer;
+}
 
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-  }
+.preset-item img {
+  display: block;
+  width: 100%;
+  border-radius: 0.35rem;
 }
 
 .preset-item.active {
-  background: #ffd700;
+  border-color: rgba(238, 205, 43, 0.95);
+  box-shadow: inset 0 0 0 1px rgba(238, 205, 43, 0.95);
 }
 
-.form-panel {
-  border: 2px solid #000;
-  border-radius: 20px;
-  box-shadow: 4px 4px 0 #000;
+.form-area {
+  border: 1px solid rgba(24, 24, 24, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
   background: #fff;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-
-  label {
-    font-size: 13px;
-    font-weight: 800;
-    color: #000;
-  }
+.form-line + .form-line {
+  margin-top: var(--space-4);
 }
 
-.info-chip {
-  border: 2px solid #000;
-  border-radius: 14px;
-  box-shadow: 2px 2px 0 #000;
-  background: #fff4b4;
-  padding: 8px 10px;
-  font-size: 12px;
+.form-line label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.78rem;
+  color: #404040;
   font-weight: 700;
-  color: #111;
 }
 
-.save-btn,
-.btn-white,
-.quick-btn {
-  border: 2px solid #000;
-  border-radius: 999px;
-  box-shadow: 3px 3px 0 #000;
-  font-weight: 900;
-  color: #000;
+.hint-box {
+  margin-top: var(--space-4);
+  border-radius: var(--radius-md);
+  background: #f7f7f4;
+  border: 1px solid rgba(24, 24, 24, 0.08);
+  padding: 0.7rem;
+  font-size: 0.76rem;
+  color: var(--color-muted);
 }
 
 .save-btn {
-  background: #ffd700;
-  min-height: 42px;
+  margin-top: var(--space-5);
+  width: 100%;
+  min-height: 2.7rem;
 }
 
-.btn-white,
-.quick-btn {
-  background: #fff;
+.profile-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-.frequent-card .card-body,
-.side-card .card-body {
-  padding: 18px 20px;
+.side-card {
+  padding: var(--space-5);
 }
 
-.frequent-grid {
+.side-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.quick-links {
+  margin-top: var(--space-4);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0.55rem;
+}
+
+.quick-links button {
+  height: 2.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(24, 24, 24, 0.12);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  padding: 0 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2f2f2f;
+}
+
+.quick-links button:hover {
+  border-color: rgba(238, 205, 43, 0.9);
+}
+
+.source-line {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.76rem;
+}
+
+.frequent-list {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
 .frequent-item {
-  border: 2px solid #000;
-  border-radius: 18px;
-  box-shadow: 3px 3px 0 #000;
+  border: 1px solid rgba(24, 24, 24, 0.08);
+  border-radius: var(--radius-md);
   background: #fff;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.img-wrap {
-  aspect-ratio: 1 / 1;
-  border: 2px solid #000;
-  border-radius: 14px;
-  box-shadow: 2px 2px 0 #000;
-  overflow: hidden;
-  background: #f4f4f4;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-}
-
-.frequent-item h4 {
-  font-size: 14px;
-  line-height: 1.35;
-  font-weight: 800;
-  color: #000;
-}
-
-.frequent-item p {
-  font-size: 12px;
-  color: #333;
-  font-weight: 700;
-}
-
-.frequent-item .price {
-  color: #000;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.side-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-row {
-  min-height: 40px;
-  border: 2px solid #000;
-  border-radius: 14px;
-  box-shadow: 2px 2px 0 #000;
-  background: #fff;
-  padding: 0 12px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.7rem minmax(0, 1fr) auto;
+  gap: 0.6rem;
   align-items: center;
-  justify-content: space-between;
+  padding: 0.45rem;
+  cursor: pointer;
+}
 
-  span {
-    font-weight: 700;
-    color: #333;
-  }
+.frequent-item img {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  border: 1px solid rgba(24, 24, 24, 0.08);
+}
 
-  strong {
-    font-weight: 900;
-    color: #000;
-  }
+.frequent-item strong {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #292929;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.frequent-item span {
+  display: block;
+  margin-top: 0.08rem;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+}
+
+.frequent-item em {
+  font-style: normal;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #221f10;
 }
 </style>

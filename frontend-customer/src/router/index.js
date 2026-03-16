@@ -100,7 +100,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title ? `${to.meta.title} - 乐逸零食店` : '乐逸零食店'
+  document.title = to.meta.title ? `${to.meta.title} - LeYi零食店` : 'LeYi零食店'
 
   const token = localStorage.getItem('token')
   if (to.meta.requireAuth && !token) {

@@ -1,62 +1,62 @@
-<template>
-  <div class="detail-page goods-detail" v-if="goods">
+﻿<template>
+  <div class="detail-page" v-if="goods">
     <div class="page-container">
-      <el-breadcrumb separator="/" class="breadcrumb">
+      <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/category' }">商品分类</el-breadcrumb-item>
         <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
       </el-breadcrumb>
 
-      <div class="detail-main card">
-        <div class="detail-layout">
-          <div class="goods-gallery">
+      <section class="detail-main leyi-panel-strong">
+        <div class="detail-grid">
+          <div class="gallery-col">
             <div class="main-image">
-              <img :src="currentImage || getImageUrl(goods.imageUrl)" :alt="goods.name" @error="handleImageError">
+              <img :src="getImageUrl(currentImage || goods.imageUrl)" :alt="goods.name" @error="handleImageError" />
             </div>
-            <div class="thumb-list" v-if="images.length > 1">
-              <div
+            <div class="thumb-row" v-if="images.length > 0">
+              <button
                 v-for="img in images"
                 :key="img.id"
+                type="button"
                 class="thumb-item"
                 :class="{ active: currentImage === img.imageUrl }"
                 @mouseenter="currentImage = img.imageUrl"
               >
-                <img :src="getImageUrl(img.imageUrl)" :alt="goods.name" @error="handleImageError">
-              </div>
+                <img :src="getImageUrl(img.imageUrl)" :alt="goods.name" @error="handleImageError" />
+              </button>
             </div>
           </div>
 
-          <div class="goods-info">
-            <h1 class="goods-name">{{ goods.name }}</h1>
-            <p class="goods-desc" v-if="goods.description">{{ goods.description }}</p>
-
-            <div class="price-box">
-              <div class="price-row">
-                <span class="label">价格</span>
-                <span class="price-value">¥{{ goods.price?.toFixed(2) }}</span>
-                <span v-if="goods.promotionTag" class="promo-tag">{{ goods.promotionTag }}</span>
+          <div class="info-col">
+            <div class="meta-line">
+              <span class="badge-hot">精选推荐</span>
+              <div class="rating-wrap" v-if="avgRating">
+                <el-rate :model-value="avgRating" disabled size="small" />
+                <span>{{ avgRating.toFixed(1) }} / 5.0 ({{ commentCount }})</span>
               </div>
             </div>
 
-            <div class="info-rows">
-              <div class="info-row">
-                <span class="label">库存</span>
-                <span>{{ goods.stock }} 件</span>
+            <h1>{{ goods.name }}</h1>
+            <p class="desc" v-if="goods.description">{{ goods.description }}</p>
+
+            <div class="spec-grid">
+              <div v-for="item in displaySpecs" :key="item.label" class="spec-item">
+                <span>{{ item.label }}</span>
+                <strong>{{ item.value }}</strong>
               </div>
-              <div class="info-row" v-if="goods.expireDate">
-                <span class="label">保质期至</span>
-                <span>{{ goods.expireDate }}</span>
+            </div>
+
+            <div class="price-box">
+              <div class="price-left">
+                <p class="origin" v-if="oldPrice > 0">¥{{ oldPrice.toFixed(2) }}</p>
+                <p class="current">¥{{ goods.price?.toFixed(2) }}</p>
               </div>
-              <div class="info-row" v-if="goods.barCode">
-                <span class="label">条码</span>
-                <span>{{ goods.barCode }}</span>
-              </div>
+              <span class="stock">库存 {{ maxStock }} 件</span>
             </div>
 
             <div class="quantity-row">
-              <span class="label">数量</span>
-              <el-input-number v-model="quantity" :min="1" :max="goods.stock" size="large" />
-              <span class="stock-tip">库存 {{ goods.stock }} 件</span>
+              <span>购买数量</span>
+              <el-input-number v-model="quantity" :min="1" :max="maxStock" size="large" />
             </div>
 
             <div class="action-row">
@@ -66,54 +66,64 @@
               </el-button>
               <el-button type="primary" size="large" @click="buyNow">立即购买</el-button>
             </div>
+
+            <div class="service-row">
+              <span><el-icon><Box /></el-icon> 官方正品保障</span>
+              <span><el-icon><Van /></el-icon> 支持快速发货</span>
+              <span><el-icon><RefreshRight /></el-icon> 完善售后服务</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="detail-tabs card">
+      <section class="detail-tabs leyi-panel">
         <el-tabs v-model="activeTab">
           <el-tab-pane label="商品详情" name="detail">
             <div class="tab-content">
               <p v-if="goods.description">{{ goods.description }}</p>
-              <el-empty v-else description="暂无详情" />
+              <el-empty v-else description="暂无详情说明" />
             </div>
           </el-tab-pane>
           <el-tab-pane :label="`商品评价 (${commentCount})`" name="comments">
             <div class="tab-content">
               <div class="comment-summary" v-if="avgRating">
-                <div class="avg-rating">
-                  <span class="rating-value">{{ avgRating.toFixed(1) }}</span>
-                  <span class="rating-text">分</span>
+                <div class="score">
+                  <strong>{{ avgRating.toFixed(1) }}</strong>
+                  <span>综合评分</span>
                 </div>
                 <el-rate :model-value="avgRating" disabled show-score />
               </div>
 
               <div v-if="comments.length > 0" class="comments-list">
-                <div v-for="comment in comments" :key="comment.id" class="comment-item">
-                  <div class="comment-header">
+                <article v-for="comment in comments" :key="comment.id" class="comment-item">
+                  <div class="comment-head">
                     <el-avatar :size="40" :src="comment.userAvatar">
                       {{ comment.userName?.charAt(0) || 'U' }}
                     </el-avatar>
                     <div class="comment-user">
-                      <span class="user-name">{{ comment.userName || comment.userPhone?.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') }}</span>
+                      <p>{{ comment.userName || comment.userPhone?.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') }}</p>
                       <el-rate :model-value="comment.rating" disabled size="small" />
                     </div>
                     <span class="comment-time">{{ formatTime(comment.createdAt) }}</span>
                   </div>
-                  <p class="comment-content">{{ comment.content }}</p>
-                </div>
+                  <p class="comment-body">{{ comment.content }}</p>
+                </article>
               </div>
-              <el-empty v-else description="暂无评价" />
+              <el-empty v-else description="暂无用户评价" />
             </div>
           </el-tab-pane>
         </el-tabs>
-      </div>
+      </section>
     </div>
+  </div>
+
+  <div v-else class="page-container">
+    <el-skeleton :rows="8" animated />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
@@ -136,6 +146,20 @@ const commentCount = ref(0)
 const quantity = ref(1)
 const activeTab = ref('detail')
 
+const maxStock = computed(() => Math.max(Number(goods.value?.stock) || 1, 1))
+const oldPrice = computed(() => {
+  const p = Number(goods.value?.price || 0)
+  return p > 0 ? p * 1.35 : 0
+})
+
+const displaySpecs = computed(() => {
+  return [
+    { label: '库存', value: `${maxStock.value} 件` },
+    { label: '条码', value: goods.value?.barCode || '暂无' },
+    { label: '保质期', value: goods.value?.expireDate || '请见包装' }
+  ]
+})
+
 const formatTime = (time) => dayjs(time).format('YYYY-MM-DD HH:mm')
 
 onMounted(async () => {
@@ -157,8 +181,8 @@ onMounted(async () => {
     }))
     avgRating.value = res.data.avgRating || 0
     commentCount.value = res.data.commentCount || 0
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 })
 
@@ -170,8 +194,8 @@ const addToCart = async () => {
   try {
     await cartStore.addToCart(goods.value.id, quantity.value)
     ElMessage.success('已加入购物车')
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -183,286 +207,255 @@ const buyNow = async () => {
   try {
     await cartStore.addToCart(goods.value.id, quantity.value)
     router.push('/checkout')
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.goods-detail {
-  background: #fffbe6;
+.detail-main {
+  padding: var(--space-8);
 }
 
-.goods-detail .page-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-8);
 }
 
-.goods-detail .detail-main {
-  margin-bottom: 24px;
-  background: #fffef7;
-  border: 2px solid #000;
-  border-radius: 28px;
-  box-shadow: 6px 6px 0 #000;
-}
-
-.goods-detail .detail-layout {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-.goods-detail .goods-gallery {
-  width: 420px;
-  flex: 0 0 420px;
-}
-
-.goods-detail .main-image {
-  width: 100%;
+.main-image {
   aspect-ratio: 1 / 1;
-  border: 2px solid #000;
-  border-radius: 24px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  background: #f3f4f6;
-  box-shadow: 5px 5px 0 #000;
-  margin-bottom: 16px;
+  background: #f0f1eb;
 }
 
-.goods-detail .main-image img {
+.main-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-.goods-detail .thumb-list {
+.thumb-row {
+  margin-top: var(--space-4);
   display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px;
+  gap: var(--space-3);
 }
 
-.goods-detail .thumb-item {
-  width: 76px;
-  height: 76px;
-  flex: 0 0 76px;
-  border: 2px solid #000;
-  border-radius: 16px;
-  overflow: hidden;
+.thumb-item {
+  width: 5.1rem;
+  height: 5.1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(24, 24, 24, 0.12);
   background: #fff;
-  box-shadow: 3px 3px 0 #000;
+  padding: 0;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.goods-detail .thumb-item.active {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #000;
-  background: #00bfff;
+.thumb-item.active {
+  border-color: rgba(238, 205, 43, 0.9);
+  box-shadow: 0 0 0 2px rgba(238, 205, 43, 0.32);
 }
 
-.goods-detail .thumb-item img {
+.thumb-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.meta-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.badge-hot {
+  height: 1.6rem;
+  padding: 0 0.65rem;
+  border-radius: var(--radius-pill);
+  background: rgba(238, 205, 43, 0.26);
+  color: #59490a;
+  font-size: 0.74rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rating-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.info-col h1 {
+  margin: var(--space-4) 0 var(--space-3);
+  font-size: clamp(1.85rem, 2.2vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.desc {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.spec-grid {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.spec-item {
+  background: #fbfbf8;
+  border: 1px solid rgba(24, 24, 24, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.spec-item span {
   display: block;
+  font-size: 0.78rem;
+  color: var(--color-muted);
 }
 
-.goods-detail .goods-info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-}
-
-.goods-detail .goods-name {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 1.25;
-  color: #000;
-}
-
-.goods-detail .goods-desc {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #444;
-}
-
-.goods-detail .price-box {
-  background: #ffd700;
-  border: 2px solid #000;
-  border-radius: 18px;
-  box-shadow: 4px 4px 0 #000;
-  padding: 14px 16px;
-}
-
-.goods-detail .price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.goods-detail .price-row .label {
-  color: #000;
+.spec-item strong {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 1rem;
   font-weight: 700;
 }
 
-.goods-detail .price-row .price-value {
-  color: #000;
-  font-size: 40px;
-  font-weight: 900;
+.price-box {
+  margin-top: var(--space-6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: rgba(238, 205, 43, 0.18);
+  border: 1px solid rgba(238, 205, 43, 0.5);
+}
+
+.origin {
+  margin: 0;
+  color: #8a8a8a;
+  text-decoration: line-through;
+}
+
+.current {
+  margin: 0.2rem 0 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.stock {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.quantity-row {
+  margin-top: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-weight: 600;
+}
+
+.action-row {
+  margin-top: var(--space-6);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.action-row .el-button {
+  height: 2.8rem;
+  min-width: 8.8rem;
+}
+
+.service-row {
+  margin-top: var(--space-5);
+  display: flex;
+  gap: var(--space-5);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.service-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.detail-tabs {
+  margin-top: var(--space-8);
+  padding: 0 var(--space-6) var(--space-6);
+}
+
+.tab-content {
+  padding-top: var(--space-6);
+  min-height: 12rem;
+}
+
+.comment-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(24, 24, 24, 0.1);
+}
+
+.score strong {
+  font-size: 2rem;
   line-height: 1;
 }
 
-.goods-detail .price-row .promo-tag {
-  border: 2px solid #000;
-  border-radius: 999px;
-  background: #ff69b4;
-  color: #000;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 2px 10px;
+.score span {
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+  font-size: 0.82rem;
 }
 
-.goods-detail .info-rows {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
+.comment-item {
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid rgba(24, 24, 24, 0.08);
 }
 
-.goods-detail .info-row {
-  display: flex;
-  align-items: center;
-  min-height: 40px;
-  border: 2px solid #000;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 3px 3px 0 #000;
-  padding: 0 12px;
+.comment-item:last-child {
+  border-bottom: 0;
 }
 
-.goods-detail .info-row .label {
-  width: 84px;
-  flex: 0 0 84px;
-  color: #000;
-  font-weight: 700;
-}
-
-.goods-detail .quantity-row {
+.comment-head {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
-.goods-detail .quantity-row .label {
-  color: #000;
-  font-weight: 700;
-}
-
-.goods-detail .quantity-row .stock-tip {
-  color: #555;
-  font-size: 13px;
-}
-
-.goods-detail .action-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;
-}
-
-.goods-detail .action-row .el-button {
-  height: 42px;
-  padding: 0 22px;
-  border: 2px solid #000;
-  border-radius: 999px;
-  box-shadow: 4px 4px 0 #000;
-  font-size: 14px;
-  font-weight: 700;
-  color: #000;
-  white-space: nowrap;
-}
-
-.goods-detail .action-row .el-button--default {
-  background: #ffd700;
-}
-
-.goods-detail .action-row .el-button--primary {
-  background: #00bfff;
-}
-
-.goods-detail .detail-tabs {
-  border: 2px solid #000;
-  border-radius: 24px;
-  box-shadow: 6px 6px 0 #000;
-  background: #fff;
-}
-
-.goods-detail .tab-content {
-  padding: 20px;
-  min-height: 220px;
-}
-
-.goods-detail .comment-summary {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000;
-}
-
-.goods-detail .rating-value {
-  font-size: 36px;
-  font-weight: 900;
-  color: #000;
-}
-
-.goods-detail .rating-text {
-  color: #444;
-}
-
-.goods-detail .comment-item {
-  padding: 20px 0;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-.goods-detail .comment-item:last-child {
-  border-bottom: none;
-}
-
-.goods-detail .comment-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.goods-detail .comment-user {
+.comment-user {
   flex: 1;
 }
 
-.goods-detail .user-name {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 4px;
+.comment-user p {
+  margin: 0 0 var(--space-2);
+  font-weight: 600;
 }
 
-.goods-detail .comment-time {
-  color: #666;
-  font-size: 13px;
+.comment-time {
+  color: var(--color-muted);
+  font-size: 0.78rem;
 }
 
-.goods-detail .comment-content {
-  color: #333;
-  line-height: 1.6;
-  margin: 0;
+.comment-body {
+  margin: var(--space-4) 0 0;
+  color: #323232;
+  line-height: 1.65;
 }
 </style>

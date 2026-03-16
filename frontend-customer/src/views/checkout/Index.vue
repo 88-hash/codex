@@ -1,113 +1,98 @@
 ﻿<template>
   <div class="checkout-page">
     <div class="page-container">
-      <el-breadcrumb separator="/" class="breadcrumb">
+      <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/cart' }">购物车</el-breadcrumb-item>
         <el-breadcrumb-item>确认订单</el-breadcrumb-item>
       </el-breadcrumb>
 
-      <div class="checkout-layout">
-        <div class="checkout-main">
-          <div class="checkout-card pickup-card">
-            <div class="card-header">
+      <div v-if="cartStore.checkedItems.length > 0" class="checkout-shell">
+        <section class="checkout-main">
+          <article class="checkout-card leyi-panel-strong">
+            <header>
               <el-icon><Location /></el-icon>
               收货信息
+            </header>
+            <div class="body address-card">
+              <p><span>收货人</span><strong>{{ userStore.userInfo.name || 'LeYi会员' }}</strong></p>
+              <p><span>联系电话</span><strong>{{ userStore.userInfo.phone || '未绑定' }}</strong></p>
+              <p><span>收货地址</span><strong>LeYi零食店 - XX市XX区XX路XX号</strong></p>
+              <el-button text>修改地址</el-button>
             </div>
-            <div class="card-body">
-              <div class="address-info">
-                <div class="info-row">
-                  <span class="label">取货地址</span>
-                  <span class="value">乐逸零食店 - XX市XX区XX路XX号</span>
-                </div>
-                <div class="info-row">
-                  <span class="label">联系电话</span>
-                  <span class="value">{{ userStore.userInfo.phone }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          </article>
 
-          <div class="checkout-card payment-card">
-            <div class="card-header">
-              <el-icon><Goods /></el-icon>
+          <article class="checkout-card leyi-panel-strong">
+            <header>
+              <el-icon><Wallet /></el-icon>
               支付方式
-            </div>
-            <div class="card-body">
-              <div class="payment-chip">线上支付（下单后到店核销）</div>
-            </div>
-          </div>
-
-          <div class="checkout-card goods-card">
-            <div class="card-header">
-              <el-icon><Goods /></el-icon>
-              商品清单
-            </div>
-            <div class="card-body">
-              <div class="goods-list">
-                <div v-for="row in cartStore.checkedItems" :key="row.id" class="goods-row">
-                  <div class="goods-info">
-                    <img :src="getImageUrl(row.goodsImage)" :alt="row.goodsName" @error="handleImageError">
-                    <div class="goods-meta">
-                      <h4>{{ row.goodsName }}</h4>
-                      <p>数量 x {{ row.quantity }}</p>
-                    </div>
-                  </div>
-                  <div class="goods-price">￥{{ row.goodsPrice?.toFixed(2) }}</div>
-                  <div class="goods-subtotal">￥{{ (row.goodsPrice * row.quantity).toFixed(2) }}</div>
-                </div>
+            </header>
+            <div class="body payment-card">
+              <div class="pay-item selected">
+                <span>线上支付（到店核销）</span>
+                <el-icon><CircleCheck /></el-icon>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="checkout-card remark-card">
-            <div class="card-header">
+          <article class="checkout-card leyi-panel-strong">
+            <header>
+              <el-icon><Goods /></el-icon>
+              商品清单 ({{ cartStore.checkedItems.length }})
+            </header>
+            <div class="body items-card">
+              <article v-for="row in cartStore.checkedItems" :key="row.id" class="item-row">
+                <div class="item-main">
+                  <img :src="getImageUrl(row.goodsImage)" :alt="row.goodsName" @error="handleImageError" />
+                  <div>
+                    <h4>{{ row.goodsName }}</h4>
+                    <p>数量 x {{ row.quantity }}</p>
+                  </div>
+                </div>
+                <span class="item-price">¥{{ row.goodsPrice?.toFixed(2) }}</span>
+                <span class="item-total">¥{{ (row.goodsPrice * row.quantity).toFixed(2) }}</span>
+              </article>
+            </div>
+          </article>
+
+          <article class="checkout-card leyi-panel-strong">
+            <header>
               <el-icon><EditPen /></el-icon>
               订单备注
-            </div>
-            <div class="card-body">
+            </header>
+            <div class="body">
               <el-input
                 v-model="remark"
                 type="textarea"
                 :rows="3"
-                placeholder="选填，可以告诉店家您的特殊需求"
+                placeholder="选填，可以告诉店家你的包装/配送备注"
                 maxlength="100"
                 show-word-limit
               />
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div class="checkout-summary checkout-card">
-          <div class="card-header">
-            <el-icon><Location /></el-icon>
-            订单汇总
+        <aside class="checkout-summary leyi-panel-strong">
+          <h3>订单摘要</h3>
+          <div class="line"><span>商品总额</span><strong>¥{{ cartStore.checkedTotal.toFixed(2) }}</strong></div>
+          <div class="line"><span>税费</span><strong>¥0.00</strong></div>
+
+          <div class="total">
+            <span>应付金额</span>
+            <strong>¥{{ cartStore.checkedTotal.toFixed(2) }}</strong>
           </div>
-          <div class="card-body">
-            <div class="summary-row">
-              <span>商品件数</span>
-              <span>{{ cartStore.checkedItems.length }} 件</span>
-            </div>
-            <div class="summary-row">
-              <span>商品金额</span>
-              <span>￥{{ cartStore.checkedTotal.toFixed(2) }}</span>
-            </div>
-            <div class="summary-row">
-              <span>运费</span>
-              <span>￥0.00</span>
-            </div>
-            <div class="summary-row total">
-              <span>应付金额</span>
-              <span class="total-price">￥{{ cartStore.checkedTotal.toFixed(2) }}</span>
-            </div>
-            <div class="summary-actions">
-              <el-button class="ghost-btn" @click="router.push('/cart')">返回购物车</el-button>
-              <el-button class="submit-btn" type="primary" :loading="loading" @click="handleSubmit">
-                提交订单
-              </el-button>
-            </div>
-          </div>
-        </div>
+
+          <el-button class="submit-btn" type="primary" :loading="loading" @click="handleSubmit">提交订单</el-button>
+          <el-button class="back-btn" @click="router.push('/cart')">返回购物车</el-button>
+          <p class="safe-tip">提交订单表示你已同意《服务条款》与《隐私政策》</p>
+        </aside>
+      </div>
+
+      <div v-else class="empty-panel leyi-panel-strong">
+        <el-empty description="当前没有可结算商品">
+          <el-button type="primary" @click="router.push('/cart')">返回购物车</el-button>
+        </el-empty>
       </div>
     </div>
   </div>
@@ -146,8 +131,8 @@ const handleSubmit = async () => {
         verifyCode: res.data.verifyCode
       }
     })
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   } finally {
     loading.value = false
   }
@@ -155,234 +140,190 @@ const handleSubmit = async () => {
 </script>
 
 <style lang="scss" scoped>
-.checkout-layout {
+.checkout-shell {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(320px, 3fr);
-  gap: 24px;
-  align-items: flex-start;
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  gap: var(--space-6);
+  align-items: start;
 }
 
 .checkout-main {
-  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--space-5);
 }
 
 .checkout-card {
-  border: 2px solid #000;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  background: #fffef7;
   overflow: hidden;
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 18px 22px;
-    border-bottom: 2px solid #000;
-    background: #fff4b4;
-    font-size: 18px;
-    font-weight: 900;
-    color: #000;
-
-    .el-icon {
-      color: #000;
-      font-size: 18px;
-    }
-  }
-
-  .card-body {
-    padding: 18px 22px;
-  }
 }
 
-.pickup-card .card-header {
-  background: #ffcf7d;
-}
-
-.payment-card .card-header {
-  background: #00e676;
-}
-
-.goods-card .card-header {
-  background: #00bfff;
-}
-
-.remark-card .card-header {
-  background: #ff69b4;
-}
-
-.address-info {
+.checkout-card > header {
+  height: 3.1rem;
+  padding: 0 var(--space-6);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  .info-row {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 0 12px;
-    border: 2px solid #000;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    background: #fff;
-
-    .label {
-      width: 92px;
-      flex: 0 0 92px;
-      color: #000;
-      font-weight: 800;
-    }
-
-    .value {
-      color: #111;
-      font-weight: 700;
-    }
-  }
-}
-
-.payment-chip {
-  display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  padding: 0 14px;
-  border: 2px solid #000;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
-  background: #fff;
-  color: #000;
-  font-weight: 800;
+  gap: 0.45rem;
+  border-bottom: 1px solid rgba(24, 24, 24, 0.1);
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: #fbfbf8;
 }
 
-.goods-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.checkout-card .body {
+  padding: var(--space-6);
 }
 
-.goods-row {
+.address-card p {
+  margin: 0 0 var(--space-3);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 120px 140px;
-  align-items: center;
-  gap: 10px;
-  border: 2px solid #000;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  background: #fff;
-  padding: 12px;
+  grid-template-columns: 5.2rem minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: flex-start;
 }
 
-.goods-info {
+.address-card p:last-child {
+  margin-bottom: var(--space-4);
+}
+
+.address-card span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.address-card strong {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pay-item {
+  height: 2.7rem;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(24, 24, 24, 0.12);
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+}
+
+.pay-item.selected {
+  border-color: rgba(238, 205, 43, 0.8);
+  background: rgba(238, 205, 43, 0.12);
+}
+
+.items-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.2rem 6.6rem;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(24, 24, 24, 0.08);
+}
+
+.item-main {
   min-width: 0;
-
-  img {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-    border: 2px solid #000;
-    background: #fff;
-    box-shadow: var(--shadow-sm);
-    display: block;
-  }
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-.goods-meta {
-  min-width: 0;
-
-  h4 {
-    margin: 0 0 6px;
-    font-size: 15px;
-    line-height: 1.45;
-    color: #000;
-    font-weight: 800;
-  }
-
-  p {
-    margin: 0;
-    font-size: 12px;
-    color: #333;
-    font-weight: 700;
-  }
+.item-main img {
+  width: 4.3rem;
+  height: 4.3rem;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
 }
 
-.goods-price,
-.goods-subtotal {
-  text-align: center;
-  color: #000;
-  font-size: 18px;
-  font-weight: 900;
+.item-main h4 {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  font-weight: 700;
 }
 
-.remark-card :deep(.el-textarea__inner) {
-  min-height: 96px;
+.item-main p {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+.item-price,
+.item-total {
+  text-align: right;
+  font-size: 0.88rem;
+  font-weight: 700;
 }
 
 .checkout-summary {
   position: sticky;
-  top: 132px;
-
-  .card-header {
-    background: #ffd700;
-  }
-
-  .summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 44px;
-    border-bottom: 2px solid #000;
-    color: #000;
-    font-weight: 700;
-  }
-
-  .summary-row.total {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-bottom: 0;
-    font-weight: 900;
-  }
-
-  .total-price {
-    color: #000;
-    font-size: 30px;
-    font-weight: 900;
-  }
+  top: 8.7rem;
+  padding: var(--space-6);
 }
 
-.summary-actions {
-  margin-top: 18px;
+.checkout-summary h3 {
+  margin: 0 0 var(--space-4);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.line {
+  height: 2.1rem;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
 
-  .ghost-btn,
-  .submit-btn {
-    width: 100%;
-    min-height: 44px;
-    border: 2px solid #000;
-    border-radius: var(--radius-pill);
-    box-shadow: var(--shadow-sm);
-    font-weight: 900;
-    color: #000;
-  }
+.line span {
+  color: var(--color-muted);
+}
 
-  .ghost-btn {
-    background: #fff;
-  }
+.total {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(24, 24, 24, 0.1);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
 
-  .submit-btn {
-    background: #ffd700;
-  }
+.total strong {
+  font-size: 1.38rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 
-  .submit-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #000;
-  }
+.submit-btn,
+.back-btn {
+  width: 100%;
+  margin-top: var(--space-4);
+  height: 2.75rem;
+}
+
+.back-btn {
+  margin-top: var(--space-2);
+}
+
+.safe-tip {
+  margin: var(--space-3) 0 0;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.empty-panel {
+  padding: var(--space-16);
 }
 </style>
