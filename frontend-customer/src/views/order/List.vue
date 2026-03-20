@@ -11,9 +11,7 @@
           <h2 class="orders-title">我的订单</h2>
           <el-radio-group v-model="activeStatus" class="status-chips" @change="fetchOrders">
             <el-radio-button label="">全部</el-radio-button>
-            <el-radio-button label="unpaid">待付款</el-radio-button>
-            <el-radio-button label="shipping">待发货</el-radio-button>
-            <el-radio-button label="pending">待收货</el-radio-button>
+            <el-radio-button label="pending">待取货</el-radio-button>
             <el-radio-button label="completed">已完成</el-radio-button>
             <el-radio-button label="cancelled">已取消</el-radio-button>
           </el-radio-group>
@@ -98,15 +96,15 @@ import { getImageUrl, handleImageError } from '@/utils/image'
 const route = useRoute()
 const router = useRouter()
 
-const activeStatus = ref(route.query.status || '')
+const allowedStatuses = new Set(['', 'pending', 'completed', 'cancelled'])
+const initialStatus = `${route.query.status || ''}`
+const activeStatus = ref(allowedStatuses.has(initialStatus) ? initialStatus : '')
 const orders = ref([])
 const codeVisible = ref(false)
 const currentOrder = ref(null)
 
 const statusText = {
-  unpaid: '待付款',
-  shipping: '待发货',
-  pending: '待收货',
+  pending: '待取货',
   completed: '已完成',
   cancelled: '已取消'
 }

@@ -6,17 +6,17 @@
           <div class="logo-circle">
             <el-icon :size="50"><Shop /></el-icon>
           </div>
-          <h1>LeYi零食店</h1>
-          <p>快乐滋味 · 触手可及</p>
+          <h1>LeYi 零食店</h1>
+          <p>快乐滋味 触手可及</p>
         </div>
         <div class="features">
           <div class="feature-item">
             <div class="icon-box"><el-icon><Goods /></el-icon></div>
-            <span>精选全球美味零食</span>
+            <span>精选全球人气零食</span>
           </div>
           <div class="feature-item">
             <div class="icon-box"><el-icon><Stopwatch /></el-icon></div>
-            <span>网上下单到店即取</span>
+            <span>线上下单，到店即取</span>
           </div>
           <div class="feature-item">
             <div class="icon-box"><el-icon><Present /></el-icon></div>
@@ -24,16 +24,16 @@
           </div>
         </div>
       </div>
-      
+
       <div class="login-right">
         <div class="login-card">
-          <h2>欢迎回来 👋</h2>
-          <p class="login-tip">请输入手机号开启快乐之旅</p>
-          
-          <el-form :model="form" :rules="rules" ref="formRef" class="login-form">
+          <h2>欢迎回来</h2>
+          <p class="login-tip">请输入手机号，开启你的快乐零食之旅</p>
+
+          <el-form ref="formRef" :model="form" :rules="rules" class="login-form">
             <el-form-item prop="phone">
-              <el-input 
-                v-model="form.phone" 
+              <el-input
+                v-model="form.phone"
                 placeholder="请输入手机号"
                 size="large"
                 maxlength="11"
@@ -43,11 +43,11 @@
                 </template>
               </el-input>
             </el-form-item>
-            
+
             <el-form-item prop="code">
               <div class="code-input">
-                <el-input 
-                  v-model="form.code" 
+                <el-input
+                  v-model="form.code"
                   placeholder="验证码"
                   size="large"
                   maxlength="6"
@@ -56,7 +56,7 @@
                     <el-icon><Message /></el-icon>
                   </template>
                 </el-input>
-                <el-button 
+                <el-button
                   size="large"
                   class="code-btn"
                   :disabled="countdown > 0"
@@ -66,10 +66,10 @@
                 </el-button>
               </div>
             </el-form-item>
-            
-            <el-button 
-              type="primary" 
-              size="large" 
+
+            <el-button
+              type="primary"
+              size="large"
               class="login-btn"
               :loading="loading"
               @click="handleLogin"
@@ -77,10 +77,10 @@
               立即登录
             </el-button>
           </el-form>
-          
+
           <div class="tips">
-            <span>未注册手机号将自动创建账号</span>
-            <span class="test-code">测试码: 000000</span>
+            <span>首次登录的手机号将自动创建账号</span>
+            <span class="test-code">点击获取验证码后，请到后端控制台查看 [LOGIN_CODE]</span>
           </div>
         </div>
       </div>
@@ -89,12 +89,12 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { Iphone, Message } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/stores/user'
 import { useCartStore } from '@/stores/cart'
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
 const route = useRoute()
@@ -117,7 +117,7 @@ const rules = {
   ],
   code: [
     { required: true, message: '请输入验证码', trigger: 'blur' },
-    { len: 6, message: '验证码为6位数字', trigger: 'blur' }
+    { len: 6, message: '验证码为 6 位数字', trigger: 'blur' }
   ]
 }
 
@@ -125,7 +125,7 @@ const handleSendCode = async () => {
   await formRef.value.validateField('phone')
   try {
     await userStore.sendCode(form.phone)
-    ElMessage.success('验证码已发送')
+    ElMessage.success('验证码已生成，请查看后端控制台')
     countdown.value = 60
     const timer = setInterval(() => {
       countdown.value--
@@ -161,7 +161,7 @@ const handleLogin = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #FF9FF3 0%, #FECA57 100%);
+  background: linear-gradient(135deg, #ff9ff3 0%, #feca57 100%);
 }
 
 .login-container {
@@ -177,14 +177,14 @@ const handleLogin = async () => {
 .login-left {
   width: 400px;
   padding: 60px 40px;
-  background: linear-gradient(135deg, #FF6B6B 0%, #EE5253 100%);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -193,9 +193,9 @@ const handleLogin = async () => {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
   }
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -204,15 +204,15 @@ const handleLogin = async () => {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
   }
-  
+
   .brand {
     text-align: center;
     margin-bottom: 60px;
     position: relative;
     z-index: 2;
-    
+
     .logo-circle {
       width: 80px;
       height: 80px;
@@ -222,27 +222,27 @@ const handleLogin = async () => {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #FF6B6B;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      color: #ff6b6b;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
-    
+
     h1 {
       font-size: 32px;
       margin: 0 0 10px;
       font-weight: 800;
     }
-    
+
     p {
       opacity: 0.9;
       font-size: 16px;
       letter-spacing: 2px;
     }
   }
-  
+
   .features {
     position: relative;
     z-index: 2;
-    
+
     .feature-item {
       display: flex;
       align-items: center;
@@ -250,7 +250,7 @@ const handleLogin = async () => {
       margin-bottom: 24px;
       font-size: 16px;
       font-weight: 500;
-      
+
       .icon-box {
         width: 36px;
         height: 36px;
@@ -271,67 +271,67 @@ const handleLogin = async () => {
   display: flex;
   align-items: center;
   background: white;
-  
+
   .login-card {
     width: 100%;
-    
+
     h2 {
       font-size: 32px;
       margin-bottom: 12px;
-      color: #222F3E;
+      color: #222f3e;
       font-weight: 800;
     }
-    
+
     .login-tip {
-      color: #8395A7;
+      color: #8395a7;
       margin-bottom: 40px;
       font-size: 16px;
     }
   }
-  
+
   .login-form {
     .el-input {
       :deep(.el-input__wrapper) {
         border-radius: 12px;
-        background: #F0F3F7;
+        background: #f0f3f7;
         box-shadow: none;
         padding: 4px 12px;
-        
+
         &.is-focus {
           background: white;
-          box-shadow: 0 0 0 2px #FF6B6B;
+          box-shadow: 0 0 0 2px #ff6b6b;
         }
       }
     }
   }
-  
+
   .code-input {
     display: flex;
     gap: 16px;
-    
+
     .el-input {
       flex: 1;
     }
-    
+
     .code-btn {
       width: 120px;
       border-radius: 12px;
-      background: #FFEAA7;
+      background: #ffeaa7;
       border: none;
-      color: #E17055;
+      color: #e17055;
       font-weight: 600;
-      
+
       &:hover {
-        background: #FDCB6E;
+        background: #fdcb6e;
       }
-      
+
       &.is-disabled {
-        background: #F0F3F7;
-        color: #B2BEC3;
+        background: #f0f3f7;
+        color: #b2bec3;
       }
     }
   }
-  
+
   .login-btn {
     width: 100%;
     margin-top: 24px;
@@ -340,20 +340,20 @@ const handleLogin = async () => {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
   }
-  
+
   .tips {
     margin-top: 32px;
     text-align: center;
-    color: #8395A7;
+    color: #8395a7;
     font-size: 14px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    
+
     .test-code {
-      color: #FF6B6B;
+      color: #ff6b6b;
       font-weight: 600;
-      background: #FFF0F5;
+      background: #fff0f5;
       padding: 4px 12px;
       border-radius: 20px;
       align-self: center;

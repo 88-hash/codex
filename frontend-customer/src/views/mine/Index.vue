@@ -73,7 +73,7 @@
             </div>
             <div class="card-body">
               <el-table :data="orders" v-loading="loadingOrders">
-                <el-table-column prop="orderNo" label="订单编号" width="160" />
+                <el-table-column prop="orderNo" label="订单编号" min-width="220" show-overflow-tooltip />
                 <el-table-column label="商品" min-width="200">
                   <template #default="{ row }">
                     <div v-for="item in row.items?.slice(0, 2)" :key="item.id" class="order-goods">

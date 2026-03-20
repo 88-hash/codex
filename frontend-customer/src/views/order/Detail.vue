@@ -148,14 +148,16 @@ const statusText = { pending: '待取货', completed: '已完成', cancelled: '�
 
 const formatTime = (time) => dayjs(time).format('YYYY-MM-DD HH:mm:ss')
 
-onMounted(async () => {
+const fetchOrder = async () => {
   try {
     const res = await getOrderDetail(route.params.id)
     order.value = res.data
   } catch (e) {
     console.error(e)
   }
-})
+}
+
+onMounted(fetchOrder)
 
 const copyCode = async () => {
   try {
@@ -171,7 +173,7 @@ const handleCancel = async () => {
   try {
     await cancelOrder(order.value.id)
     ElMessage.success('订单已取消')
-    order.value.status = 'cancelled'
+    await fetchOrder()
   } catch (e) {
     console.error(e)
   }

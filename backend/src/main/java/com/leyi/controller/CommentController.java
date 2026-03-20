@@ -2,6 +2,8 @@ package com.leyi.controller;
 
 import com.leyi.common.Result;
 import com.leyi.entity.Comment;
+import com.leyi.security.AuthContext;
+import com.leyi.security.AuthGuard;
 import com.leyi.service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private AuthGuard authGuard;
+
     @GetMapping("/goods/{goodsId}")
     public Result<?> getByGoodsId(@PathVariable Long goodsId) {
         return Result.success(commentService.getByGoodsId(goodsId));
@@ -21,24 +26,16 @@ public class CommentController {
 
     @GetMapping("/my")
     public Result<?> getMyComments(HttpServletRequest request) {
-        Long userId = (Long) request.getAttribute("userId");
+        Long userId = authGuard.requireUser(request);
         return Result.success(commentService.getByUserId(userId));
     }
 
     @PostMapping("/add")
     public Result<?> add(HttpServletRequest request, @RequestBody Comment comment) {
-        Long userId = (Long) request.getAttribute("userId");
-        String phone = (String) request.getAttribute("phone");
+        Long userId = authGuard.requireUser(request);
         comment.setUserId(userId);
-        comment.setUserPhone(phone);
-        try {
-            commentService.add(comment);
-            return Result.success();
-        } catch (Exception e) {
-            return Result.error(e.getMessage());
-        }
+        comment.setUserPhone(AuthContext.getPhone(request));
+        commentService.add(userId, comment);
+        return Result.success();
     }
 }
-
-
-

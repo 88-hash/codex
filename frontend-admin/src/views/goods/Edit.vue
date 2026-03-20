@@ -9,60 +9,61 @@
           <el-form-item label="商品名称" prop="name">
             <el-input v-model="form.name" placeholder="请输入商品名称" />
           </el-form-item>
-          
+
           <el-form-item label="商品分类" prop="categoryId">
-            <el-cascader 
-              v-model="categoryPath" 
+            <el-cascader
+              v-model="categoryPath"
               :options="categories"
               :props="{ value: 'id', label: 'name', children: 'children' }"
               placeholder="请选择分类"
               @change="handleCategoryChange"
             />
           </el-form-item>
-          
+
           <el-form-item label="商品价格" prop="price">
             <el-input-number v-model="form.price" :min="0" :precision="2" :step="0.1" />
           </el-form-item>
-          
+
           <el-form-item label="库存数量" prop="stock">
             <el-input-number v-model="form.stock" :min="0" />
           </el-form-item>
-          
+
           <el-form-item label="安全库存">
             <el-input-number v-model="form.safetyStock" :min="0" />
           </el-form-item>
-          
+
           <el-form-item label="商品条码">
             <el-input v-model="form.barCode" placeholder="请输入商品条码" />
           </el-form-item>
-          
+
           <el-form-item label="商品主图">
             <el-upload
               class="image-uploader"
               :show-file-list="false"
               :http-request="handleUpload"
+              accept="image/png,image/jpeg"
             >
               <img v-if="form.imageUrl" :src="form.imageUrl" class="uploaded-image" />
               <el-icon v-else class="upload-icon"><Plus /></el-icon>
             </el-upload>
           </el-form-item>
-          
+
           <el-form-item label="促销标签">
             <el-input v-model="form.promotionTag" placeholder="如：第二件半价" />
           </el-form-item>
-          
+
           <el-form-item label="保质期至">
             <el-date-picker v-model="form.expireDate" type="date" placeholder="选择日期" value-format="YYYY-MM-DD" />
           </el-form-item>
-          
+
           <el-form-item label="商品描述">
             <el-input v-model="form.description" type="textarea" :rows="4" placeholder="请输入商品描述" />
           </el-form-item>
-          
+
           <el-form-item label="上架状态">
             <el-switch v-model="form.isOnSale" :active-value="1" :inactive-value="0" />
           </el-form-item>
-          
+
           <el-form-item>
             <el-button @click="router.back()">取消</el-button>
             <el-button type="primary" @click="handleSubmit" :loading="submitting">保存</el-button>
@@ -74,10 +75,10 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, computed } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { getCategoryList, getGoodsDetail, addGoods, updateGoods, uploadFile } from '@/api'
+import { addGoods, getCategoryList, getGoodsDetail, updateGoods, uploadFile } from '@/api'
 
 const route = useRoute()
 const router = useRouter()
@@ -112,15 +113,14 @@ const rules = {
 onMounted(async () => {
   const res = await getCategoryList()
   categories.value = res.data || []
-  
+
   if (isEdit.value) {
     const goodsRes = await getGoodsDetail(route.params.id)
     const goods = goodsRes.data.goods
     Object.assign(form, goods)
-    
-    // 查找分类路径
+
     for (const cat of categories.value) {
-      const sub = cat.children?.find(c => c.id === goods.categoryId)
+      const sub = cat.children?.find(item => item.id === goods.categoryId)
       if (sub) {
         categoryPath.value = [cat.id, sub.id]
         break
@@ -140,6 +140,7 @@ const handleUpload = async ({ file }) => {
     ElMessage.success('上传成功')
   } catch (e) {
     console.error(e)
+    ElMessage.error(e?.message || '上传失败')
   }
 }
 
@@ -173,25 +174,22 @@ const handleSubmit = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     &:hover {
       border-color: #1a73e8;
     }
   }
-  
+
   .uploaded-image {
     width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 8px;
   }
-  
+
   .upload-icon {
     font-size: 28px;
     color: #8c939d;
   }
 }
 </style>
-
-
-

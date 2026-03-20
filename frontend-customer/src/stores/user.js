@@ -2,9 +2,33 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import request from '@/utils/request'
 
+const normalizeUserInfo = (value) => {
+  const source = value && typeof value === 'object' ? { ...value } : {}
+  const avatar = source.avatar || source.avatarUrl || ''
+  return {
+    ...source,
+    avatar
+  }
+}
+
+const readStoredUserInfo = () => {
+  try {
+    return normalizeUserInfo(JSON.parse(localStorage.getItem('userInfo') || '{}'))
+  } catch {
+    return {}
+  }
+}
+
 export const useUserStore = defineStore('user', () => {
   const token = ref(localStorage.getItem('token') || '')
-  const userInfo = ref(JSON.parse(localStorage.getItem('userInfo') || '{}'))
+  const userInfo = ref(readStoredUserInfo())
+
+  const persistUserInfo = (value) => {
+    const normalized = normalizeUserInfo(value)
+    userInfo.value = normalized
+    localStorage.setItem('userInfo', JSON.stringify(normalized))
+    return normalized
+  }
 
   const sendCode = async (phone) => {
     await request.post('/auth/sendCode', { phone })
@@ -13,10 +37,12 @@ export const useUserStore = defineStore('user', () => {
   const login = async (phone, code) => {
     const res = await request.post('/auth/login', { phone, code })
     token.value = res.data.token
-    userInfo.value = res.data.user
     localStorage.setItem('token', res.data.token)
-    localStorage.setItem('userInfo', JSON.stringify(res.data.user))
-    return res.data
+    persistUserInfo(res.data.user)
+    return {
+      ...res.data,
+      user: userInfo.value
+    }
   }
 
   const logout = () => {
@@ -27,9 +53,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const updateUserInfo = async (data) => {
-    await request.put('/user/update', data)
-    userInfo.value = { ...userInfo.value, ...data }
-    localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+    const res = await request.put('/user/update', data)
+    return persistUserInfo(res.data)
   }
 
   const isLoggedIn = () => !!token.value
@@ -44,6 +69,3 @@ export const useUserStore = defineStore('user', () => {
     isLoggedIn
   }
 })
-
-
-

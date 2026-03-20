@@ -28,7 +28,7 @@ jwt:
 
 # 文件上传配置
 upload:
-  path: C:/Users/lmc/Desktop/乐逸/uploads
+  path: C:/Users/lmc/Desktop/乐逸/backend/uploads
   max-size: 10485760
 
 

@@ -16,7 +16,7 @@
           <div class="main-content">
             <aside class="avatar-area">
               <el-avatar :size="116" :src="avatarPreview" class="profile-avatar">{{ displayInitial }}</el-avatar>
-              <input ref="fileInputRef" type="file" accept="image/*" class="hidden-input" @change="handleAvatarChange">
+              <input ref="fileInputRef" type="file" accept="image/png,image/jpeg" class="hidden-input" @change="handleAvatarChange">
 
               <div class="avatar-actions">
                 <el-button @click="selectAvatar">上传头像</el-button>
@@ -64,10 +64,10 @@
               </div>
 
               <div class="hint-box">
-                当前资料会优先保存到本地，并尝试同步到后端用户接口。
+                保存资料后会同步更新到后端用户资料，并刷新本地登录信息。
               </div>
 
-              <el-button type="primary" class="save-btn" @click="saveProfile">保存资料</el-button>
+              <el-button type="primary" class="save-btn" @click="saveProfile" :loading="saving">保存资料</el-button>
             </div>
           </div>
         </div>
@@ -121,6 +121,7 @@ const userStore = useUserStore()
 const cartStore = useCartStore()
 
 const fileInputRef = ref(null)
+const saving = ref(false)
 const profileForm = ref({
   name: '',
   phone: '',
@@ -142,8 +143,8 @@ const hydrateProfile = () => {
   profileForm.value.name = userStore.userInfo.name || userStore.userInfo.phone || 'LeYi会员'
   profileForm.value.phone = userStore.userInfo.phone || '--'
   profileForm.value.signature = userStore.userInfo.signature || ''
-  avatarPreview.value = userStore.userInfo.avatarUrl || userStore.userInfo.avatar || DEFAULT_PRESET_AVATAR
-  selectedPreset.value = PRESET_AVATARS.find((item) => item.url === avatarPreview.value)?.url || ''
+  avatarPreview.value = userStore.userInfo.avatar || userStore.userInfo.avatarUrl || DEFAULT_PRESET_AVATAR
+  selectedPreset.value = PRESET_AVATARS.find(item => item.url === avatarPreview.value)?.url || ''
 }
 
 const selectAvatar = () => {
@@ -154,10 +155,19 @@ const handleAvatarChange = (event) => {
   const file = event.target?.files?.[0]
   if (!file) return
 
+  if (!['image/png', 'image/jpeg'].includes(file.type)) {
+    ElMessage.error('仅支持 PNG 或 JPEG 图片')
+    event.target.value = ''
+    return
+  }
+
   const reader = new FileReader()
   reader.onload = () => {
     avatarPreview.value = `${reader.result || ''}`
     selectedPreset.value = ''
+  }
+  reader.onerror = () => {
+    ElMessage.error('头像读取失败，请重试')
   }
   reader.readAsDataURL(file)
   event.target.value = ''
@@ -173,39 +183,32 @@ const resetAvatar = () => {
   selectedPreset.value = DEFAULT_PRESET_AVATAR
 }
 
-const persistLocalUser = (payload) => {
-  const updated = {
-    ...userStore.userInfo,
-    ...payload,
-    avatarUrl: payload.avatarUrl,
-    avatar: payload.avatarUrl
-  }
-  userStore.userInfo = updated
-  localStorage.setItem('userInfo', JSON.stringify(updated))
-}
-
 const saveProfile = async () => {
   const payload = {
     name: profileForm.value.name || 'LeYi会员',
     signature: profileForm.value.signature || '',
-    avatarUrl: avatarPreview.value || DEFAULT_PRESET_AVATAR
+    avatar: avatarPreview.value || DEFAULT_PRESET_AVATAR
   }
 
+  saving.value = true
   try {
-    await userStore.updateUserInfo(payload)
-    persistLocalUser(payload)
+    const updatedUser = await userStore.updateUserInfo(payload)
+    profileForm.value.name = updatedUser.name || payload.name
+    profileForm.value.signature = updatedUser.signature || ''
+    avatarPreview.value = updatedUser.avatar || DEFAULT_PRESET_AVATAR
     ElMessage.success('个人资料已保存')
   } catch (error) {
-    console.warn('sync profile failed, fallback to local', error)
-    persistLocalUser(payload)
-    ElMessage.warning('后端暂未同步，已保存到本地资料')
+    console.error(error)
+    ElMessage.error(error?.message || '保存失败，请稍后重试')
+  } finally {
+    saving.value = false
   }
 }
 
 const buildFromOrders = (orders) => {
   const map = new Map()
-  ;(orders || []).forEach((order) => {
-    ;(order.items || []).forEach((item) => {
+  ;(orders || []).forEach(order => {
+    ;(order.items || []).forEach(item => {
       const key = item.goodsId || item.goodsName
       if (!key) return
 
@@ -230,7 +233,7 @@ const buildFromOrders = (orders) => {
 
 const buildFromCart = (cartItems) => {
   return (cartItems || [])
-    .map((item) => ({
+    .map(item => ({
       key: item.goodsId || item.id || item.goodsName,
       goodsId: item.goodsId,
       name: item.goodsName || '未命名商品',
@@ -238,7 +241,7 @@ const buildFromCart = (cartItems) => {
       price: Number(item.goodsPrice || item.price || 0),
       count: Number(item.quantity || 1)
     }))
-    .filter((item) => item.key)
+    .filter(item => item.key)
 }
 
 const loadFrequentGoods = async () => {

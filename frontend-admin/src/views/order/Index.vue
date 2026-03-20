@@ -19,7 +19,7 @@
       </div>
       <div class="card-body">
         <el-table :data="orders" v-loading="loading" border>
-          <el-table-column prop="orderNo" label="订单编号" width="160" />
+          <el-table-column prop="orderNo" label="订单编号" min-width="220" show-overflow-tooltip />
           <el-table-column prop="userPhone" label="顾客手机" width="120" />
           <el-table-column prop="verifyCode" label="取货码" width="100" />
           <el-table-column label="商品" min-width="200">

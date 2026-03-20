@@ -10,6 +10,9 @@ export const getTopSales = (params) => request.get('/statistics/topSales', { par
 export const getSalesTrend = (params) => request.get('/statistics/salesTrend', { params })
 export const getLowStock = () => request.get('/statistics/lowStock')
 export const getExpiring = (params) => request.get('/statistics/expiring', { params })
+export const getOrderStatus = () => request.get('/statistics/orderStatus')
+export const getCategorySales = (params) => request.get('/statistics/categorySales', { params })
+export const getHourlyOrders = () => request.get('/statistics/hourlyOrders')
 
 // 商品
 export const getGoodsList = (params) => request.get('/goods/list', { params })

@@ -88,11 +88,25 @@ npm run dev
 
 ### 顾客端
 - 手机号：任意11位手机号
-- 验证码：000000（开发环境）
+- 验证码：点击“获取验证码”后到后端控制台查看 `[LOGIN_CODE]`
 
 ### 店家端
 - 店长账号：13800000001 / 123456
 - 店员账号：13800000002 / 123456
+
+### 顾客端开发登录说明
+1. 打开顾客端登录页，输入手机号后点击“获取验证码”
+2. 查看后端控制台输出，格式类似：`[LOGIN_CODE] phone=13645673454 code=919184`
+3. 将控制台中的 6 位验证码输入登录页后提交登录
+
+### 已有数据库后台账号重置说明
+如果你不是用最新 `database/init.sql` 重新建库，而是沿用旧数据库，请执行下面的 SQL，把预置店长/店员账号密码重置为 `123456`：
+
+```sql
+UPDATE `admin`
+SET `password` = '$2a$10$sq0JnxJBhl9HMviT57r7n.QyQ2JdjrHVgZ1pkxE/7CPZ0gXP3A80O'
+WHERE `phone` IN ('13800000001', '13800000002');
+```
 
 ## 功能模块
 
@@ -135,7 +149,7 @@ npm run dev
 1. 确保MySQL服务已启动，数据库配置正确
 2. 后端需要Java 17+环境
 3. 前端需要Node.js 16+环境
-4. 开发环境验证码固定为 000000
+4. 登录前需要先获取验证码，默认不再提供固定万能验证码
 5. 文件上传目录默认为 `./uploads`
 
 ## 配置说明
@@ -164,6 +178,38 @@ server: {
   }
 }
 ```
+
+## 订单唯一性升级说明
+
+如果你使用的是旧数据库，而不是重新执行最新的 `database/init.sql`，在升级到当前版本前需要先检查取货码是否重复：
+
+```sql
+SELECT verify_code, COUNT(*) AS duplicate_count
+FROM `order`
+GROUP BY verify_code
+HAVING COUNT(*) > 1;
+```
+
+如果存在重复取货码，请先为重复记录重新生成新的 6 位取货码，再执行唯一索引升级：
+
+```sql
+ALTER TABLE `order`
+ADD UNIQUE KEY `uk_verify_code` (`verify_code`);
+```
+
+新初始化的数据库直接使用仓库中的最新版 `database/init.sql` 即可，无需额外执行上述 SQL。
+
+## 用户资料升级说明
+
+如果你使用的是旧数据库，在升级到当前版本前需要同步用户资料字段：
+
+```sql
+ALTER TABLE `user`
+MODIFY COLUMN `avatar` MEDIUMTEXT NULL COMMENT '头像URL',
+ADD COLUMN `signature` VARCHAR(80) DEFAULT '' COMMENT '个性签名' AFTER `avatar`;
+```
+
+升级后，用户资料接口以 `name + avatar + signature` 作为统一契约，前端不再以本地缓存伪装后端保存成功。
 
 
 

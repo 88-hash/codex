@@ -2,6 +2,7 @@ package com.leyi.service;
 
 import com.leyi.entity.Cart;
 import com.leyi.entity.Goods;
+import com.leyi.exception.BusinessException;
 import com.leyi.mapper.CartMapper;
 import com.leyi.mapper.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,48 +28,89 @@ public class CartService {
     }
 
     public void add(Long userId, Long goodsId, Integer quantity) {
-        Goods goods = goodsMapper.findById(goodsId);
-        if (goods == null || goods.getIsOnSale() != 1) {
-            throw new RuntimeException("商品不存在或已下架");
+        requirePositive(quantity, "商品数量");
+
+        Goods goods = getAvailableGoods(goodsId);
+        if (quantity > goods.getStock()) {
+            throw new BusinessException(400, "商品库存不足");
         }
 
         Cart existing = cartMapper.findByUserIdAndGoodsId(userId, goodsId);
         if (existing != null) {
             int newQuantity = existing.getQuantity() + quantity;
             if (newQuantity > goods.getStock()) {
-                newQuantity = goods.getStock();
+                throw new BusinessException(400, "商品库存不足");
             }
             cartMapper.updateQuantity(existing.getId(), newQuantity);
-        } else {
-            Cart cart = new Cart();
-            cart.setUserId(userId);
-            cart.setGoodsId(goodsId);
-            cart.setQuantity(Math.min(quantity, goods.getStock()));
-            cart.setIsChecked(1);
-            cartMapper.insert(cart);
+            return;
         }
+
+        Cart cart = new Cart();
+        cart.setUserId(userId);
+        cart.setGoodsId(goodsId);
+        cart.setQuantity(quantity);
+        cart.setIsChecked(1);
+        cartMapper.insert(cart);
     }
 
-    public void updateQuantity(Long id, Integer quantity) {
-        cartMapper.updateQuantity(id, quantity);
+    public void updateQuantity(Long userId, Long id, Integer quantity) {
+        requirePositive(quantity, "商品数量");
+        Cart cart = getOwnedCart(id, userId);
+        Goods goods = getAvailableGoods(cart.getGoodsId());
+        if (quantity > goods.getStock()) {
+            throw new BusinessException(400, "商品库存不足");
+        }
+        cartMapper.updateQuantity(cart.getId(), quantity);
     }
 
-    public void updateChecked(Long id, Integer isChecked) {
-        cartMapper.updateChecked(id, isChecked);
+    public void updateChecked(Long userId, Long id, Integer isChecked) {
+        requireBinaryFlag(isChecked, "选中状态");
+        Cart cart = getOwnedCart(id, userId);
+        cartMapper.updateChecked(cart.getId(), isChecked);
     }
 
     public void updateAllChecked(Long userId, Integer isChecked) {
+        requireBinaryFlag(isChecked, "选中状态");
         cartMapper.updateAllChecked(userId, isChecked);
     }
 
-    public void delete(Long id) {
-        cartMapper.delete(id);
+    public void delete(Long userId, Long id) {
+        Cart cart = getOwnedCart(id, userId);
+        cartMapper.delete(cart.getId());
     }
 
     public void deleteChecked(Long userId) {
         cartMapper.deleteChecked(userId);
     }
+
+    private Cart getOwnedCart(Long id, Long userId) {
+        Cart cart = cartMapper.findByIdAndUserId(id, userId);
+        if (cart == null) {
+            throw new BusinessException(403, "无权操作该购物车记录");
+        }
+        return cart;
+    }
+
+    private Goods getAvailableGoods(Long goodsId) {
+        Goods goods = goodsMapper.findById(goodsId);
+        if (goods == null || goods.getIsOnSale() != 1) {
+            throw new BusinessException(400, "商品不存在或已下架");
+        }
+        if (goods.getStock() == null || goods.getStock() <= 0) {
+            throw new BusinessException(400, "商品库存不足");
+        }
+        return goods;
+    }
+
+    private void requirePositive(Integer value, String fieldName) {
+        if (value == null || value <= 0) {
+            throw new BusinessException(400, fieldName + "必须为正整数");
+        }
+    }
+
+    private void requireBinaryFlag(Integer value, String fieldName) {
+        if (value == null || (value != 0 && value != 1)) {
+            throw new BusinessException(400, fieldName + "参数非法");
+        }
+    }
 }
-
-
-

@@ -55,6 +55,12 @@ const routes = [
         meta: { title: '确认订单', requireAuth: true }
       },
       {
+        path: 'payment',
+        name: 'Payment',
+        component: () => import('@/views/payment/Index.vue'),
+        meta: { title: '确认支付', requireAuth: true }
+      },
+      {
         path: 'order/success',
         name: 'OrderSuccess',
         component: () => import('@/views/order/Success.vue'),

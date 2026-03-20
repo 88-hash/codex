@@ -13,33 +13,35 @@
           <p>Leyi Snack Management</p>
         </div>
       </div>
-      
+
       <div class="login-right">
         <div class="form-header">
           <h2>账号登录</h2>
           <p>欢迎回到管理后台</p>
         </div>
-        
+
         <el-form :model="form" :rules="rules" ref="formRef" class="login-form">
           <el-form-item prop="phone">
-            <el-input 
-              v-model="form.phone" 
+            <el-input
+              v-model="form.phone"
               placeholder="请输入手机号"
               size="large"
+              autocomplete="username"
             >
               <template #prefix>
                 <el-icon><Iphone /></el-icon>
               </template>
             </el-input>
           </el-form-item>
-          
+
           <el-form-item prop="password">
-            <el-input 
-              v-model="form.password" 
+            <el-input
+              v-model="form.password"
               type="password"
               placeholder="请输入密码"
               size="large"
               show-password
+              autocomplete="current-password"
               @keyup.enter="handleLogin"
             >
               <template #prefix>
@@ -47,10 +49,10 @@
               </template>
             </el-input>
           </el-form-item>
-          
-          <el-button 
-            type="primary" 
-            size="large" 
+
+          <el-button
+            type="primary"
+            size="large"
             class="login-btn"
             :loading="loading"
             @click="handleLogin"
@@ -58,7 +60,7 @@
             立即登录
           </el-button>
         </el-form>
-        
+
         <div class="login-footer">
           <div class="account-tag">店长: 13800000001 / 123456</div>
           <div class="account-tag clerk">店员: 13800000002 / 123456</div>
@@ -69,7 +71,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Iphone, Lock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
@@ -86,6 +88,11 @@ const form = reactive({
   password: ''
 })
 
+const normalizeCredential = (value) => `${value ?? ''}`
+  .replace(/\u3000/g, ' ')
+  .replace(/[０-９]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0xFEE0))
+  .trim()
+
 const rules = {
   phone: [{ required: true, message: '请输入手机号', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -93,13 +100,17 @@ const rules = {
 
 const handleLogin = async () => {
   await formRef.value.validate()
+
+  form.phone = normalizeCredential(form.phone)
+  form.password = normalizeCredential(form.password)
+
   loading.value = true
   try {
     await adminStore.login(form.phone, form.password)
     ElMessage.success('登录成功')
     router.push('/dashboard')
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   } finally {
     loading.value = false
   }
@@ -134,35 +145,35 @@ const handleLogin = async () => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  
+
   .circles {
     position: absolute;
     width: 100%;
     height: 100%;
-    
+
     .circle {
       position: absolute;
       border-radius: 50%;
       background: rgba(255,255,255,0.1);
     }
-    
+
     .c1 { width: 200px; height: 200px; top: -50px; left: -50px; }
     .c2 { width: 300px; height: 300px; bottom: -100px; right: -50px; }
     .c3 { width: 100px; height: 100px; top: 100px; right: 20px; }
   }
-  
+
   .brand {
     color: white;
     text-align: center;
     position: relative;
     z-index: 2;
-    
+
     h1 {
       font-size: 28px;
       margin: 16px 0 8px;
       font-weight: 800;
     }
-    
+
     p {
       font-size: 14px;
       opacity: 0.8;
@@ -177,21 +188,21 @@ const handleLogin = async () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   .form-header {
     margin-bottom: 40px;
-    
+
     h2 {
       font-size: 28px;
       color: #222F3E;
       margin-bottom: 8px;
     }
-    
+
     p {
       color: #8395A7;
     }
   }
-  
+
   .login-form {
     .el-input {
       :deep(.el-input__wrapper) {
@@ -199,14 +210,14 @@ const handleLogin = async () => {
         background: #F0F3F7;
         box-shadow: none;
         padding: 4px 12px;
-        
+
         &.is-focus {
           background: white;
           box-shadow: 0 0 0 2px #54A0FF;
         }
       }
     }
-    
+
     .login-btn {
       width: 100%;
       margin-top: 24px;
@@ -216,14 +227,14 @@ const handleLogin = async () => {
       box-shadow: 0 8px 16px rgba(84, 160, 255, 0.3);
     }
   }
-  
+
   .login-footer {
     margin-top: 40px;
     display: flex;
     justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
-    
+
     .account-tag {
       font-size: 12px;
       color: #54A0FF;
@@ -231,7 +242,7 @@ const handleLogin = async () => {
       padding: 6px 12px;
       border-radius: 20px;
       font-weight: 600;
-      
+
       &.clerk {
         color: #1DD1A1;
         background: rgba(29, 209, 161, 0.1);

@@ -1,0 +1,4519 @@
+{
+  "project_name": "LeYi零食店",
+  "image_base_path": "/uploads/goods",
+  "categories": [
+    {
+      "id": 1,
+      "key": "casual_snacks",
+      "name": "休闲零食",
+      "sort": 1,
+      "children": [
+        {
+          "id": 101,
+          "key": "chips_puffed",
+          "name": "薯片膨化",
+          "sort": 1
+        },
+        {
+          "id": 102,
+          "key": "rice_crackers",
+          "name": "锅巴米饼",
+          "sort": 2
+        },
+        {
+          "id": 103,
+          "key": "corn_popcorn",
+          "name": "玉米卷爆米花",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "key": "biscuits_bakery",
+      "name": "饼干烘焙",
+      "sort": 2,
+      "children": [
+        {
+          "id": 104,
+          "key": "sandwich_biscuits",
+          "name": "夹心饼干",
+          "sort": 1
+        },
+        {
+          "id": 105,
+          "key": "cookies_wafers",
+          "name": "曲奇威化",
+          "sort": 2
+        },
+        {
+          "id": 106,
+          "key": "cakes_bread",
+          "name": "面包蛋糕",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "key": "nuts_dried_fruits",
+      "name": "坚果果干",
+      "sort": 3,
+      "children": [
+        {
+          "id": 107,
+          "key": "daily_nuts",
+          "name": "每日坚果",
+          "sort": 1
+        },
+        {
+          "id": 108,
+          "key": "plain_nuts",
+          "name": "原味坚果",
+          "sort": 2
+        },
+        {
+          "id": 109,
+          "key": "dried_fruits",
+          "name": "果干蜜饯",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "key": "sweets_jelly",
+      "name": "糖巧果冻",
+      "sort": 4,
+      "children": [
+        {
+          "id": 110,
+          "key": "chocolate",
+          "name": "巧克力",
+          "sort": 1
+        },
+        {
+          "id": 111,
+          "key": "candy_gummy",
+          "name": "糖果软糖",
+          "sort": 2
+        },
+        {
+          "id": 112,
+          "key": "jelly_pudding",
+          "name": "果冻布丁",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "key": "jerky_delicacies",
+      "name": "肉脯卤味",
+      "sort": 5,
+      "children": [
+        {
+          "id": 113,
+          "key": "jerky",
+          "name": "肉干肉脯",
+          "sort": 1
+        },
+        {
+          "id": 114,
+          "key": "braised_veggie",
+          "name": "卤味素食",
+          "sort": 2
+        },
+        {
+          "id": 115,
+          "key": "fish_tofu_seafood",
+          "name": "鱼豆腐海味",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "key": "beverages",
+      "name": "酒水饮料",
+      "sort": 6,
+      "children": [
+        {
+          "id": 116,
+          "key": "soda",
+          "name": "碳酸饮料",
+          "sort": 1
+        },
+        {
+          "id": 117,
+          "key": "juice_tea",
+          "name": "果汁茶饮",
+          "sort": 2
+        },
+        {
+          "id": 118,
+          "key": "coffee_energy",
+          "name": "咖啡功能饮料",
+          "sort": 3
+        },
+        {
+          "id": 119,
+          "key": "water_sparkling",
+          "name": "矿泉水苏打水",
+          "sort": 4
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "key": "dairy_mix",
+      "name": "乳品冲饮",
+      "sort": 7,
+      "children": [
+        {
+          "id": 120,
+          "key": "ambient_milk",
+          "name": "常温乳品",
+          "sort": 1
+        },
+        {
+          "id": 121,
+          "key": "yogurt_probiotic",
+          "name": "酸奶乳酸菌",
+          "sort": 2
+        },
+        {
+          "id": 122,
+          "key": "milk_tea_mix",
+          "name": "奶茶冲饮",
+          "sort": 3
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "key": "specialty_gifts",
+      "name": "特产礼盒",
+      "sort": 8,
+      "children": [
+        {
+          "id": 123,
+          "key": "regional_specialty",
+          "name": "地方特产",
+          "sort": 1
+        },
+        {
+          "id": 124,
+          "key": "imported_snacks",
+          "name": "进口零食",
+          "sort": 2
+        },
+        {
+          "id": 125,
+          "key": "festival_gifts",
+          "name": "节庆礼盒",
+          "sort": 3
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "乐事",
+      "short_name": "原味薯片",
+      "spec": "75g",
+      "name": "乐事原味薯片 75g",
+      "price": 7.9,
+      "stock": 43,
+      "safety_stock": 9,
+      "bar_code": "6909000000001",
+      "image_url": "/uploads/goods/goods_001.jpg",
+      "file_name": "goods_001.jpg",
+      "description": "乐事原味薯片采用75g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "店长推荐",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Lay's Classic Potato Chips 75g",
+        "Lay's Classic Potato Chips",
+        "Lays 原味薯片 75g",
+        "乐事 原味薯片 75g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "lays"
+      ],
+      "image_core_terms": [
+        "lay",
+        "potato",
+        "chips"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 2,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "乐事",
+      "short_name": "烧烤味薯片",
+      "spec": "70g",
+      "name": "乐事烧烤味薯片 70g",
+      "price": 7.9,
+      "stock": 50,
+      "safety_stock": 10,
+      "bar_code": "6909000000002",
+      "image_url": "/uploads/goods/goods_002.jpg",
+      "file_name": "goods_002.jpg",
+      "description": "乐事烧烤味薯片采用70g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Lay's Barbecue Potato Chips 70g",
+        "Lay's Barbecue Potato Chips",
+        "Lays 烧烤味薯片 70g",
+        "乐事 烧烤味薯片 70g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "lays"
+      ],
+      "image_core_terms": [
+        "lay",
+        "barbecue",
+        "potato",
+        "chips"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 3,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "乐事",
+      "short_name": "海盐薯片",
+      "spec": "70g",
+      "name": "乐事海盐薯片 70g",
+      "price": 8.5,
+      "stock": 57,
+      "safety_stock": 11,
+      "bar_code": "6909000000003",
+      "image_url": "/uploads/goods/goods_003.jpg",
+      "file_name": "goods_003.jpg",
+      "description": "乐事海盐薯片采用70g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Lay's Sea Salt Potato Chips 70g",
+        "Lay's Sea Salt Potato Chips",
+        "Lays 海盐薯片 70g",
+        "乐事 海盐薯片 70g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "lays"
+      ],
+      "image_core_terms": [
+        "lay",
+        "sea",
+        "salt",
+        "potato",
+        "chips"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 4,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "品客",
+      "short_name": "原味薯片",
+      "spec": "110g",
+      "name": "品客原味薯片 110g",
+      "price": 14.9,
+      "stock": 64,
+      "safety_stock": 12,
+      "bar_code": "6909000000004",
+      "image_url": "/uploads/goods/goods_004.jpg",
+      "file_name": "goods_004.jpg",
+      "description": "品客原味薯片采用110g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Pringles Original 110g",
+        "Pringles Original",
+        "Pringles 原味薯片 110g",
+        "品客 原味薯片 110g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "pringles"
+      ],
+      "image_core_terms": [
+        "potato",
+        "chips",
+        "crispy"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 5,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "品客",
+      "short_name": "酸奶洋葱薯片",
+      "spec": "102g",
+      "name": "品客酸奶洋葱薯片 102g",
+      "price": 14.9,
+      "stock": 71,
+      "safety_stock": 13,
+      "bar_code": "6909000000005",
+      "image_url": "/uploads/goods/goods_005.jpg",
+      "file_name": "goods_005.jpg",
+      "description": "品客酸奶洋葱薯片采用102g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Pringles Sour Cream Onion 102g",
+        "Pringles Sour Cream Onion",
+        "Pringles 酸奶洋葱薯片 102g",
+        "品客 酸奶洋葱薯片 102g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "pringles"
+      ],
+      "image_core_terms": [
+        "sour",
+        "cream",
+        "onion"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 6,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "Ruffles",
+      "short_name": "原味波纹薯片",
+      "spec": "70g",
+      "name": "Ruffles原味波纹薯片 70g",
+      "price": 9.9,
+      "stock": 78,
+      "safety_stock": 14,
+      "bar_code": "6909000000006",
+      "image_url": "/uploads/goods/goods_006.jpg",
+      "file_name": "goods_006.jpg",
+      "description": "Ruffles原味波纹薯片采用70g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Ruffles Original Potato Chips 70g",
+        "Ruffles Original Potato Chips",
+        "Ruffles 原味波纹薯片 70g"
+      ],
+      "fallback_terms": "potato chips crispy snack",
+      "image_brand_terms": [
+        "ruffles"
+      ],
+      "image_core_terms": [
+        "potato",
+        "chips"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 7,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "奇多",
+      "short_name": "香辣玉米脆",
+      "spec": "65g",
+      "name": "奇多香辣玉米脆 65g",
+      "price": 8.9,
+      "stock": 85,
+      "safety_stock": 15,
+      "bar_code": "6909000000007",
+      "image_url": "/uploads/goods/goods_007.jpg",
+      "file_name": "goods_007.jpg",
+      "description": "奇多香辣玉米脆采用65g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Cheetos Crunchy Flamin Hot 65g",
+        "Cheetos Crunchy Flamin Hot",
+        "Cheetos 香辣玉米脆 65g",
+        "奇多 香辣玉米脆 65g"
+      ],
+      "fallback_terms": "puffed corn snack",
+      "image_brand_terms": [
+        "cheetos"
+      ],
+      "image_core_terms": [
+        "crunchy",
+        "flamin",
+        "hot"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 8,
+      "category_key": "chips_puffed",
+      "category_id": 101,
+      "category_name": "薯片膨化",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "Kettle",
+      "short_name": "海盐黑胡椒厚切薯片",
+      "spec": "60g",
+      "name": "Kettle海盐黑胡椒厚切薯片 60g",
+      "price": 15.9,
+      "stock": 92,
+      "safety_stock": 16,
+      "bar_code": "6909000000008",
+      "image_url": "/uploads/goods/goods_008.jpg",
+      "file_name": "goods_008.jpg",
+      "description": "Kettle海盐黑胡椒厚切薯片采用60g便携规格，薯香浓郁、口感酥脆，追剧分享和办公室解馋都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Kettle Sea Salt Cracked Pepper Chips 60g",
+        "Kettle Sea Salt Cracked Pepper Chips",
+        "Kettle 海盐黑胡椒厚切薯片 60g"
+      ],
+      "fallback_terms": "potato chips thick cut",
+      "image_brand_terms": [
+        "kettle"
+      ],
+      "image_core_terms": [
+        "sea",
+        "salt",
+        "cracked",
+        "pepper",
+        "chips"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "broth",
+        "ham",
+        "tuna",
+        "vegetable",
+        "legumes",
+        "chicoree"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 9,
+      "category_key": "rice_crackers",
+      "category_id": 102,
+      "category_name": "锅巴米饼",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "旺旺",
+      "short_name": "仙贝",
+      "spec": "112g",
+      "name": "旺旺仙贝 112g",
+      "price": 12.8,
+      "stock": 99,
+      "safety_stock": 8,
+      "bar_code": "6909000000009",
+      "image_url": "/uploads/goods/goods_009.jpg",
+      "file_name": "goods_009.jpg",
+      "description": "旺旺仙贝带来扎实米香与轻脆口感，112g分享装越嚼越香，适合下午茶和家庭零嘴。",
+      "promotion_tag": "米香热卖",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Want Want Senbei Rice Crackers 112g",
+        "Want Want Senbei Rice Crackers",
+        "Want Want 仙贝 112g",
+        "旺旺 仙贝 112g"
+      ],
+      "fallback_terms": "rice crackers crispy snack",
+      "image_brand_terms": [
+        "want",
+        "want"
+      ],
+      "image_core_terms": [
+        "senbei",
+        "rice",
+        "crackers"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 10,
+      "category_key": "rice_crackers",
+      "category_id": 102,
+      "category_name": "锅巴米饼",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "旺旺",
+      "short_name": "雪饼",
+      "spec": "84g",
+      "name": "旺旺雪饼 84g",
+      "price": 9.9,
+      "stock": 41,
+      "safety_stock": 9,
+      "bar_code": "6909000000010",
+      "image_url": "/uploads/goods/goods_010.jpg",
+      "file_name": "goods_010.jpg",
+      "description": "旺旺雪饼带来扎实米香与轻脆口感，84g分享装越嚼越香，适合下午茶和家庭零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Want Want Shelly Senbei 84g",
+        "Want Want Shelly Senbei",
+        "Want Want 雪饼 84g",
+        "旺旺 雪饼 84g"
+      ],
+      "fallback_terms": "rice crackers crispy snack",
+      "image_brand_terms": [
+        "want",
+        "want"
+      ],
+      "image_core_terms": [
+        "shelly",
+        "senbei"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 11,
+      "category_key": "rice_crackers",
+      "category_id": 102,
+      "category_name": "锅巴米饼",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "岩塚",
+      "short_name": "海苔米饼",
+      "spec": "90g",
+      "name": "岩塚海苔米饼 90g",
+      "price": 15.8,
+      "stock": 48,
+      "safety_stock": 10,
+      "bar_code": "6909000000011",
+      "image_url": "/uploads/goods/goods_011.jpg",
+      "file_name": "goods_011.jpg",
+      "description": "岩塚海苔米饼带来扎实米香与轻脆口感，90g分享装越嚼越香，适合下午茶和家庭零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Iwatsuka Seaweed Rice Crackers 90g",
+        "Iwatsuka Seaweed Rice Crackers",
+        "Iwatsuka 海苔米饼 90g",
+        "岩塚 海苔米饼 90g"
+      ],
+      "fallback_terms": "rice crackers seaweed snack",
+      "image_brand_terms": [
+        "iwatsuka"
+      ],
+      "image_core_terms": [
+        "seaweed",
+        "rice",
+        "crackers"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 12,
+      "category_key": "rice_crackers",
+      "category_id": 102,
+      "category_name": "锅巴米饼",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "龟田",
+      "short_name": "柿种米果",
+      "spec": "100g",
+      "name": "龟田柿种米果 100g",
+      "price": 16.9,
+      "stock": 55,
+      "safety_stock": 11,
+      "bar_code": "6909000000012",
+      "image_url": "/uploads/goods/goods_012.jpg",
+      "file_name": "goods_012.jpg",
+      "description": "龟田柿种米果带来扎实米香与轻脆口感，100g分享装越嚼越香，适合下午茶和家庭零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Kameda Kakinotane Rice Crackers 100g",
+        "Kameda Kakinotane Rice Crackers",
+        "Kameda 柿种米果 100g",
+        "龟田 柿种米果 100g"
+      ],
+      "fallback_terms": "rice crackers peanut mix",
+      "image_brand_terms": [
+        "kameda"
+      ],
+      "image_core_terms": [
+        "kakinotane",
+        "rice",
+        "crackers"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 13,
+      "category_key": "corn_popcorn",
+      "category_id": 103,
+      "category_name": "玉米卷爆米花",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "多力多滋",
+      "short_name": "芝士味玉米片",
+      "spec": "65g",
+      "name": "多力多滋芝士味玉米片 65g",
+      "price": 11.9,
+      "stock": 62,
+      "safety_stock": 12,
+      "bar_code": "6909000000013",
+      "image_url": "/uploads/goods/goods_013.jpg",
+      "file_name": "goods_013.jpg",
+      "description": "多力多滋芝士味玉米片主打玉米谷物香气，65g独立装方便囤货，看片、露营和聚会都很受欢迎。",
+      "promotion_tag": "追剧搭子",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Doritos Nacho Cheese 65g",
+        "Doritos Nacho Cheese",
+        "Doritos 芝士味玉米片 65g",
+        "多力多滋 芝士味玉米片 65g"
+      ],
+      "fallback_terms": "corn chips snack",
+      "image_brand_terms": [
+        "doritos"
+      ],
+      "image_core_terms": [
+        "nacho",
+        "cheese"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 14,
+      "category_key": "corn_popcorn",
+      "category_id": 103,
+      "category_name": "玉米卷爆米花",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "多力多滋",
+      "short_name": "甜辣味玉米片",
+      "spec": "65g",
+      "name": "多力多滋甜辣味玉米片 65g",
+      "price": 11.9,
+      "stock": 69,
+      "safety_stock": 13,
+      "bar_code": "6909000000014",
+      "image_url": "/uploads/goods/goods_014.jpg",
+      "file_name": "goods_014.jpg",
+      "description": "多力多滋甜辣味玉米片主打玉米谷物香气，65g独立装方便囤货，看片、露营和聚会都很受欢迎。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Doritos Sweet Chili 65g",
+        "Doritos Sweet Chili",
+        "Doritos 甜辣味玉米片 65g",
+        "多力多滋 甜辣味玉米片 65g"
+      ],
+      "fallback_terms": "corn chips snack",
+      "image_brand_terms": [
+        "doritos"
+      ],
+      "image_core_terms": [
+        "sweet",
+        "chili"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 15,
+      "category_key": "corn_popcorn",
+      "category_id": 103,
+      "category_name": "玉米卷爆米花",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "ACT II",
+      "short_name": "黄油爆米花",
+      "spec": "78g",
+      "name": "ACT II黄油爆米花 78g",
+      "price": 12.9,
+      "stock": 76,
+      "safety_stock": 14,
+      "bar_code": "6909000000015",
+      "image_url": "/uploads/goods/goods_015.jpg",
+      "file_name": "goods_015.jpg",
+      "description": "ACT II黄油爆米花主打玉米谷物香气，78g独立装方便囤货，看片、露营和聚会都很受欢迎。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "ACT II Butter Popcorn 78g",
+        "ACT II Butter Popcorn",
+        "ACT II 黄油爆米花 78g"
+      ],
+      "fallback_terms": "butter popcorn snack",
+      "image_brand_terms": [
+        "act",
+        "ii"
+      ],
+      "image_core_terms": [
+        "butter",
+        "popcorn"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 16,
+      "category_key": "corn_popcorn",
+      "category_id": 103,
+      "category_name": "玉米卷爆米花",
+      "parent_category_key": "casual_snacks",
+      "parent_category_name": "休闲零食",
+      "brand": "Smartfood",
+      "short_name": "白切达爆米花",
+      "spec": "60g",
+      "name": "Smartfood白切达爆米花 60g",
+      "price": 13.9,
+      "stock": 83,
+      "safety_stock": 15,
+      "bar_code": "6909000000016",
+      "image_url": "/uploads/goods/goods_016.jpg",
+      "file_name": "goods_016.jpg",
+      "description": "Smartfood白切达爆米花主打玉米谷物香气，60g独立装方便囤货，看片、露营和聚会都很受欢迎。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-08-31",
+      "search_terms": [
+        "Smartfood White Cheddar Popcorn 60g",
+        "Smartfood White Cheddar Popcorn",
+        "Smartfood 白切达爆米花 60g"
+      ],
+      "fallback_terms": "popcorn snack cheese",
+      "image_brand_terms": [
+        "smartfood"
+      ],
+      "image_core_terms": [
+        "white",
+        "cheddar",
+        "popcorn"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie",
+        "tuna"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 17,
+      "category_key": "sandwich_biscuits",
+      "category_id": 104,
+      "category_name": "夹心饼干",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "奥利奥",
+      "short_name": "原味夹心饼干",
+      "spec": "97g",
+      "name": "奥利奥原味夹心饼干 97g",
+      "price": 12.9,
+      "stock": 90,
+      "safety_stock": 16,
+      "bar_code": "6909000000017",
+      "image_url": "/uploads/goods/goods_017.jpg",
+      "file_name": "goods_017.jpg",
+      "description": "奥利奥原味夹心饼干夹心细腻、甜而不腻，97g刚好适合随手开袋，搭配牛奶咖啡更有满足感。",
+      "promotion_tag": "精选推荐",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Oreo Original Sandwich Cookies 97g",
+        "Oreo Original Sandwich Cookies",
+        "Oreo 原味夹心饼干 97g",
+        "奥利奥 原味夹心饼干 97g"
+      ],
+      "fallback_terms": "sandwich cookies creme",
+      "image_brand_terms": [
+        "oreo"
+      ],
+      "image_core_terms": [
+        "sandwich",
+        "cookies"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 18,
+      "category_key": "sandwich_biscuits",
+      "category_id": 104,
+      "category_name": "夹心饼干",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "奥利奥",
+      "short_name": "草莓味夹心饼干",
+      "spec": "97g",
+      "name": "奥利奥草莓味夹心饼干 97g",
+      "price": 12.9,
+      "stock": 97,
+      "safety_stock": 8,
+      "bar_code": "6909000000018",
+      "image_url": "/uploads/goods/goods_018.jpg",
+      "file_name": "goods_018.jpg",
+      "description": "奥利奥草莓味夹心饼干夹心细腻、甜而不腻，97g刚好适合随手开袋，搭配牛奶咖啡更有满足感。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Oreo Strawberry Sandwich Cookies 97g",
+        "Oreo Strawberry Sandwich Cookies",
+        "Oreo 草莓味夹心饼干 97g",
+        "奥利奥 草莓味夹心饼干 97g"
+      ],
+      "fallback_terms": "sandwich cookies strawberry",
+      "image_brand_terms": [
+        "oreo"
+      ],
+      "image_core_terms": [
+        "strawberry",
+        "sandwich",
+        "cookies"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 19,
+      "category_key": "sandwich_biscuits",
+      "category_id": 104,
+      "category_name": "夹心饼干",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "奥利奥",
+      "short_name": "巧克力味夹心饼干",
+      "spec": "97g",
+      "name": "奥利奥巧克力味夹心饼干 97g",
+      "price": 12.9,
+      "stock": 39,
+      "safety_stock": 9,
+      "bar_code": "6909000000019",
+      "image_url": "/uploads/goods/goods_019.jpg",
+      "file_name": "goods_019.jpg",
+      "description": "奥利奥巧克力味夹心饼干夹心细腻、甜而不腻，97g刚好适合随手开袋，搭配牛奶咖啡更有满足感。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Oreo Chocolate Sandwich Cookies 97g",
+        "Oreo Chocolate Sandwich Cookies",
+        "Oreo 巧克力味夹心饼干 97g",
+        "奥利奥 巧克力味夹心饼干 97g"
+      ],
+      "fallback_terms": "sandwich cookies chocolate",
+      "image_brand_terms": [
+        "oreo"
+      ],
+      "image_core_terms": [
+        "chocolate",
+        "sandwich",
+        "cookies"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 20,
+      "category_key": "sandwich_biscuits",
+      "category_id": 104,
+      "category_name": "夹心饼干",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "乐之",
+      "short_name": "芝士夹心苏打饼干",
+      "spec": "100g",
+      "name": "乐之芝士夹心苏打饼干 100g",
+      "price": 10.9,
+      "stock": 46,
+      "safety_stock": 10,
+      "bar_code": "6909000000020",
+      "image_url": "/uploads/goods/goods_020.jpg",
+      "file_name": "goods_020.jpg",
+      "description": "乐之芝士夹心苏打饼干夹心细腻、甜而不腻，100g刚好适合随手开袋，搭配牛奶咖啡更有满足感。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Ritz Cheese Sandwich Crackers 100g",
+        "Ritz Cheese Sandwich Crackers",
+        "Ritz 芝士夹心苏打饼干 100g",
+        "乐之 芝士夹心苏打饼干 100g"
+      ],
+      "fallback_terms": "sandwich crackers cheese",
+      "image_brand_terms": [
+        "ritz"
+      ],
+      "image_core_terms": [
+        "cheese",
+        "sandwich",
+        "crackers"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 21,
+      "category_key": "sandwich_biscuits",
+      "category_id": 104,
+      "category_name": "夹心饼干",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "乐之",
+      "short_name": "花生夹心苏打饼干",
+      "spec": "100g",
+      "name": "乐之花生夹心苏打饼干 100g",
+      "price": 10.9,
+      "stock": 53,
+      "safety_stock": 11,
+      "bar_code": "6909000000021",
+      "image_url": "/uploads/goods/goods_021.jpg",
+      "file_name": "goods_021.jpg",
+      "description": "乐之花生夹心苏打饼干夹心细腻、甜而不腻，100g刚好适合随手开袋，搭配牛奶咖啡更有满足感。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Ritz Peanut Butter Sandwich Crackers 100g",
+        "Ritz Peanut Butter Sandwich Crackers",
+        "Ritz 花生夹心苏打饼干 100g",
+        "乐之 花生夹心苏打饼干 100g"
+      ],
+      "fallback_terms": "sandwich crackers peanut",
+      "image_brand_terms": [
+        "ritz"
+      ],
+      "image_core_terms": [
+        "peanut",
+        "butter",
+        "sandwich",
+        "crackers"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 22,
+      "category_key": "cookies_wafers",
+      "category_id": 105,
+      "category_name": "曲奇威化",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "趣多多",
+      "short_name": "巧克力曲奇",
+      "spec": "95g",
+      "name": "趣多多巧克力曲奇 95g",
+      "price": 9.9,
+      "stock": 60,
+      "safety_stock": 12,
+      "bar_code": "6909000000022",
+      "image_url": "/uploads/goods/goods_022.jpg",
+      "file_name": "goods_022.jpg",
+      "description": "趣多多巧克力曲奇奶香和酥脆层次分明，95g装随手带着走，是下午茶和办公室分享的高频选择。",
+      "promotion_tag": "下午茶搭子",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Chips Ahoy Chocolate Chip Cookies 95g",
+        "Chips Ahoy Chocolate Chip Cookies",
+        "Chips Ahoy 巧克力曲奇 95g",
+        "趣多多 巧克力曲奇 95g"
+      ],
+      "fallback_terms": "cookies wafer snack",
+      "image_brand_terms": [
+        "chips",
+        "ahoy"
+      ],
+      "image_core_terms": [
+        "chocolate",
+        "chip",
+        "cookies"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 23,
+      "category_key": "cookies_wafers",
+      "category_id": 105,
+      "category_name": "曲奇威化",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "丹麦蓝罐",
+      "short_name": "曲奇",
+      "spec": "90g",
+      "name": "丹麦蓝罐曲奇 90g",
+      "price": 22.9,
+      "stock": 67,
+      "safety_stock": 13,
+      "bar_code": "6909000000023",
+      "image_url": "/uploads/goods/goods_023.jpg",
+      "file_name": "goods_023.jpg",
+      "description": "丹麦蓝罐曲奇奶香和酥脆层次分明，90g装随手带着走，是下午茶和办公室分享的高频选择。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Royal Dansk Butter Cookies 90g",
+        "Royal Dansk Butter Cookies",
+        "Royal Dansk 曲奇 90g",
+        "丹麦蓝罐 曲奇 90g"
+      ],
+      "fallback_terms": "butter cookies gift tin",
+      "image_brand_terms": [
+        "royal",
+        "dansk"
+      ],
+      "image_core_terms": [
+        "butter",
+        "cookies"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 24,
+      "category_key": "cookies_wafers",
+      "category_id": 105,
+      "category_name": "曲奇威化",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "莱家",
+      "short_name": "榛子威化",
+      "spec": "45g",
+      "name": "莱家榛子威化 45g",
+      "price": 13.8,
+      "stock": 74,
+      "safety_stock": 14,
+      "bar_code": "6909000000024",
+      "image_url": "/uploads/goods/goods_024.jpg",
+      "file_name": "goods_024.jpg",
+      "description": "莱家榛子威化奶香和酥脆层次分明，45g装随手带着走，是下午茶和办公室分享的高频选择。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Loacker Hazelnut Wafer 45g",
+        "Loacker Hazelnut Wafer",
+        "Loacker 榛子威化 45g",
+        "莱家 榛子威化 45g"
+      ],
+      "fallback_terms": "wafer hazelnut snack",
+      "image_brand_terms": [
+        "loacker"
+      ],
+      "image_core_terms": [
+        "hazelnut",
+        "wafer"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 25,
+      "category_key": "cookies_wafers",
+      "category_id": 105,
+      "category_name": "曲奇威化",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "丽芝士纳宝帝",
+      "short_name": "奶酪威化",
+      "spec": "58g",
+      "name": "丽芝士纳宝帝奶酪威化 58g",
+      "price": 8.9,
+      "stock": 81,
+      "safety_stock": 15,
+      "bar_code": "6909000000025",
+      "image_url": "/uploads/goods/goods_025.jpg",
+      "file_name": "goods_025.jpg",
+      "description": "丽芝士纳宝帝奶酪威化奶香和酥脆层次分明，58g装随手带着走，是下午茶和办公室分享的高频选择。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Richeese Nabati Cheese Wafer 58g",
+        "Richeese Nabati Cheese Wafer",
+        "Richeese Nabati 奶酪威化 58g",
+        "丽芝士纳宝帝 奶酪威化 58g"
+      ],
+      "fallback_terms": "wafer cheese snack",
+      "image_brand_terms": [
+        "richeese",
+        "nabati"
+      ],
+      "image_core_terms": [
+        "cheese",
+        "wafer"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 26,
+      "category_key": "cakes_bread",
+      "category_id": 106,
+      "category_name": "面包蛋糕",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "好丽友",
+      "short_name": "经典巧克力派",
+      "spec": "204g",
+      "name": "好丽友经典巧克力派 204g",
+      "price": 13.9,
+      "stock": 88,
+      "safety_stock": 16,
+      "bar_code": "6909000000026",
+      "image_url": "/uploads/goods/goods_026.jpg",
+      "file_name": "goods_026.jpg",
+      "description": "好丽友经典巧克力派口感松软细腻，204g规格适合早餐、加班垫肚子或下午茶轻松补能量。",
+      "promotion_tag": "早餐优选",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Orion Choco Pie 204g",
+        "Orion Choco Pie",
+        "Orion 经典巧克力派 204g",
+        "好丽友 经典巧克力派 204g"
+      ],
+      "fallback_terms": "cake pie chocolate",
+      "image_brand_terms": [
+        "orion"
+      ],
+      "image_core_terms": [
+        "choco",
+        "pie"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 27,
+      "category_key": "cakes_bread",
+      "category_id": 106,
+      "category_name": "面包蛋糕",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "达利园",
+      "short_name": "法式小面包",
+      "spec": "200g",
+      "name": "达利园法式小面包 200g",
+      "price": 12.5,
+      "stock": 95,
+      "safety_stock": 8,
+      "bar_code": "6909000000027",
+      "image_url": "/uploads/goods/goods_027.jpg",
+      "file_name": "goods_027.jpg",
+      "description": "达利园法式小面包口感松软细腻，200g规格适合早餐、加班垫肚子或下午茶轻松补能量。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Daliyuan French Bread 200g",
+        "Daliyuan French Bread",
+        "Daliyuan 法式小面包 200g",
+        "达利园 法式小面包 200g"
+      ],
+      "fallback_terms": "packaged bread snack",
+      "image_brand_terms": [
+        "daliyuan"
+      ],
+      "image_core_terms": [
+        "french",
+        "bread"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 28,
+      "category_key": "cakes_bread",
+      "category_id": 106,
+      "category_name": "面包蛋糕",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "盼盼",
+      "short_name": "软华夫蛋糕",
+      "spec": "168g",
+      "name": "盼盼软华夫蛋糕 168g",
+      "price": 14.8,
+      "stock": 37,
+      "safety_stock": 9,
+      "bar_code": "6909000000028",
+      "image_url": "/uploads/goods/goods_028.jpg",
+      "file_name": "goods_028.jpg",
+      "description": "盼盼软华夫蛋糕口感松软细腻，168g规格适合早餐、加班垫肚子或下午茶轻松补能量。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Panpan Waffle Cake 168g",
+        "Panpan Waffle Cake",
+        "Panpan 软华夫蛋糕 168g",
+        "盼盼 软华夫蛋糕 168g"
+      ],
+      "fallback_terms": "packaged cake waffle",
+      "image_brand_terms": [
+        "panpan"
+      ],
+      "image_core_terms": [
+        "waffle",
+        "cake"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 29,
+      "category_key": "cakes_bread",
+      "category_id": 106,
+      "category_name": "面包蛋糕",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "宾堡",
+      "short_name": "奶香吐司面包",
+      "spec": "180g",
+      "name": "宾堡奶香吐司面包 180g",
+      "price": 13.9,
+      "stock": 44,
+      "safety_stock": 10,
+      "bar_code": "6909000000029",
+      "image_url": "/uploads/goods/goods_029.jpg",
+      "file_name": "goods_029.jpg",
+      "description": "宾堡奶香吐司面包口感松软细腻，180g规格适合早餐、加班垫肚子或下午茶轻松补能量。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Bimbo Milk Bread 180g",
+        "Bimbo Milk Bread",
+        "Bimbo 奶香吐司面包 180g",
+        "宾堡 奶香吐司面包 180g"
+      ],
+      "fallback_terms": "milk bread package",
+      "image_brand_terms": [
+        "bimbo"
+      ],
+      "image_core_terms": [
+        "milk",
+        "bread"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 30,
+      "category_key": "cakes_bread",
+      "category_id": 106,
+      "category_name": "面包蛋糕",
+      "parent_category_key": "biscuits_bakery",
+      "parent_category_name": "饼干烘焙",
+      "brand": "桃李",
+      "short_name": "醇熟切片面包",
+      "spec": "300g",
+      "name": "桃李醇熟切片面包 300g",
+      "price": 16.5,
+      "stock": 51,
+      "safety_stock": 11,
+      "bar_code": "6909000000030",
+      "image_url": "/uploads/goods/goods_030.jpg",
+      "file_name": "goods_030.jpg",
+      "description": "桃李醇熟切片面包口感松软细腻，300g规格适合早餐、加班垫肚子或下午茶轻松补能量。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-06-30",
+      "search_terms": [
+        "Toly Bread Sliced Bread 300g",
+        "Toly Bread Sliced Bread",
+        "Toly Bread 醇熟切片面包 300g",
+        "桃李 醇熟切片面包 300g"
+      ],
+      "fallback_terms": "sliced bread package",
+      "image_brand_terms": [
+        "toly",
+        "bread"
+      ],
+      "image_core_terms": [
+        "sliced"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "charcuterie"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 31,
+      "category_key": "daily_nuts",
+      "category_id": 107,
+      "category_name": "每日坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "三只松鼠",
+      "short_name": "每日坚果",
+      "spec": "175g",
+      "name": "三只松鼠每日坚果 175g",
+      "price": 29.9,
+      "stock": 58,
+      "safety_stock": 12,
+      "bar_code": "6909000000031",
+      "image_url": "/uploads/goods/goods_031.jpg",
+      "file_name": "goods_031.jpg",
+      "description": "三只松鼠每日坚果甄选多种果仁组合，175g随手包设计方便补充能量，通勤、办公和健身后都适合。",
+      "promotion_tag": "营养搭子",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Three Squirrels Daily Nuts 175g",
+        "Three Squirrels Daily Nuts",
+        "Three Squirrels 每日坚果 175g",
+        "三只松鼠 每日坚果 175g"
+      ],
+      "fallback_terms": "mixed nuts gift bag",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "daily",
+        "nuts"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 32,
+      "category_key": "daily_nuts",
+      "category_id": 107,
+      "category_name": "每日坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "沃隆",
+      "short_name": "每日坚果",
+      "spec": "150g",
+      "name": "沃隆每日坚果 150g",
+      "price": 27.9,
+      "stock": 65,
+      "safety_stock": 13,
+      "bar_code": "6909000000032",
+      "image_url": "/uploads/goods/goods_032.jpg",
+      "file_name": "goods_032.jpg",
+      "description": "沃隆每日坚果甄选多种果仁组合，150g随手包设计方便补充能量，通勤、办公和健身后都适合。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Wolong Daily Nuts 150g",
+        "Wolong Daily Nuts",
+        "Wolong 每日坚果 150g",
+        "沃隆 每日坚果 150g"
+      ],
+      "fallback_terms": "mixed nuts gift bag",
+      "image_brand_terms": [
+        "wolong"
+      ],
+      "image_core_terms": [
+        "daily",
+        "nuts"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 33,
+      "category_key": "daily_nuts",
+      "category_id": 107,
+      "category_name": "每日坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "百草味",
+      "short_name": "每日坚果",
+      "spec": "175g",
+      "name": "百草味每日坚果 175g",
+      "price": 28.9,
+      "stock": 72,
+      "safety_stock": 14,
+      "bar_code": "6909000000033",
+      "image_url": "/uploads/goods/goods_033.jpg",
+      "file_name": "goods_033.jpg",
+      "description": "百草味每日坚果甄选多种果仁组合，175g随手包设计方便补充能量，通勤、办公和健身后都适合。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Be and Cheery Daily Nuts 175g",
+        "Be and Cheery Daily Nuts",
+        "Be and Cheery 每日坚果 175g",
+        "百草味 每日坚果 175g"
+      ],
+      "fallback_terms": "mixed nuts gift bag",
+      "image_brand_terms": [
+        "be",
+        "cheery"
+      ],
+      "image_core_terms": [
+        "daily",
+        "nuts"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 34,
+      "category_key": "daily_nuts",
+      "category_id": 107,
+      "category_name": "每日坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "Planters",
+      "short_name": "每日混合坚果",
+      "spec": "198g",
+      "name": "Planters每日混合坚果 198g",
+      "price": 32.9,
+      "stock": 79,
+      "safety_stock": 15,
+      "bar_code": "6909000000034",
+      "image_url": "/uploads/goods/goods_034.jpg",
+      "file_name": "goods_034.jpg",
+      "description": "Planters每日混合坚果甄选多种果仁组合，198g随手包设计方便补充能量，通勤、办公和健身后都适合。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Planters Mixed Nuts 198g",
+        "Planters Mixed Nuts",
+        "Planters 每日混合坚果 198g"
+      ],
+      "fallback_terms": "mixed nuts deluxe",
+      "image_brand_terms": [
+        "planters"
+      ],
+      "image_core_terms": [
+        "mixed",
+        "nuts"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 35,
+      "category_key": "plain_nuts",
+      "category_id": 108,
+      "category_name": "原味坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "洽洽",
+      "short_name": "原香瓜子",
+      "spec": "108g",
+      "name": "洽洽原香瓜子 108g",
+      "price": 7.5,
+      "stock": 86,
+      "safety_stock": 16,
+      "bar_code": "6909000000035",
+      "image_url": "/uploads/goods/goods_035.jpg",
+      "file_name": "goods_035.jpg",
+      "description": "洽洽原香瓜子果仁饱满、新鲜香脆，108g分享装越嚼越香，是门店里很受欢迎的耐吃型零嘴。",
+      "promotion_tag": "门店热卖",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "ChaCheer Original Sunflower Seeds 108g",
+        "ChaCheer Original Sunflower Seeds",
+        "ChaCheer 原香瓜子 108g",
+        "洽洽 原香瓜子 108g"
+      ],
+      "fallback_terms": "sunflower seeds roasted nuts",
+      "image_brand_terms": [
+        "chacheer"
+      ],
+      "image_core_terms": [
+        "sunflower",
+        "seeds"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 36,
+      "category_key": "plain_nuts",
+      "category_id": 108,
+      "category_name": "原味坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "洽洽",
+      "short_name": "焦糖山核桃味瓜子",
+      "spec": "108g",
+      "name": "洽洽焦糖山核桃味瓜子 108g",
+      "price": 8.5,
+      "stock": 93,
+      "safety_stock": 8,
+      "bar_code": "6909000000036",
+      "image_url": "/uploads/goods/goods_036.jpg",
+      "file_name": "goods_036.jpg",
+      "description": "洽洽焦糖山核桃味瓜子果仁饱满、新鲜香脆，108g分享装越嚼越香，是门店里很受欢迎的耐吃型零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "ChaCheer Caramel Pecan Seeds 108g",
+        "ChaCheer Caramel Pecan Seeds",
+        "ChaCheer 焦糖山核桃味瓜子 108g",
+        "洽洽 焦糖山核桃味瓜子 108g"
+      ],
+      "fallback_terms": "sunflower seeds roasted nuts",
+      "image_brand_terms": [
+        "chacheer"
+      ],
+      "image_core_terms": [
+        "caramel",
+        "pecan",
+        "seeds"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 37,
+      "category_key": "plain_nuts",
+      "category_id": 108,
+      "category_name": "原味坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "三只松鼠",
+      "short_name": "夏威夷果",
+      "spec": "200g",
+      "name": "三只松鼠夏威夷果 200g",
+      "price": 39.9,
+      "stock": 100,
+      "safety_stock": 9,
+      "bar_code": "6909000000037",
+      "image_url": "/uploads/goods/goods_037.jpg",
+      "file_name": "goods_037.jpg",
+      "description": "三只松鼠夏威夷果果仁饱满、新鲜香脆，200g分享装越嚼越香，是门店里很受欢迎的耐吃型零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Three Squirrels Macadamia Nuts 200g",
+        "Three Squirrels Macadamia Nuts",
+        "Three Squirrels 夏威夷果 200g",
+        "三只松鼠 夏威夷果 200g"
+      ],
+      "fallback_terms": "macadamia nuts snack",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "macadamia",
+        "nuts"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 38,
+      "category_key": "plain_nuts",
+      "category_id": 108,
+      "category_name": "原味坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "良品铺子",
+      "short_name": "巴旦木",
+      "spec": "180g",
+      "name": "良品铺子巴旦木 180g",
+      "price": 26.9,
+      "stock": 42,
+      "safety_stock": 10,
+      "bar_code": "6909000000038",
+      "image_url": "/uploads/goods/goods_038.jpg",
+      "file_name": "goods_038.jpg",
+      "description": "良品铺子巴旦木果仁饱满、新鲜香脆，180g分享装越嚼越香，是门店里很受欢迎的耐吃型零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Bestore Almonds 180g",
+        "Bestore Almonds",
+        "Bestore 巴旦木 180g",
+        "良品铺子 巴旦木 180g"
+      ],
+      "fallback_terms": "almonds nuts snack",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "almonds"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 39,
+      "category_key": "plain_nuts",
+      "category_id": 108,
+      "category_name": "原味坚果",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "百草味",
+      "short_name": "开心果",
+      "spec": "190g",
+      "name": "百草味开心果 190g",
+      "price": 32.9,
+      "stock": 49,
+      "safety_stock": 11,
+      "bar_code": "6909000000039",
+      "image_url": "/uploads/goods/goods_039.jpg",
+      "file_name": "goods_039.jpg",
+      "description": "百草味开心果果仁饱满、新鲜香脆，190g分享装越嚼越香，是门店里很受欢迎的耐吃型零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Be and Cheery Pistachios 190g",
+        "Be and Cheery Pistachios",
+        "Be and Cheery 开心果 190g",
+        "百草味 开心果 190g"
+      ],
+      "fallback_terms": "pistachios nuts snack",
+      "image_brand_terms": [
+        "be",
+        "cheery"
+      ],
+      "image_core_terms": [
+        "pistachios"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 40,
+      "category_key": "dried_fruits",
+      "category_id": 109,
+      "category_name": "果干蜜饯",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "良品铺子",
+      "short_name": "芒果干",
+      "spec": "108g",
+      "name": "良品铺子芒果干 108g",
+      "price": 18.9,
+      "stock": 56,
+      "safety_stock": 12,
+      "bar_code": "6909000000040",
+      "image_url": "/uploads/goods/goods_040.jpg",
+      "file_name": "goods_040.jpg",
+      "description": "良品铺子芒果干果香自然、酸甜开胃，108g小包装方便囤货，追剧和旅途路上都能随手来一包。",
+      "promotion_tag": "酸甜开胃",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Bestore Dried Mango 108g",
+        "Bestore Dried Mango",
+        "Bestore 芒果干 108g",
+        "良品铺子 芒果干 108g"
+      ],
+      "fallback_terms": "dried fruit mango snack",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "dried",
+        "mango"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 41,
+      "category_key": "dried_fruits",
+      "category_id": 109,
+      "category_name": "果干蜜饯",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "百草味",
+      "short_name": "草莓干",
+      "spec": "100g",
+      "name": "百草味草莓干 100g",
+      "price": 19.9,
+      "stock": 63,
+      "safety_stock": 13,
+      "bar_code": "6909000000041",
+      "image_url": "/uploads/goods/goods_041.jpg",
+      "file_name": "goods_041.jpg",
+      "description": "百草味草莓干果香自然、酸甜开胃，100g小包装方便囤货，追剧和旅途路上都能随手来一包。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Be and Cheery Dried Strawberry 100g",
+        "Be and Cheery Dried Strawberry",
+        "Be and Cheery 草莓干 100g",
+        "百草味 草莓干 100g"
+      ],
+      "fallback_terms": "dried fruit strawberry snack",
+      "image_brand_terms": [
+        "be",
+        "cheery"
+      ],
+      "image_core_terms": [
+        "dried",
+        "strawberry"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 42,
+      "category_key": "dried_fruits",
+      "category_id": 109,
+      "category_name": "果干蜜饯",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "三只松鼠",
+      "short_name": "蔓越莓干",
+      "spec": "120g",
+      "name": "三只松鼠蔓越莓干 120g",
+      "price": 16.9,
+      "stock": 70,
+      "safety_stock": 14,
+      "bar_code": "6909000000042",
+      "image_url": "/uploads/goods/goods_042.jpg",
+      "file_name": "goods_042.jpg",
+      "description": "三只松鼠蔓越莓干果香自然、酸甜开胃，120g小包装方便囤货，追剧和旅途路上都能随手来一包。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Three Squirrels Dried Cranberries 120g",
+        "Three Squirrels Dried Cranberries",
+        "Three Squirrels 蔓越莓干 120g",
+        "三只松鼠 蔓越莓干 120g"
+      ],
+      "fallback_terms": "dried fruit cranberry snack",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "dried",
+        "cranberries"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 43,
+      "category_key": "dried_fruits",
+      "category_id": 109,
+      "category_name": "果干蜜饯",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "溜溜梅",
+      "short_name": "清梅",
+      "spec": "88g",
+      "name": "溜溜梅清梅 88g",
+      "price": 9.9,
+      "stock": 77,
+      "safety_stock": 15,
+      "bar_code": "6909000000043",
+      "image_url": "/uploads/goods/goods_043.jpg",
+      "file_name": "goods_043.jpg",
+      "description": "溜溜梅清梅果香自然、酸甜开胃，88g小包装方便囤货，追剧和旅途路上都能随手来一包。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Liuliumei Preserved Plum 88g",
+        "Liuliumei Preserved Plum",
+        "Liuliumei 清梅 88g",
+        "溜溜梅 清梅 88g"
+      ],
+      "fallback_terms": "preserved plum snack",
+      "image_brand_terms": [
+        "liuliumei"
+      ],
+      "image_core_terms": [
+        "preserved",
+        "plum"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 44,
+      "category_key": "dried_fruits",
+      "category_id": 109,
+      "category_name": "果干蜜饯",
+      "parent_category_key": "nuts_dried_fruits",
+      "parent_category_name": "坚果果干",
+      "brand": "良品铺子",
+      "short_name": "葡萄干",
+      "spec": "150g",
+      "name": "良品铺子葡萄干 150g",
+      "price": 13.9,
+      "stock": 84,
+      "safety_stock": 16,
+      "bar_code": "6909000000044",
+      "image_url": "/uploads/goods/goods_044.jpg",
+      "file_name": "goods_044.jpg",
+      "description": "良品铺子葡萄干果香自然、酸甜开胃，150g小包装方便囤货，追剧和旅途路上都能随手来一包。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-09-30",
+      "search_terms": [
+        "Bestore Raisins 150g",
+        "Bestore Raisins",
+        "Bestore 葡萄干 150g",
+        "良品铺子 葡萄干 150g"
+      ],
+      "fallback_terms": "raisins dried fruit snack",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "raisins"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 45,
+      "category_key": "chocolate",
+      "category_id": 110,
+      "category_name": "巧克力",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "德芙",
+      "short_name": "丝滑牛奶巧克力",
+      "spec": "90g",
+      "name": "德芙丝滑牛奶巧克力 90g",
+      "price": 14.8,
+      "stock": 91,
+      "safety_stock": 8,
+      "bar_code": "6909000000045",
+      "image_url": "/uploads/goods/goods_045.jpg",
+      "file_name": "goods_045.jpg",
+      "description": "德芙丝滑牛奶巧克力口感丝滑香浓，90g规格兼顾分享与自留，节日备糖和日常解馋都很体面。",
+      "promotion_tag": "节日甜礼",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Dove Milk Chocolate 90g",
+        "Dove Milk Chocolate",
+        "Dove 丝滑牛奶巧克力 90g",
+        "德芙 丝滑牛奶巧克力 90g"
+      ],
+      "fallback_terms": "chocolate candy package",
+      "image_brand_terms": [
+        "dove"
+      ],
+      "image_core_terms": [
+        "milk",
+        "chocolate"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 46,
+      "category_key": "chocolate",
+      "category_id": 110,
+      "category_name": "巧克力",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "费列罗",
+      "short_name": "榛果威化巧克力",
+      "spec": "90g",
+      "name": "费列罗榛果威化巧克力 90g",
+      "price": 39.9,
+      "stock": 98,
+      "safety_stock": 9,
+      "bar_code": "6909000000046",
+      "image_url": "/uploads/goods/goods_046.jpg",
+      "file_name": "goods_046.jpg",
+      "description": "费列罗榛果威化巧克力口感丝滑香浓，90g规格兼顾分享与自留，节日备糖和日常解馋都很体面。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Ferrero Rocher 90g",
+        "Ferrero Rocher",
+        "Ferrero 榛果威化巧克力 90g",
+        "费列罗 榛果威化巧克力 90g"
+      ],
+      "fallback_terms": "chocolate hazelnut gift",
+      "image_brand_terms": [
+        "ferrero"
+      ],
+      "image_core_terms": [
+        "rocher"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 47,
+      "category_key": "chocolate",
+      "category_id": 110,
+      "category_name": "巧克力",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "M&M's",
+      "short_name": "花生牛奶巧克力豆",
+      "spec": "100g",
+      "name": "M&M's花生牛奶巧克力豆 100g",
+      "price": 13.9,
+      "stock": 40,
+      "safety_stock": 10,
+      "bar_code": "6909000000047",
+      "image_url": "/uploads/goods/goods_047.jpg",
+      "file_name": "goods_047.jpg",
+      "description": "M&M's花生牛奶巧克力豆口感丝滑香浓，100g规格兼顾分享与自留，节日备糖和日常解馋都很体面。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "M and M's Peanut Chocolate 100g",
+        "M and M's Peanut Chocolate",
+        "M&Ms 花生牛奶巧克力豆 100g",
+        "M&M's 花生牛奶巧克力豆 100g"
+      ],
+      "fallback_terms": "chocolate candy peanuts",
+      "image_brand_terms": [
+        "m",
+        "ms"
+      ],
+      "image_core_terms": [
+        "peanut",
+        "chocolate"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 48,
+      "category_key": "chocolate",
+      "category_id": 110,
+      "category_name": "巧克力",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "士力架",
+      "short_name": "花生夹心巧克力",
+      "spec": "51g",
+      "name": "士力架花生夹心巧克力 51g",
+      "price": 6.9,
+      "stock": 47,
+      "safety_stock": 11,
+      "bar_code": "6909000000048",
+      "image_url": "/uploads/goods/goods_048.jpg",
+      "file_name": "goods_048.jpg",
+      "description": "士力架花生夹心巧克力口感丝滑香浓，51g规格兼顾分享与自留，节日备糖和日常解馋都很体面。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Snickers Peanut Chocolate 51g",
+        "Snickers Peanut Chocolate",
+        "Snickers 花生夹心巧克力 51g",
+        "士力架 花生夹心巧克力 51g"
+      ],
+      "fallback_terms": "chocolate bar peanuts",
+      "image_brand_terms": [
+        "snickers"
+      ],
+      "image_core_terms": [
+        "peanut",
+        "chocolate"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 49,
+      "category_key": "candy_gummy",
+      "category_id": 111,
+      "category_name": "糖果软糖",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "阿尔卑斯",
+      "short_name": "牛奶硬糖",
+      "spec": "84g",
+      "name": "阿尔卑斯牛奶硬糖 84g",
+      "price": 8.5,
+      "stock": 54,
+      "safety_stock": 12,
+      "bar_code": "6909000000049",
+      "image_url": "/uploads/goods/goods_049.jpg",
+      "file_name": "goods_049.jpg",
+      "description": "阿尔卑斯牛奶硬糖甜味讨喜、入口轻松，84g包装适合家庭囤货和朋友聚会，气氛感很足。",
+      "promotion_tag": "童年回味",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Alpenliebe Milk Candy 84g",
+        "Alpenliebe Milk Candy",
+        "Alpenliebe 牛奶硬糖 84g",
+        "阿尔卑斯 牛奶硬糖 84g"
+      ],
+      "fallback_terms": "candy gummy package",
+      "image_brand_terms": [
+        "alpenliebe"
+      ],
+      "image_core_terms": [
+        "milk",
+        "candy"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 50,
+      "category_key": "candy_gummy",
+      "category_id": 111,
+      "category_name": "糖果软糖",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "徐福记",
+      "short_name": "酥心糖",
+      "spec": "120g",
+      "name": "徐福记酥心糖 120g",
+      "price": 16.8,
+      "stock": 61,
+      "safety_stock": 13,
+      "bar_code": "6909000000050",
+      "image_url": "/uploads/goods/goods_050.jpg",
+      "file_name": "goods_050.jpg",
+      "description": "徐福记酥心糖甜味讨喜、入口轻松，120g包装适合家庭囤货和朋友聚会，气氛感很足。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Hsu Fu Chi Crisp Candy 120g",
+        "Hsu Fu Chi Crisp Candy",
+        "Hsu Fu Chi 酥心糖 120g",
+        "徐福记 酥心糖 120g"
+      ],
+      "fallback_terms": "candy mixed package",
+      "image_brand_terms": [
+        "hsu",
+        "fu",
+        "chi"
+      ],
+      "image_core_terms": [
+        "crisp",
+        "candy"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 51,
+      "category_key": "candy_gummy",
+      "category_id": 111,
+      "category_name": "糖果软糖",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "Haribo",
+      "short_name": "金熊软糖",
+      "spec": "100g",
+      "name": "Haribo金熊软糖 100g",
+      "price": 12.9,
+      "stock": 68,
+      "safety_stock": 14,
+      "bar_code": "6909000000051",
+      "image_url": "/uploads/goods/goods_051.jpg",
+      "file_name": "goods_051.jpg",
+      "description": "Haribo金熊软糖甜味讨喜、入口轻松，100g包装适合家庭囤货和朋友聚会，气氛感很足。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Haribo Goldbears 100g",
+        "Haribo Goldbears",
+        "Haribo 金熊软糖 100g"
+      ],
+      "fallback_terms": "gummy candy bears",
+      "image_brand_terms": [
+        "haribo"
+      ],
+      "image_core_terms": [
+        "goldbears"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 52,
+      "category_key": "candy_gummy",
+      "category_id": 111,
+      "category_name": "糖果软糖",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "Skittles",
+      "short_name": "彩虹糖原果味",
+      "spec": "90g",
+      "name": "Skittles彩虹糖原果味 90g",
+      "price": 11.9,
+      "stock": 75,
+      "safety_stock": 15,
+      "bar_code": "6909000000052",
+      "image_url": "/uploads/goods/goods_052.jpg",
+      "file_name": "goods_052.jpg",
+      "description": "Skittles彩虹糖原果味甜味讨喜、入口轻松，90g包装适合家庭囤货和朋友聚会，气氛感很足。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Skittles Original 90g",
+        "Skittles Original",
+        "Skittles 彩虹糖原果味 90g"
+      ],
+      "fallback_terms": "fruit candy chewy",
+      "image_brand_terms": [
+        "skittles"
+      ],
+      "image_core_terms": [
+        "fruit",
+        "candy",
+        "chewy"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 53,
+      "category_key": "jelly_pudding",
+      "category_id": 112,
+      "category_name": "果冻布丁",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "喜之郎",
+      "short_name": "葡萄果冻",
+      "spec": "150g",
+      "name": "喜之郎葡萄果冻 150g",
+      "price": 7.9,
+      "stock": 82,
+      "safety_stock": 16,
+      "bar_code": "6909000000053",
+      "image_url": "/uploads/goods/goods_053.jpg",
+      "file_name": "goods_053.jpg",
+      "description": "喜之郎葡萄果冻Q弹顺滑、果味清爽，150g冷藏后口感更佳，下午茶和家庭餐后都很合适。",
+      "promotion_tag": "冰镇更佳",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Cici Jelly Grape 150g",
+        "Cici Jelly Grape",
+        "Cici 葡萄果冻 150g",
+        "喜之郎 葡萄果冻 150g"
+      ],
+      "fallback_terms": "jelly pudding snack cup",
+      "image_brand_terms": [
+        "cici"
+      ],
+      "image_core_terms": [
+        "jelly",
+        "grape"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 54,
+      "category_key": "jelly_pudding",
+      "category_id": 112,
+      "category_name": "果冻布丁",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "喜之郎",
+      "short_name": "什锦果冻",
+      "spec": "200g",
+      "name": "喜之郎什锦果冻 200g",
+      "price": 9.9,
+      "stock": 89,
+      "safety_stock": 8,
+      "bar_code": "6909000000054",
+      "image_url": "/uploads/goods/goods_054.jpg",
+      "file_name": "goods_054.jpg",
+      "description": "喜之郎什锦果冻Q弹顺滑、果味清爽，200g冷藏后口感更佳，下午茶和家庭餐后都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Cici Assorted Jelly 200g",
+        "Cici Assorted Jelly",
+        "Cici 什锦果冻 200g",
+        "喜之郎 什锦果冻 200g"
+      ],
+      "fallback_terms": "jelly pudding snack cup",
+      "image_brand_terms": [
+        "cici"
+      ],
+      "image_core_terms": [
+        "assorted",
+        "jelly"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 55,
+      "category_key": "jelly_pudding",
+      "category_id": 112,
+      "category_name": "果冻布丁",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "旺旺",
+      "short_name": "旺仔牛奶布丁",
+      "spec": "132g",
+      "name": "旺旺旺仔牛奶布丁 132g",
+      "price": 10.9,
+      "stock": 96,
+      "safety_stock": 9,
+      "bar_code": "6909000000055",
+      "image_url": "/uploads/goods/goods_055.jpg",
+      "file_name": "goods_055.jpg",
+      "description": "旺旺旺仔牛奶布丁Q弹顺滑、果味清爽，132g冷藏后口感更佳，下午茶和家庭餐后都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Want Want Milk Pudding 132g",
+        "Want Want Milk Pudding",
+        "Want Want 旺仔牛奶布丁 132g",
+        "旺旺 旺仔牛奶布丁 132g"
+      ],
+      "fallback_terms": "milk pudding jelly snack",
+      "image_brand_terms": [
+        "want",
+        "want"
+      ],
+      "image_core_terms": [
+        "milk",
+        "pudding"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 56,
+      "category_key": "jelly_pudding",
+      "category_id": 112,
+      "category_name": "果冻布丁",
+      "parent_category_key": "sweets_jelly",
+      "parent_category_name": "糖巧果冻",
+      "brand": "蒟蒻",
+      "short_name": "白桃果冻",
+      "spec": "180g",
+      "name": "蒟蒻白桃果冻 180g",
+      "price": 12.9,
+      "stock": 38,
+      "safety_stock": 10,
+      "bar_code": "6909000000056",
+      "image_url": "/uploads/goods/goods_056.jpg",
+      "file_name": "goods_056.jpg",
+      "description": "蒟蒻白桃果冻Q弹顺滑、果味清爽，180g冷藏后口感更佳，下午茶和家庭餐后都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-12-31",
+      "search_terms": [
+        "Konjac Jelly White Peach 180g",
+        "Konjac Jelly White Peach",
+        "Konjac 白桃果冻 180g",
+        "蒟蒻 白桃果冻 180g"
+      ],
+      "fallback_terms": "konjac jelly fruit snack",
+      "image_brand_terms": [
+        "konjac"
+      ],
+      "image_core_terms": [
+        "jelly",
+        "white",
+        "peach"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "tuna",
+        "soup"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 57,
+      "category_key": "jerky",
+      "category_id": 113,
+      "category_name": "肉干肉脯",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "良品铺子",
+      "short_name": "靖江猪肉脯",
+      "spec": "100g",
+      "name": "良品铺子靖江猪肉脯 100g",
+      "price": 19.9,
+      "stock": 45,
+      "safety_stock": 11,
+      "bar_code": "6909000000057",
+      "image_url": "/uploads/goods/goods_057.jpg",
+      "file_name": "goods_057.jpg",
+      "description": "良品铺子靖江猪肉脯肉香扎实、耐嚼过瘾，100g独立装方便分享，越嚼越香很适合深夜解馋。",
+      "promotion_tag": "越嚼越香",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Bestore Pork Jerky 100g",
+        "Bestore Pork Jerky",
+        "Bestore 靖江猪肉脯 100g",
+        "良品铺子 靖江猪肉脯 100g"
+      ],
+      "fallback_terms": "jerky snack package",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "pork",
+        "jerky"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 58,
+      "category_key": "jerky",
+      "category_id": 113,
+      "category_name": "肉干肉脯",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "三只松鼠",
+      "short_name": "灯影牛肉丝",
+      "spec": "90g",
+      "name": "三只松鼠灯影牛肉丝 90g",
+      "price": 22.9,
+      "stock": 52,
+      "safety_stock": 12,
+      "bar_code": "6909000000058",
+      "image_url": "/uploads/goods/goods_058.jpg",
+      "file_name": "goods_058.jpg",
+      "description": "三只松鼠灯影牛肉丝肉香扎实、耐嚼过瘾，90g独立装方便分享，越嚼越香很适合深夜解馋。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Three Squirrels Shredded Beef Jerky 90g",
+        "Three Squirrels Shredded Beef Jerky",
+        "Three Squirrels 灯影牛肉丝 90g",
+        "三只松鼠 灯影牛肉丝 90g"
+      ],
+      "fallback_terms": "beef jerky snack",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "shredded",
+        "beef",
+        "jerky"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 59,
+      "category_key": "jerky",
+      "category_id": 113,
+      "category_name": "肉干肉脯",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "来伊份",
+      "short_name": "手撕牛肉",
+      "spec": "88g",
+      "name": "来伊份手撕牛肉 88g",
+      "price": 21.9,
+      "stock": 59,
+      "safety_stock": 13,
+      "bar_code": "6909000000059",
+      "image_url": "/uploads/goods/goods_059.jpg",
+      "file_name": "goods_059.jpg",
+      "description": "来伊份手撕牛肉肉香扎实、耐嚼过瘾，88g独立装方便分享，越嚼越香很适合深夜解馋。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Laiyifen Hand Torn Beef 88g",
+        "Laiyifen Hand Torn Beef",
+        "Laiyifen 手撕牛肉 88g",
+        "来伊份 手撕牛肉 88g"
+      ],
+      "fallback_terms": "beef jerky snack",
+      "image_brand_terms": [
+        "laiyifen"
+      ],
+      "image_core_terms": [
+        "hand",
+        "torn",
+        "beef"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 60,
+      "category_key": "jerky",
+      "category_id": 113,
+      "category_name": "肉干肉脯",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "棒棒娃",
+      "short_name": "麻辣牛肉干",
+      "spec": "88g",
+      "name": "棒棒娃麻辣牛肉干 88g",
+      "price": 18.9,
+      "stock": 66,
+      "safety_stock": 14,
+      "bar_code": "6909000000060",
+      "image_url": "/uploads/goods/goods_060.jpg",
+      "file_name": "goods_060.jpg",
+      "description": "棒棒娃麻辣牛肉干肉香扎实、耐嚼过瘾，88g独立装方便分享，越嚼越香很适合深夜解馋。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Bangbangwa Spicy Beef Jerky 88g",
+        "Bangbangwa Spicy Beef Jerky",
+        "Bangbangwa 麻辣牛肉干 88g",
+        "棒棒娃 麻辣牛肉干 88g"
+      ],
+      "fallback_terms": "beef jerky spicy snack",
+      "image_brand_terms": [
+        "bangbangwa"
+      ],
+      "image_core_terms": [
+        "spicy",
+        "beef",
+        "jerky"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 61,
+      "category_key": "braised_veggie",
+      "category_id": 114,
+      "category_name": "卤味素食",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "卫龙",
+      "short_name": "大面筋",
+      "spec": "106g",
+      "name": "卫龙大面筋 106g",
+      "price": 8.9,
+      "stock": 73,
+      "safety_stock": 15,
+      "bar_code": "6909000000061",
+      "image_url": "/uploads/goods/goods_061.jpg",
+      "file_name": "goods_061.jpg",
+      "description": "卫龙大面筋卤香入味、层次丰富，106g规格方便随手开吃，微辣开胃是很多老客的回购款。",
+      "promotion_tag": "香辣上头",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Weilong Spicy Gluten 106g",
+        "Weilong Spicy Gluten",
+        "Weilong 大面筋 106g",
+        "卫龙 大面筋 106g"
+      ],
+      "fallback_terms": "spicy gluten snack",
+      "image_brand_terms": [
+        "weilong"
+      ],
+      "image_core_terms": [
+        "spicy",
+        "gluten"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 62,
+      "category_key": "braised_veggie",
+      "category_id": 114,
+      "category_name": "卤味素食",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "良品铺子",
+      "short_name": "香卤兰花干",
+      "spec": "108g",
+      "name": "良品铺子香卤兰花干 108g",
+      "price": 10.9,
+      "stock": 80,
+      "safety_stock": 16,
+      "bar_code": "6909000000062",
+      "image_url": "/uploads/goods/goods_062.jpg",
+      "file_name": "goods_062.jpg",
+      "description": "良品铺子香卤兰花干卤香入味、层次丰富，108g规格方便随手开吃，微辣开胃是很多老客的回购款。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Bestore Braised Tofu 108g",
+        "Bestore Braised Tofu",
+        "Bestore 香卤兰花干 108g",
+        "良品铺子 香卤兰花干 108g"
+      ],
+      "fallback_terms": "braised tofu spicy snack",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "braised",
+        "tofu"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 63,
+      "category_key": "braised_veggie",
+      "category_id": 114,
+      "category_name": "卤味素食",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "盐津铺子",
+      "short_name": "香辣豆干",
+      "spec": "108g",
+      "name": "盐津铺子香辣豆干 108g",
+      "price": 11.9,
+      "stock": 87,
+      "safety_stock": 8,
+      "bar_code": "6909000000063",
+      "image_url": "/uploads/goods/goods_063.jpg",
+      "file_name": "goods_063.jpg",
+      "description": "盐津铺子香辣豆干卤香入味、层次丰富，108g规格方便随手开吃，微辣开胃是很多老客的回购款。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Yanjinpuzi Spicy Bean Curd 108g",
+        "Yanjinpuzi Spicy Bean Curd",
+        "Yanjinpuzi 香辣豆干 108g",
+        "盐津铺子 香辣豆干 108g"
+      ],
+      "fallback_terms": "braised tofu spicy snack",
+      "image_brand_terms": [
+        "yanjinpuzi"
+      ],
+      "image_core_terms": [
+        "spicy",
+        "bean",
+        "curd"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 64,
+      "category_key": "fish_tofu_seafood",
+      "category_id": 115,
+      "category_name": "鱼豆腐海味",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "良品铺子",
+      "short_name": "鱼豆腐烧烤味",
+      "spec": "105g",
+      "name": "良品铺子鱼豆腐烧烤味 105g",
+      "price": 12.9,
+      "stock": 94,
+      "safety_stock": 9,
+      "bar_code": "6909000000064",
+      "image_url": "/uploads/goods/goods_064.jpg",
+      "file_name": "goods_064.jpg",
+      "description": "良品铺子鱼豆腐烧烤味海味鲜香、Q弹有嚼劲，105g分享装适合露营、追剧和办公室囤零嘴。",
+      "promotion_tag": "海味小食",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Bestore Fish Tofu BBQ 105g",
+        "Bestore Fish Tofu BBQ",
+        "Bestore 鱼豆腐烧烤味 105g",
+        "良品铺子 鱼豆腐烧烤味 105g"
+      ],
+      "fallback_terms": "fish tofu seafood snack",
+      "image_brand_terms": [
+        "bestore"
+      ],
+      "image_core_terms": [
+        "fish",
+        "tofu",
+        "bbq"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 65,
+      "category_key": "fish_tofu_seafood",
+      "category_id": 115,
+      "category_name": "鱼豆腐海味",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "三只松鼠",
+      "short_name": "手撕鱿鱼条",
+      "spec": "80g",
+      "name": "三只松鼠手撕鱿鱼条 80g",
+      "price": 19.9,
+      "stock": 36,
+      "safety_stock": 10,
+      "bar_code": "6909000000065",
+      "image_url": "/uploads/goods/goods_065.jpg",
+      "file_name": "goods_065.jpg",
+      "description": "三只松鼠手撕鱿鱼条海味鲜香、Q弹有嚼劲，80g分享装适合露营、追剧和办公室囤零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Three Squirrels Shredded Squid 80g",
+        "Three Squirrels Shredded Squid",
+        "Three Squirrels 手撕鱿鱼条 80g",
+        "三只松鼠 手撕鱿鱼条 80g"
+      ],
+      "fallback_terms": "seafood squid snack",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "shredded",
+        "squid"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 66,
+      "category_key": "fish_tofu_seafood",
+      "category_id": 115,
+      "category_name": "鱼豆腐海味",
+      "parent_category_key": "jerky_delicacies",
+      "parent_category_name": "肉脯卤味",
+      "brand": "海欣",
+      "short_name": "鱼豆腐原味",
+      "spec": "120g",
+      "name": "海欣鱼豆腐原味 120g",
+      "price": 13.9,
+      "stock": 43,
+      "safety_stock": 11,
+      "bar_code": "6909000000066",
+      "image_url": "/uploads/goods/goods_066.jpg",
+      "file_name": "goods_066.jpg",
+      "description": "海欣鱼豆腐原味海味鲜香、Q弹有嚼劲，120g分享装适合露营、追剧和办公室囤零嘴。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-07-31",
+      "search_terms": [
+        "Haixin Fish Tofu Original 120g",
+        "Haixin Fish Tofu Original",
+        "Haixin 鱼豆腐原味 120g",
+        "海欣 鱼豆腐原味 120g"
+      ],
+      "fallback_terms": "fish tofu seafood snack",
+      "image_brand_terms": [
+        "haixin"
+      ],
+      "image_core_terms": [
+        "fish",
+        "tofu"
+      ],
+      "image_exclude_terms": [
+        "soup",
+        "toothpaste",
+        "detergent",
+        "vegetable"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 67,
+      "category_key": "soda",
+      "category_id": 116,
+      "category_name": "碳酸饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "可口可乐",
+      "short_name": "可乐",
+      "spec": "330ml",
+      "name": "可口可乐可乐 330ml",
+      "price": 3.5,
+      "stock": 50,
+      "safety_stock": 12,
+      "bar_code": "6909000000067",
+      "image_url": "/uploads/goods/goods_067.jpg",
+      "file_name": "goods_067.jpg",
+      "description": "可口可乐可乐冰镇后更加畅爽，330ml单罐刚好满足一顿快乐补给，搭配炸物和薯片特别对味。",
+      "promotion_tag": "冰镇更爽",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Coca Cola 330ml",
+        "Coca Cola",
+        "Coca Cola 可乐 330ml",
+        "可口可乐 可乐 330ml"
+      ],
+      "fallback_terms": "soda can beverage",
+      "image_brand_terms": [
+        "coca",
+        "cola"
+      ],
+      "image_core_terms": [
+        "soda",
+        "can",
+        "beverage"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 68,
+      "category_key": "soda",
+      "category_id": 116,
+      "category_name": "碳酸饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "百事",
+      "short_name": "可乐",
+      "spec": "330ml",
+      "name": "百事可乐 330ml",
+      "price": 3.5,
+      "stock": 57,
+      "safety_stock": 13,
+      "bar_code": "6909000000068",
+      "image_url": "/uploads/goods/goods_068.jpg",
+      "file_name": "goods_068.jpg",
+      "description": "百事可乐冰镇后更加畅爽，330ml单罐刚好满足一顿快乐补给，搭配炸物和薯片特别对味。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Pepsi Cola 330ml",
+        "Pepsi Cola",
+        "Pepsi 可乐 330ml",
+        "百事 可乐 330ml"
+      ],
+      "fallback_terms": "soda can beverage",
+      "image_brand_terms": [
+        "pepsi"
+      ],
+      "image_core_terms": [
+        "cola"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 69,
+      "category_key": "soda",
+      "category_id": 116,
+      "category_name": "碳酸饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "雪碧",
+      "short_name": "柠檬味汽水",
+      "spec": "330ml",
+      "name": "雪碧柠檬味汽水 330ml",
+      "price": 3.5,
+      "stock": 64,
+      "safety_stock": 14,
+      "bar_code": "6909000000069",
+      "image_url": "/uploads/goods/goods_069.jpg",
+      "file_name": "goods_069.jpg",
+      "description": "雪碧柠檬味汽水冰镇后更加畅爽，330ml单罐刚好满足一顿快乐补给，搭配炸物和薯片特别对味。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Sprite Lemon Soda 330ml",
+        "Sprite Lemon Soda",
+        "Sprite 柠檬味汽水 330ml",
+        "雪碧 柠檬味汽水 330ml"
+      ],
+      "fallback_terms": "soda can beverage",
+      "image_brand_terms": [
+        "sprite"
+      ],
+      "image_core_terms": [
+        "lemon",
+        "soda"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 70,
+      "category_key": "soda",
+      "category_id": 116,
+      "category_name": "碳酸饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "芬达",
+      "short_name": "橙味汽水",
+      "spec": "330ml",
+      "name": "芬达橙味汽水 330ml",
+      "price": 3.5,
+      "stock": 71,
+      "safety_stock": 15,
+      "bar_code": "6909000000070",
+      "image_url": "/uploads/goods/goods_070.jpg",
+      "file_name": "goods_070.jpg",
+      "description": "芬达橙味汽水冰镇后更加畅爽，330ml单罐刚好满足一顿快乐补给，搭配炸物和薯片特别对味。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Fanta Orange 330ml",
+        "Fanta Orange",
+        "Fanta 橙味汽水 330ml",
+        "芬达 橙味汽水 330ml"
+      ],
+      "fallback_terms": "soda can beverage",
+      "image_brand_terms": [
+        "fanta"
+      ],
+      "image_core_terms": [
+        "orange"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 71,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "康师傅",
+      "short_name": "冰红茶",
+      "spec": "500ml",
+      "name": "康师傅冰红茶 500ml",
+      "price": 4.0,
+      "stock": 78,
+      "safety_stock": 16,
+      "bar_code": "6909000000071",
+      "image_url": "/uploads/goods/goods_071.jpg",
+      "file_name": "goods_071.jpg",
+      "description": "康师傅冰红茶主打清爽茶果风味，500ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "解腻推荐",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Master Kong Iced Tea 500ml",
+        "Master Kong Iced Tea",
+        "Master Kong 冰红茶 500ml",
+        "康师傅 冰红茶 500ml"
+      ],
+      "fallback_terms": "tea juice bottled drink",
+      "image_brand_terms": [
+        "master",
+        "kong"
+      ],
+      "image_core_terms": [
+        "iced",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 72,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "统一",
+      "short_name": "阿萨姆奶茶",
+      "spec": "500ml",
+      "name": "统一阿萨姆奶茶 500ml",
+      "price": 5.5,
+      "stock": 85,
+      "safety_stock": 8,
+      "bar_code": "6909000000072",
+      "image_url": "/uploads/goods/goods_072.jpg",
+      "file_name": "goods_072.jpg",
+      "description": "统一阿萨姆奶茶主打清爽茶果风味，500ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Uni President Assam Milk Tea 500ml",
+        "Uni President Assam Milk Tea",
+        "Uni President 阿萨姆奶茶 500ml",
+        "统一 阿萨姆奶茶 500ml"
+      ],
+      "fallback_terms": "tea juice bottled drink",
+      "image_brand_terms": [
+        "uni",
+        "president"
+      ],
+      "image_core_terms": [
+        "assam",
+        "milk",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 73,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "农夫果园",
+      "short_name": "混合果蔬汁",
+      "spec": "450ml",
+      "name": "农夫果园混合果蔬汁 450ml",
+      "price": 6.5,
+      "stock": 92,
+      "safety_stock": 9,
+      "bar_code": "6909000000073",
+      "image_url": "/uploads/goods/goods_073.jpg",
+      "file_name": "goods_073.jpg",
+      "description": "农夫果园混合果蔬汁主打清爽茶果风味，450ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Nongfu Orchard Mixed Juice 450ml",
+        "Nongfu Orchard Mixed Juice",
+        "Nongfu Orchard 混合果蔬汁 450ml",
+        "农夫果园 混合果蔬汁 450ml"
+      ],
+      "fallback_terms": "juice bottled drink",
+      "image_brand_terms": [
+        "nongfu",
+        "orchard"
+      ],
+      "image_core_terms": [
+        "mixed",
+        "juice"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 74,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "维他",
+      "short_name": "柠檬茶",
+      "spec": "500ml",
+      "name": "维他柠檬茶 500ml",
+      "price": 5.5,
+      "stock": 99,
+      "safety_stock": 10,
+      "bar_code": "6909000000074",
+      "image_url": "/uploads/goods/goods_074.jpg",
+      "file_name": "goods_074.jpg",
+      "description": "维他柠檬茶主打清爽茶果风味，500ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Vitasoy Lemon Tea 500ml",
+        "Vitasoy Lemon Tea",
+        "Vitasoy 柠檬茶 500ml",
+        "维他 柠檬茶 500ml"
+      ],
+      "fallback_terms": "tea juice bottled drink",
+      "image_brand_terms": [
+        "vitasoy"
+      ],
+      "image_core_terms": [
+        "lemon",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 75,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "元气森林",
+      "short_name": "燃茶桃香乌龙",
+      "spec": "500ml",
+      "name": "元气森林燃茶桃香乌龙 500ml",
+      "price": 6.8,
+      "stock": 41,
+      "safety_stock": 11,
+      "bar_code": "6909000000075",
+      "image_url": "/uploads/goods/goods_075.jpg",
+      "file_name": "goods_075.jpg",
+      "description": "元气森林燃茶桃香乌龙主打清爽茶果风味，500ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Genki Forest Peach Oolong Tea 500ml",
+        "Genki Forest Peach Oolong Tea",
+        "Genki Forest 燃茶桃香乌龙 500ml",
+        "元气森林 燃茶桃香乌龙 500ml"
+      ],
+      "fallback_terms": "tea juice bottled drink",
+      "image_brand_terms": [
+        "genki",
+        "forest"
+      ],
+      "image_core_terms": [
+        "peach",
+        "oolong",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 76,
+      "category_key": "juice_tea",
+      "category_id": 117,
+      "category_name": "果汁茶饮",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "美汁源",
+      "short_name": "果粒橙",
+      "spec": "450ml",
+      "name": "美汁源果粒橙 450ml",
+      "price": 4.8,
+      "stock": 48,
+      "safety_stock": 12,
+      "bar_code": "6909000000076",
+      "image_url": "/uploads/goods/goods_076.jpg",
+      "file_name": "goods_076.jpg",
+      "description": "美汁源果粒橙主打清爽茶果风味，450ml瓶装带着走更方便，解腻顺口，适合日常补水。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Minute Maid Pulpy Orange 450ml",
+        "Minute Maid Pulpy Orange",
+        "Minute Maid 果粒橙 450ml",
+        "美汁源 果粒橙 450ml"
+      ],
+      "fallback_terms": "juice bottled drink",
+      "image_brand_terms": [
+        "minute",
+        "maid"
+      ],
+      "image_core_terms": [
+        "pulpy",
+        "orange"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 77,
+      "category_key": "coffee_energy",
+      "category_id": 118,
+      "category_name": "咖啡功能饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "红牛",
+      "short_name": "维生素风味饮料",
+      "spec": "250ml",
+      "name": "红牛维生素风味饮料 250ml",
+      "price": 6.5,
+      "stock": 55,
+      "safety_stock": 13,
+      "bar_code": "6909000000077",
+      "image_url": "/uploads/goods/goods_077.jpg",
+      "file_name": "goods_077.jpg",
+      "description": "红牛维生素风味饮料兼顾风味和提神体验，250ml方便冷藏即饮，通勤、加班和长途出行都很实用。",
+      "promotion_tag": "提神必备",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Red Bull Energy Drink 250ml",
+        "Red Bull Energy Drink",
+        "Red Bull 维生素风味饮料 250ml",
+        "红牛 维生素风味饮料 250ml"
+      ],
+      "fallback_terms": "energy drink bottled coffee",
+      "image_brand_terms": [
+        "red",
+        "bull"
+      ],
+      "image_core_terms": [
+        "energy"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 78,
+      "category_key": "coffee_energy",
+      "category_id": 118,
+      "category_name": "咖啡功能饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "东鹏",
+      "short_name": "特饮",
+      "spec": "250ml",
+      "name": "东鹏特饮 250ml",
+      "price": 5.8,
+      "stock": 62,
+      "safety_stock": 14,
+      "bar_code": "6909000000078",
+      "image_url": "/uploads/goods/goods_078.jpg",
+      "file_name": "goods_078.jpg",
+      "description": "东鹏特饮兼顾风味和提神体验，250ml方便冷藏即饮，通勤、加班和长途出行都很实用。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Eastroc Super Drink 250ml",
+        "Eastroc Super Drink",
+        "Eastroc 特饮 250ml",
+        "东鹏 特饮 250ml"
+      ],
+      "fallback_terms": "energy drink bottled coffee",
+      "image_brand_terms": [
+        "eastroc"
+      ],
+      "image_core_terms": [
+        "super"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 79,
+      "category_key": "coffee_energy",
+      "category_id": 118,
+      "category_name": "咖啡功能饮料",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "雀巢",
+      "short_name": "丝滑拿铁咖啡",
+      "spec": "268ml",
+      "name": "雀巢丝滑拿铁咖啡 268ml",
+      "price": 7.9,
+      "stock": 69,
+      "safety_stock": 15,
+      "bar_code": "6909000000079",
+      "image_url": "/uploads/goods/goods_079.jpg",
+      "file_name": "goods_079.jpg",
+      "description": "雀巢丝滑拿铁咖啡兼顾风味和提神体验，268ml方便冷藏即饮，通勤、加班和长途出行都很实用。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Nescafe Latte 268ml",
+        "Nescafe Latte",
+        "Nescafe 丝滑拿铁咖啡 268ml",
+        "雀巢 丝滑拿铁咖啡 268ml"
+      ],
+      "fallback_terms": "coffee bottled drink",
+      "image_brand_terms": [
+        "nescafe"
+      ],
+      "image_core_terms": [
+        "latte"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 80,
+      "category_key": "water_sparkling",
+      "category_id": 119,
+      "category_name": "矿泉水苏打水",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "农夫山泉",
+      "short_name": "饮用天然水",
+      "spec": "550ml",
+      "name": "农夫山泉饮用天然水 550ml",
+      "price": 2.5,
+      "stock": 76,
+      "safety_stock": 16,
+      "bar_code": "6909000000080",
+      "image_url": "/uploads/goods/goods_080.jpg",
+      "file_name": "goods_080.jpg",
+      "description": "农夫山泉饮用天然水口感清冽干净，550ml即开即饮，随餐搭配不抢味，是日常补水的安心选择。",
+      "promotion_tag": "清爽补水",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Nongfu Spring Water 550ml",
+        "Nongfu Spring Water",
+        "Nongfu Spring 饮用天然水 550ml",
+        "农夫山泉 饮用天然水 550ml"
+      ],
+      "fallback_terms": "sparkling water bottle",
+      "image_brand_terms": [
+        "nongfu",
+        "spring"
+      ],
+      "image_core_terms": [
+        "water"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 81,
+      "category_key": "water_sparkling",
+      "category_id": 119,
+      "category_name": "矿泉水苏打水",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "百岁山",
+      "short_name": "矿泉水",
+      "spec": "570ml",
+      "name": "百岁山矿泉水 570ml",
+      "price": 3.0,
+      "stock": 83,
+      "safety_stock": 8,
+      "bar_code": "6909000000081",
+      "image_url": "/uploads/goods/goods_081.jpg",
+      "file_name": "goods_081.jpg",
+      "description": "百岁山矿泉水口感清冽干净，570ml即开即饮，随餐搭配不抢味，是日常补水的安心选择。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Ganten Mineral Water 570ml",
+        "Ganten Mineral Water",
+        "Ganten 矿泉水 570ml",
+        "百岁山 矿泉水 570ml"
+      ],
+      "fallback_terms": "mineral water bottle",
+      "image_brand_terms": [
+        "ganten"
+      ],
+      "image_core_terms": [
+        "mineral",
+        "water"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 82,
+      "category_key": "water_sparkling",
+      "category_id": 119,
+      "category_name": "矿泉水苏打水",
+      "parent_category_key": "beverages",
+      "parent_category_name": "酒水饮料",
+      "brand": "巴黎水",
+      "short_name": "原味气泡水",
+      "spec": "330ml",
+      "name": "巴黎水原味气泡水 330ml",
+      "price": 5.9,
+      "stock": 90,
+      "safety_stock": 9,
+      "bar_code": "6909000000082",
+      "image_url": "/uploads/goods/goods_082.jpg",
+      "file_name": "goods_082.jpg",
+      "description": "巴黎水原味气泡水口感清冽干净，330ml即开即饮，随餐搭配不抢味，是日常补水的安心选择。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-10-31",
+      "search_terms": [
+        "Perrier Sparkling Water 330ml",
+        "Perrier Sparkling Water",
+        "Perrier 原味气泡水 330ml",
+        "巴黎水 原味气泡水 330ml"
+      ],
+      "fallback_terms": "sparkling water bottle",
+      "image_brand_terms": [
+        "perrier"
+      ],
+      "image_core_terms": [
+        "sparkling",
+        "water"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 83,
+      "category_key": "ambient_milk",
+      "category_id": 120,
+      "category_name": "常温乳品",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "伊利",
+      "short_name": "纯牛奶",
+      "spec": "250ml",
+      "name": "伊利纯牛奶 250ml",
+      "price": 4.5,
+      "stock": 97,
+      "safety_stock": 10,
+      "bar_code": "6909000000083",
+      "image_url": "/uploads/goods/goods_083.jpg",
+      "file_name": "goods_083.jpg",
+      "description": "伊利纯牛奶奶香顺滑、入口自然，250ml规格适合早餐、下午茶和居家常备。",
+      "promotion_tag": "早餐常备",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Yili Pure Milk 250ml",
+        "Yili Pure Milk",
+        "Yili 纯牛奶 250ml",
+        "伊利 纯牛奶 250ml"
+      ],
+      "fallback_terms": "milk carton soy milk package",
+      "image_brand_terms": [
+        "yili"
+      ],
+      "image_core_terms": [
+        "pure",
+        "milk"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 84,
+      "category_key": "ambient_milk",
+      "category_id": 120,
+      "category_name": "常温乳品",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "蒙牛特仑苏",
+      "short_name": "纯牛奶",
+      "spec": "250ml",
+      "name": "蒙牛特仑苏纯牛奶 250ml",
+      "price": 5.8,
+      "stock": 39,
+      "safety_stock": 11,
+      "bar_code": "6909000000084",
+      "image_url": "/uploads/goods/goods_084.jpg",
+      "file_name": "goods_084.jpg",
+      "description": "蒙牛特仑苏纯牛奶奶香顺滑、入口自然，250ml规格适合早餐、下午茶和居家常备。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Telunsu Pure Milk 250ml",
+        "Telunsu Pure Milk",
+        "Telunsu 纯牛奶 250ml",
+        "蒙牛特仑苏 纯牛奶 250ml"
+      ],
+      "fallback_terms": "milk carton soy milk package",
+      "image_brand_terms": [
+        "telunsu"
+      ],
+      "image_core_terms": [
+        "pure",
+        "milk"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 85,
+      "category_key": "ambient_milk",
+      "category_id": 120,
+      "category_name": "常温乳品",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "维他奶",
+      "short_name": "原味豆奶",
+      "spec": "250ml",
+      "name": "维他奶原味豆奶 250ml",
+      "price": 4.8,
+      "stock": 46,
+      "safety_stock": 12,
+      "bar_code": "6909000000085",
+      "image_url": "/uploads/goods/goods_085.jpg",
+      "file_name": "goods_085.jpg",
+      "description": "维他奶原味豆奶奶香顺滑、入口自然，250ml规格适合早餐、下午茶和居家常备。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Vitasoy Original Soy Milk 250ml",
+        "Vitasoy Original Soy Milk",
+        "Vitasoy 原味豆奶 250ml",
+        "维他奶 原味豆奶 250ml"
+      ],
+      "fallback_terms": "soy milk drink carton",
+      "image_brand_terms": [
+        "vitasoy"
+      ],
+      "image_core_terms": [
+        "soy",
+        "milk"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 86,
+      "category_key": "ambient_milk",
+      "category_id": 120,
+      "category_name": "常温乳品",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "旺旺",
+      "short_name": "旺仔牛奶",
+      "spec": "245ml",
+      "name": "旺旺旺仔牛奶 245ml",
+      "price": 5.5,
+      "stock": 53,
+      "safety_stock": 13,
+      "bar_code": "6909000000086",
+      "image_url": "/uploads/goods/goods_086.jpg",
+      "file_name": "goods_086.jpg",
+      "description": "旺旺旺仔牛奶奶香顺滑、入口自然，245ml规格适合早餐、下午茶和居家常备。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Want Want Milk Drink 245ml",
+        "Want Want Milk Drink",
+        "Want Want 旺仔牛奶 245ml",
+        "旺旺 旺仔牛奶 245ml"
+      ],
+      "fallback_terms": "milk drink carton",
+      "image_brand_terms": [
+        "want",
+        "want"
+      ],
+      "image_core_terms": [
+        "milk"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 87,
+      "category_key": "yogurt_probiotic",
+      "category_id": 121,
+      "category_name": "酸奶乳酸菌",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "养乐多",
+      "short_name": "乳酸菌饮品",
+      "spec": "100ml*5",
+      "name": "养乐多乳酸菌饮品 100ml*5",
+      "price": 13.9,
+      "stock": 60,
+      "safety_stock": 14,
+      "bar_code": "6909000000087",
+      "image_url": "/uploads/goods/goods_087.jpg",
+      "file_name": "goods_087.jpg",
+      "description": "养乐多乳酸菌饮品酸甜清爽、口感轻盈，100ml*5冷藏后风味更好，是很多用户的早餐搭档。",
+      "promotion_tag": "冷藏更佳",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Yakult Probiotic Drink 100ml x5",
+        "Yakult Probiotic Drink",
+        "Yakult 乳酸菌饮品 100ml*5",
+        "养乐多 乳酸菌饮品 100ml*5"
+      ],
+      "fallback_terms": "yogurt probiotic drink",
+      "image_brand_terms": [
+        "yakult"
+      ],
+      "image_core_terms": [
+        "probiotic"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 88,
+      "category_key": "yogurt_probiotic",
+      "category_id": 121,
+      "category_name": "酸奶乳酸菌",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "蒙牛",
+      "short_name": "优益C乳酸菌",
+      "spec": "340ml",
+      "name": "蒙牛优益C乳酸菌 340ml",
+      "price": 7.9,
+      "stock": 67,
+      "safety_stock": 15,
+      "bar_code": "6909000000088",
+      "image_url": "/uploads/goods/goods_088.jpg",
+      "file_name": "goods_088.jpg",
+      "description": "蒙牛优益C乳酸菌酸甜清爽、口感轻盈，340ml冷藏后风味更好，是很多用户的早餐搭档。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Mengniu Yoyi C Probiotic Drink 340ml",
+        "Mengniu Yoyi C Probiotic Drink",
+        "Mengniu 优益C乳酸菌 340ml",
+        "蒙牛 优益C乳酸菌 340ml"
+      ],
+      "fallback_terms": "yogurt probiotic drink",
+      "image_brand_terms": [
+        "mengniu"
+      ],
+      "image_core_terms": [
+        "yoyi",
+        "c",
+        "probiotic"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 89,
+      "category_key": "yogurt_probiotic",
+      "category_id": 121,
+      "category_name": "酸奶乳酸菌",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "伊利",
+      "short_name": "安慕希希腊风味酸奶",
+      "spec": "205g",
+      "name": "伊利安慕希希腊风味酸奶 205g",
+      "price": 8.9,
+      "stock": 74,
+      "safety_stock": 16,
+      "bar_code": "6909000000089",
+      "image_url": "/uploads/goods/goods_089.jpg",
+      "file_name": "goods_089.jpg",
+      "description": "伊利安慕希希腊风味酸奶酸甜清爽、口感轻盈，205g冷藏后风味更好，是很多用户的早餐搭档。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Yili Ambrosial Yogurt 205g",
+        "Yili Ambrosial Yogurt",
+        "Yili 安慕希希腊风味酸奶 205g",
+        "伊利 安慕希希腊风味酸奶 205g"
+      ],
+      "fallback_terms": "yogurt probiotic drink",
+      "image_brand_terms": [
+        "yili"
+      ],
+      "image_core_terms": [
+        "ambrosial",
+        "yogurt"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 90,
+      "category_key": "milk_tea_mix",
+      "category_id": 122,
+      "category_name": "奶茶冲饮",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "香飘飘",
+      "short_name": "原味奶茶",
+      "spec": "80g",
+      "name": "香飘飘原味奶茶 80g",
+      "price": 11.9,
+      "stock": 81,
+      "safety_stock": 8,
+      "bar_code": "6909000000090",
+      "image_url": "/uploads/goods/goods_090.jpg",
+      "file_name": "goods_090.jpg",
+      "description": "香飘飘原味奶茶冲泡方便、奶香浓郁，80g规格刚好满足一杯热饮需求，下午茶氛围感拉满。",
+      "promotion_tag": "冲泡方便",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Xiangpiaopiao Milk Tea 80g",
+        "Xiangpiaopiao Milk Tea",
+        "Xiangpiaopiao 原味奶茶 80g",
+        "香飘飘 原味奶茶 80g"
+      ],
+      "fallback_terms": "instant milk tea powder pack",
+      "image_brand_terms": [
+        "xiangpiaopiao"
+      ],
+      "image_core_terms": [
+        "milk",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 91,
+      "category_key": "milk_tea_mix",
+      "category_id": 122,
+      "category_name": "奶茶冲饮",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "优乐美",
+      "short_name": "珍珠奶茶",
+      "spec": "80g",
+      "name": "优乐美珍珠奶茶 80g",
+      "price": 10.9,
+      "stock": 88,
+      "safety_stock": 9,
+      "bar_code": "6909000000091",
+      "image_url": "/uploads/goods/goods_091.jpg",
+      "file_name": "goods_091.jpg",
+      "description": "优乐美珍珠奶茶冲泡方便、奶香浓郁，80g规格刚好满足一杯热饮需求，下午茶氛围感拉满。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Youlemei Bubble Milk Tea 80g",
+        "Youlemei Bubble Milk Tea",
+        "Youlemei 珍珠奶茶 80g",
+        "优乐美 珍珠奶茶 80g"
+      ],
+      "fallback_terms": "instant milk tea powder pack",
+      "image_brand_terms": [
+        "youlemei"
+      ],
+      "image_core_terms": [
+        "bubble",
+        "milk",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 92,
+      "category_key": "milk_tea_mix",
+      "category_id": 122,
+      "category_name": "奶茶冲饮",
+      "parent_category_key": "dairy_mix",
+      "parent_category_name": "乳品冲饮",
+      "brand": "立顿",
+      "short_name": "港式鸳鸯奶茶固体饮料",
+      "spec": "100g",
+      "name": "立顿港式鸳鸯奶茶固体饮料 100g",
+      "price": 14.9,
+      "stock": 95,
+      "safety_stock": 10,
+      "bar_code": "6909000000092",
+      "image_url": "/uploads/goods/goods_092.jpg",
+      "file_name": "goods_092.jpg",
+      "description": "立顿港式鸳鸯奶茶固体饮料冲泡方便、奶香浓郁，100g规格刚好满足一杯热饮需求，下午茶氛围感拉满。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-03-31",
+      "search_terms": [
+        "Lipton Hong Kong Milk Tea 100g",
+        "Lipton Hong Kong Milk Tea",
+        "Lipton 港式鸳鸯奶茶固体饮料 100g",
+        "立顿 港式鸳鸯奶茶固体饮料 100g"
+      ],
+      "fallback_terms": "instant milk tea powder pack",
+      "image_brand_terms": [
+        "lipton"
+      ],
+      "image_core_terms": [
+        "hong",
+        "kong",
+        "milk",
+        "tea"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 93,
+      "category_key": "regional_specialty",
+      "category_id": 123,
+      "category_name": "地方特产",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "稻香村",
+      "short_name": "京八件糕点礼包",
+      "spec": "400g",
+      "name": "稻香村京八件糕点礼包 400g",
+      "price": 39.9,
+      "stock": 37,
+      "safety_stock": 11,
+      "bar_code": "6909000000093",
+      "image_url": "/uploads/goods/goods_093.jpg",
+      "file_name": "goods_093.jpg",
+      "description": "稻香村京八件糕点礼包带有鲜明地方风味，400g包装拿得出手，自己吃或待客分享都很合适。",
+      "promotion_tag": "地方风味",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Daoxiangcun Pastry Gift Pack 400g",
+        "Daoxiangcun Pastry Gift Pack",
+        "Daoxiangcun 京八件糕点礼包 400g",
+        "稻香村 京八件糕点礼包 400g"
+      ],
+      "fallback_terms": "regional specialty pastry snack",
+      "image_brand_terms": [
+        "daoxiangcun"
+      ],
+      "image_core_terms": [
+        "pastry",
+        "gift"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 94,
+      "category_key": "regional_specialty",
+      "category_id": 123,
+      "category_name": "地方特产",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "桂花",
+      "short_name": "绿豆糕",
+      "spec": "220g",
+      "name": "桂花绿豆糕 220g",
+      "price": 16.9,
+      "stock": 44,
+      "safety_stock": 12,
+      "bar_code": "6909000000094",
+      "image_url": "/uploads/goods/goods_094.jpg",
+      "file_name": "goods_094.jpg",
+      "description": "桂花绿豆糕带有鲜明地方风味，220g包装拿得出手，自己吃或待客分享都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Osmanthus Mung Bean Cake 220g",
+        "Osmanthus Mung Bean Cake",
+        "Osmanthus 绿豆糕 220g",
+        "桂花 绿豆糕 220g"
+      ],
+      "fallback_terms": "regional specialty pastry snack",
+      "image_brand_terms": [
+        "osmanthus"
+      ],
+      "image_core_terms": [
+        "mung",
+        "bean",
+        "cake"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 95,
+      "category_key": "regional_specialty",
+      "category_id": 123,
+      "category_name": "地方特产",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "重庆",
+      "short_name": "怪味胡豆",
+      "spec": "180g",
+      "name": "重庆怪味胡豆 180g",
+      "price": 14.9,
+      "stock": 51,
+      "safety_stock": 13,
+      "bar_code": "6909000000095",
+      "image_url": "/uploads/goods/goods_095.jpg",
+      "file_name": "goods_095.jpg",
+      "description": "重庆怪味胡豆带有鲜明地方风味，180g包装拿得出手，自己吃或待客分享都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Chongqing Spicy Broad Beans 180g",
+        "Chongqing Spicy Broad Beans",
+        "Chongqing 怪味胡豆 180g",
+        "重庆 怪味胡豆 180g"
+      ],
+      "fallback_terms": "regional specialty pastry snack",
+      "image_brand_terms": [
+        "chongqing"
+      ],
+      "image_core_terms": [
+        "spicy",
+        "broad",
+        "beans"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 96,
+      "category_key": "regional_specialty",
+      "category_id": 123,
+      "category_name": "地方特产",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "天津",
+      "short_name": "麻花什锦装",
+      "spec": "360g",
+      "name": "天津麻花什锦装 360g",
+      "price": 24.9,
+      "stock": 58,
+      "safety_stock": 14,
+      "bar_code": "6909000000096",
+      "image_url": "/uploads/goods/goods_096.jpg",
+      "file_name": "goods_096.jpg",
+      "description": "天津麻花什锦装带有鲜明地方风味，360g包装拿得出手，自己吃或待客分享都很合适。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Tianjin Mahua Assorted 360g",
+        "Tianjin Mahua Assorted",
+        "Tianjin 麻花什锦装 360g",
+        "天津 麻花什锦装 360g"
+      ],
+      "fallback_terms": "regional specialty pastry snack",
+      "image_brand_terms": [
+        "tianjin"
+      ],
+      "image_core_terms": [
+        "mahua",
+        "assorted"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 97,
+      "category_key": "imported_snacks",
+      "category_id": 124,
+      "category_name": "进口零食",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "百乐滋",
+      "short_name": "巧克力棒",
+      "spec": "55g",
+      "name": "百乐滋巧克力棒 55g",
+      "price": 9.9,
+      "stock": 65,
+      "safety_stock": 15,
+      "bar_code": "6909000000097",
+      "image_url": "/uploads/goods/goods_097.jpg",
+      "file_name": "goods_097.jpg",
+      "description": "百乐滋巧克力棒是门店里很稳定的人气进口零食，55g包装精致，送朋友也很加分。",
+      "promotion_tag": "进口人气",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Pocky Chocolate 55g",
+        "Pocky Chocolate",
+        "Pocky 巧克力棒 55g",
+        "百乐滋 巧克力棒 55g"
+      ],
+      "fallback_terms": "imported snack package",
+      "image_brand_terms": [
+        "pocky"
+      ],
+      "image_core_terms": [
+        "chocolate"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 98,
+      "category_key": "imported_snacks",
+      "category_id": 124,
+      "category_name": "进口零食",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "Loacker",
+      "short_name": "香草威化",
+      "spec": "125g",
+      "name": "Loacker香草威化 125g",
+      "price": 18.9,
+      "stock": 72,
+      "safety_stock": 16,
+      "bar_code": "6909000000098",
+      "image_url": "/uploads/goods/goods_098.jpg",
+      "file_name": "goods_098.jpg",
+      "description": "Loacker香草威化是门店里很稳定的人气进口零食，125g包装精致，送朋友也很加分。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Loacker Vanilla Wafer 125g",
+        "Loacker Vanilla Wafer",
+        "Loacker 香草威化 125g"
+      ],
+      "fallback_terms": "imported snack package",
+      "image_brand_terms": [
+        "loacker"
+      ],
+      "image_core_terms": [
+        "vanilla",
+        "wafer"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 99,
+      "category_key": "festival_gifts",
+      "category_id": 125,
+      "category_name": "节庆礼盒",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "三只松鼠",
+      "short_name": "坚果礼盒",
+      "spec": "750g",
+      "name": "三只松鼠坚果礼盒 750g",
+      "price": 89.0,
+      "stock": 79,
+      "safety_stock": 8,
+      "bar_code": "6909000000099",
+      "image_url": "/uploads/goods/goods_099.jpg",
+      "file_name": "goods_099.jpg",
+      "description": "三只松鼠坚果礼盒更适合节庆送礼和多人分享，750g礼盒装体面大方，囤年货也很省心。",
+      "promotion_tag": "送礼优选",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Three Squirrels Nut Gift Box 750g",
+        "Three Squirrels Nut Gift Box",
+        "Three Squirrels 坚果礼盒 750g",
+        "三只松鼠 坚果礼盒 750g"
+      ],
+      "fallback_terms": "snack gift box package",
+      "image_brand_terms": [
+        "three",
+        "squirrels"
+      ],
+      "image_core_terms": [
+        "nut",
+        "gift",
+        "box"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    },
+    {
+      "id": 100,
+      "category_key": "festival_gifts",
+      "category_id": 125,
+      "category_name": "节庆礼盒",
+      "parent_category_key": "specialty_gifts",
+      "parent_category_name": "特产礼盒",
+      "brand": "德芙",
+      "short_name": "巧克力礼盒",
+      "spec": "280g",
+      "name": "德芙巧克力礼盒 280g",
+      "price": 79.0,
+      "stock": 86,
+      "safety_stock": 9,
+      "bar_code": "6909000000100",
+      "image_url": "/uploads/goods/goods_100.jpg",
+      "file_name": "goods_100.jpg",
+      "description": "德芙巧克力礼盒更适合节庆送礼和多人分享，280g礼盒装体面大方，囤年货也很省心。",
+      "promotion_tag": "",
+      "is_on_sale": 1,
+      "expire_date": "2027-05-31",
+      "search_terms": [
+        "Dove Chocolate Gift Box 280g",
+        "Dove Chocolate Gift Box",
+        "Dove 巧克力礼盒 280g",
+        "德芙 巧克力礼盒 280g"
+      ],
+      "fallback_terms": "snack gift box package",
+      "image_brand_terms": [
+        "dove"
+      ],
+      "image_core_terms": [
+        "chocolate",
+        "gift",
+        "box"
+      ],
+      "image_exclude_terms": [
+        "ham",
+        "soup",
+        "detergent"
+      ],
+      "image_override_urls": []
+    }
+  ]
+}

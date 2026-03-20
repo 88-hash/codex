@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,31 +27,23 @@ public class StatisticsService {
 
     public Map<String, Object> getDashboard() {
         Map<String, Object> result = new HashMap<>();
-        
-        // 今日营业额
-        BigDecimal todaySales = orderMapper.getTodaySales();
-        result.put("todaySales", todaySales);
-        
-        // 今日订单数
+
+        BigDecimal todaySales = safeAmount(orderMapper.getTodaySales());
+        BigDecimal yesterdaySales = safeAmount(orderMapper.getYesterdaySales());
         int todayOrders = orderMapper.countTodayOrders();
-        result.put("todayOrders", todayOrders);
-        
-        // 今日核销数
         int todayVerified = orderMapper.countTodayVerified();
-        result.put("todayVerified", todayVerified);
-        
-        // 核销转化率
-        double verifyRate = todayOrders > 0 ? (double) todayVerified / todayOrders * 100 : 0;
-        result.put("verifyRate", Math.round(verifyRate * 100) / 100.0);
-        
-        // 库存预警商品数
+        int pendingOrders = orderMapper.countPendingOrders();
         List<Goods> lowStockGoods = goodsMapper.findLowStock();
-        result.put("lowStockCount", lowStockGoods.size());
-        
-        // 临期商品数(30天内)
         List<Goods> expiringGoods = goodsMapper.findExpiringSoon(30);
+
+        result.put("todaySales", todaySales);
+        result.put("todayOrders", todayOrders);
+        result.put("todayVerified", todayVerified);
+        result.put("pendingOrders", pendingOrders);
+        result.put("verifyRate", roundPercentage(todayOrders == 0 ? 0D : (double) todayVerified / todayOrders * 100));
+        result.put("salesGrowth", calculateSalesGrowth(todaySales, yesterdaySales));
+        result.put("lowStockCount", lowStockGoods.size());
         result.put("expiringCount", expiringGoods.size());
-        
         return result;
     }
 
@@ -69,7 +62,34 @@ public class StatisticsService {
     public List<Goods> getExpiringGoods(Integer days) {
         return goodsMapper.findExpiringSoon(days);
     }
+
+    public List<Map<String, Object>> getOrderStatusSummary() {
+        return orderMapper.getOrderStatusSummary();
+    }
+
+    public List<Map<String, Object>> getCategorySales(Integer days) {
+        return orderItemMapper.getCategorySales(days);
+    }
+
+    public List<Map<String, Object>> getHourlyOrders() {
+        return orderMapper.getHourlyOrders();
+    }
+
+    private BigDecimal safeAmount(BigDecimal amount) {
+        return amount == null ? BigDecimal.ZERO : amount;
+    }
+
+    private double calculateSalesGrowth(BigDecimal todaySales, BigDecimal yesterdaySales) {
+        if (yesterdaySales.compareTo(BigDecimal.ZERO) == 0) {
+            return todaySales.compareTo(BigDecimal.ZERO) > 0 ? 100.0D : 0.0D;
+        }
+        BigDecimal growth = todaySales.subtract(yesterdaySales)
+                .multiply(BigDecimal.valueOf(100))
+                .divide(yesterdaySales, 4, RoundingMode.HALF_UP);
+        return roundPercentage(growth.doubleValue());
+    }
+
+    private double roundPercentage(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
 }
-
-
-

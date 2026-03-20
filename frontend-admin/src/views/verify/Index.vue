@@ -122,7 +122,7 @@ const handleVerify = async () => {
   try {
     await verifyOrder(order.value.id)
     ElMessage.success('核销成功')
-    order.value.status = 'completed'
+    order.value = null
     verifyCode.value = ''
   } catch (e) {
     console.error(e)

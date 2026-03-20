@@ -99,10 +99,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { createOrder } from '@/api/order'
 import { useCartStore } from '@/stores/cart'
 import { useUserStore } from '@/stores/user'
 import { getImageUrl, handleImageError } from '@/utils/image'
@@ -114,28 +113,18 @@ const userStore = useUserStore()
 const remark = ref('')
 const loading = ref(false)
 
+onMounted(() => {
+  remark.value = sessionStorage.getItem('checkout.remark') || ''
+})
+
 const handleSubmit = async () => {
   if (cartStore.checkedItems.length === 0) {
     ElMessage.warning('请选择要结算的商品')
     return
   }
 
-  loading.value = true
-  try {
-    const res = await createOrder(remark.value)
-    await cartStore.fetchCart()
-    router.replace({
-      path: '/order/success',
-      query: {
-        orderNo: res.data.orderNo,
-        verifyCode: res.data.verifyCode
-      }
-    })
-  } catch (error) {
-    console.error(error)
-  } finally {
-    loading.value = false
-  }
+  sessionStorage.setItem('checkout.remark', remark.value)
+  router.push('/payment')
 }
 </script>
 

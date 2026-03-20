@@ -11,7 +11,8 @@ CREATE TABLE `user` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '用户ID',
     `phone` VARCHAR(20) NOT NULL UNIQUE COMMENT '手机号',
     `name` VARCHAR(50) DEFAULT '' COMMENT '昵称',
-    `avatar` VARCHAR(255) DEFAULT '' COMMENT '头像URL',
+    `avatar` MEDIUMTEXT COMMENT '头像URL',
+    `signature` VARCHAR(80) DEFAULT '' COMMENT '个性签名',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     INDEX `idx_phone` (`phone`)
@@ -61,6 +62,8 @@ CREATE TABLE `goods` (
     `expire_date` DATE DEFAULT NULL COMMENT '保质期截止日期',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    CONSTRAINT `chk_goods_stock_non_negative` CHECK (`stock` >= 0),
+    CONSTRAINT `chk_goods_safety_stock_non_negative` CHECK (`safety_stock` >= 0),
     INDEX `idx_category_id` (`category_id`),
     INDEX `idx_bar_code` (`bar_code`),
     INDEX `idx_is_on_sale` (`is_on_sale`)
@@ -87,6 +90,7 @@ CREATE TABLE `cart` (
     `is_checked` TINYINT(1) DEFAULT 1 COMMENT '是否选中',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    CONSTRAINT `chk_cart_quantity_positive` CHECK (`quantity` > 0),
     UNIQUE KEY `uk_user_goods` (`user_id`, `goods_id`),
     INDEX `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='购物车表';
@@ -105,9 +109,10 @@ CREATE TABLE `order` (
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `verify_time` DATETIME DEFAULT NULL COMMENT '核销时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    CONSTRAINT `chk_order_total_price_non_negative` CHECK (`total_price` >= 0),
     INDEX `idx_user_id` (`user_id`),
     INDEX `idx_order_no` (`order_no`),
-    INDEX `idx_verify_code` (`verify_code`),
+    UNIQUE KEY `uk_verify_code` (`verify_code`),
     INDEX `idx_status` (`status`),
     INDEX `idx_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单主表';
@@ -126,6 +131,8 @@ CREATE TABLE `order_item` (
     `is_commented` TINYINT(1) DEFAULT 0 COMMENT '是否已评价',
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    CONSTRAINT `chk_order_item_quantity_positive` CHECK (`quantity` > 0),
+    CONSTRAINT `chk_order_item_subtotal_non_negative` CHECK (`subtotal` >= 0),
     INDEX `idx_order_id` (`order_id`),
     INDEX `idx_goods_id` (`goods_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单明细表';
@@ -168,8 +175,8 @@ CREATE TABLE `verify_log` (
 
 -- 默认店长账号 (密码: 123456)
 INSERT INTO `admin` (`name`, `phone`, `password`, `role`) VALUES 
-('店长', '13800000001', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5EH', 'manager'),
-('店员小王', '13800000002', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5EH', 'clerk');
+('店长', '13800000001', '$2a$10$sq0JnxJBhl9HMviT57r7n.QyQ2JdjrHVgZ1pkxE/7CPZ0gXP3A80O', 'manager'),
+('店员小王', '13800000002', '$2a$10$sq0JnxJBhl9HMviT57r7n.QyQ2JdjrHVgZ1pkxE/7CPZ0gXP3A80O', 'clerk');
 
 -- 商品分类数据
 INSERT INTO `category` (`id`, `parent_id`, `name`, `sort`) VALUES 
@@ -220,8 +227,8 @@ INSERT INTO `goods_image` (`goods_id`, `image_url`, `sort`) VALUES
 (9, '/uploads/goods/coca-cola.jpg', 1);
 
 -- 添加测试用户
-INSERT INTO `user` (`phone`, `name`, `avatar`) VALUES 
-('13900000001', '测试用户', '/uploads/avatar/default.jpg');
+INSERT INTO `user` (`phone`, `name`, `avatar`, `signature`) VALUES 
+('13900000001', '测试用户', '/uploads/avatar/default.jpg', '');
 
 
 

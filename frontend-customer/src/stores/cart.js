@@ -30,9 +30,14 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const updateQuantity = async (id, quantity) => {
-    await request.put(`/cart/quantity/${id}`, null, { params: { quantity } })
-    const item = cartList.value.find(i => i.id === id)
-    if (item) item.quantity = quantity
+    try {
+      await request.put(`/cart/quantity/${id}`, null, { params: { quantity } })
+      const item = cartList.value.find(i => i.id === id)
+      if (item) item.quantity = quantity
+    } catch (error) {
+      await fetchCart().catch(() => {})
+      throw error
+    }
   }
 
   const updateChecked = async (id, isChecked) => {
