@@ -44,6 +44,10 @@ frontend-customer/dist/
 
 # --- backend build output ---
 backend/target/
+backend/uploads/
+
+# --- local temp ---
+.tmp/
 
 # --- Trae generated ---
 .trae/
