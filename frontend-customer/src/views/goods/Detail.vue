@@ -206,7 +206,8 @@ const buyNow = async () => {
   }
   try {
     await cartStore.addToCart(goods.value.id, quantity.value)
-    router.push('/checkout')
+    sessionStorage.removeItem('checkout.remark')
+    router.push('/payment')
   } catch (error) {
     console.error(error)
   }

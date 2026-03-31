@@ -51,14 +51,14 @@ const routes = [
       {
         path: 'checkout',
         name: 'Checkout',
-        component: () => import('@/views/checkout/Index.vue'),
-        meta: { title: '确认订单', requireAuth: true }
+        redirect: '/payment',
+        meta: { requireAuth: true }
       },
       {
         path: 'payment',
         name: 'Payment',
         component: () => import('@/views/payment/Index.vue'),
-        meta: { title: '确认支付', requireAuth: true }
+        meta: { title: '模拟付款', requireAuth: true }
       },
       {
         path: 'order/success',

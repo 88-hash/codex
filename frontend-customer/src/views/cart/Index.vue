@@ -137,7 +137,10 @@ const handleDelete = async (id) => {
 }
 
 const goDetail = (id) => router.push(`/goods/${id}`)
-const goCheckout = () => router.push('/checkout')
+const goCheckout = () => {
+  sessionStorage.removeItem('checkout.remark')
+  router.push('/payment')
+}
 </script>
 
 <style lang="scss" scoped>

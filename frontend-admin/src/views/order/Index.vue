@@ -4,7 +4,6 @@
       <div class="card-header">
         <div class="filter-row">
           <el-select v-model="filters.status" placeholder="订单状态" clearable style="width: 120px">
-            <el-option label="待取货" value="pending" />
             <el-option label="已完成" value="completed" />
             <el-option label="已取消" value="cancelled" />
           </el-select>
@@ -90,6 +89,7 @@ const fetchOrders = async () => {
     const res = await getOrders({
       status: filters.status,
       keyword: filters.keyword,
+      excludeVerificationStatus: 'UNVERIFIED',
       pageNum: pagination.pageNum,
       pageSize: pagination.pageSize
     })

@@ -47,11 +47,26 @@ public class OrderService {
     }
 
     public PageResult<Order> getList(String status, String keyword, Integer pageNum, Integer pageSize) {
-        int offset = (pageNum - 1) * pageSize;
-        List<Order> list = orderMapper.findList(status, keyword, offset, pageSize);
+        return getList(status, keyword, null, null, pageNum, pageSize);
+    }
+
+    public PageResult<Order> getList(
+            String status,
+            String keyword,
+            String verificationStatus,
+            String excludeVerificationStatus,
+            Integer pageNum,
+            Integer pageSize) {
+        int currentPage = pageNum == null || pageNum < 1 ? 1 : pageNum;
+        int currentPageSize = pageSize == null || pageSize < 1 ? 10 : pageSize;
+        String normalizedStatus = normalizeListStatus(status, verificationStatus);
+        String excludedStatus = normalizeExcludedStatus(normalizedStatus, excludeVerificationStatus);
+        int offset = (currentPage - 1) * currentPageSize;
+
+        List<Order> list = orderMapper.findList(normalizedStatus, keyword, excludedStatus, offset, currentPageSize);
         list.forEach(this::loadItems);
-        Long total = orderMapper.countList(status, keyword);
-        return PageResult.of(list, total, pageNum, pageSize);
+        Long total = orderMapper.countList(normalizedStatus, keyword, excludedStatus);
+        return PageResult.of(list, total, currentPage, currentPageSize);
     }
 
     public Order getById(Long id) {
@@ -246,5 +261,37 @@ public class OrderService {
 
     private void loadItems(Order order) {
         order.setItems(orderItemMapper.findByOrderId(order.getId()));
+    }
+
+    private String normalizeListStatus(String status, String verificationStatus) {
+        if (hasText(status)) {
+            return status.trim();
+        }
+        if (isUnverifiedFilter(verificationStatus)) {
+            return "pending";
+        }
+        return null;
+    }
+
+    private String normalizeExcludedStatus(String status, String excludeVerificationStatus) {
+        if (hasText(status)) {
+            return null;
+        }
+        if (isUnverifiedFilter(excludeVerificationStatus)) {
+            return "pending";
+        }
+        return null;
+    }
+
+    private boolean isUnverifiedFilter(String value) {
+        if (!hasText(value)) {
+            return false;
+        }
+        String normalized = value.trim();
+        return "UNVERIFIED".equalsIgnoreCase(normalized) || "pending".equalsIgnoreCase(normalized);
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.trim().isEmpty();
     }
 }

@@ -43,10 +43,19 @@ public class VerifyController {
             HttpServletRequest request,
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String verificationStatus,
+            @RequestParam(required = false) String excludeVerificationStatus,
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize) {
         authGuard.requireAdmin(request);
-        return Result.success(orderService.getList(status, keyword, pageNum, pageSize));
+        return Result.success(orderService.getList(
+                status,
+                keyword,
+                verificationStatus,
+                excludeVerificationStatus,
+                pageNum,
+                pageSize
+        ));
     }
 
     @PostMapping("/confirm/{orderId}")

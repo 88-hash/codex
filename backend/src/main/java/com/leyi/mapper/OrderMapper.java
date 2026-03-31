@@ -14,10 +14,13 @@ public interface OrderMapper {
 
     List<Order> findList(@Param("status") String status,
                          @Param("keyword") String keyword,
+                         @Param("excludeStatus") String excludeStatus,
                          @Param("offset") Integer offset,
                          @Param("limit") Integer limit);
 
-    Long countList(@Param("status") String status, @Param("keyword") String keyword);
+    Long countList(@Param("status") String status,
+                   @Param("keyword") String keyword,
+                   @Param("excludeStatus") String excludeStatus);
 
     @Select("SELECT * FROM `order` WHERE id = #{id}")
     Order findById(Long id);
